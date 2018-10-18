@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "392870201355",
+    "firebase_url": "https://teammanagementdemo.firebaseio.com",
+    "project_id": "teammanagementdemo",
+    "storage_bucket": "teammanagementdemo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:392870201355:android:fd7bbe45e4f3de8c",
+        "android_client_info": {
+          "package_name": "cat.devsofthecoast.teammanagementdemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "392870201355-g8f4a71b6b47eln0ka4uc8gir0d574ok.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "cat.devsofthecoast.teammanagementdemo",
+            "certificate_hash": "cb43d987c5c4ef4d57aa2ec6ac062bfc73552d3f"
+          }
+        },
+        {
+          "client_id": "392870201355-51p7u2lcd8utjtlngsp452q70mk7buf6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgE7-NjYBWdSZ3e0TUXxZ1nwwLMP8qdWo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "392870201355-51p7u2lcd8utjtlngsp452q70mk7buf6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
