@@ -6,7 +6,6 @@ import cat.devsofthecoast.teammanagementdemo.core.mvp.useCase.UseCaseExecutor
 import cat.devsofthecoast.teammanagementdemo.feature.commons.exceptions.InvalidTeamsException
 import cat.devsofthecoast.teammanagementdemo.feature.commons.repository.TMDRepository
 import cat.devsofthecoast.teammanagementdemo.feature.commons.repository.impl.Team
-import cat.devsofthecoast.teammanagementdemo.feature.commons.repository.impl.TeamsResult
 
 class RequestTeamsUseCase(val appConfig: BaseConfig,
                           private val repository: TMDRepository) : UseCase<Void, List<Team>>(appConfig) {

@@ -19,4 +19,5 @@ abstract class PresenterActivity<P : BasePresenter<V>, V : BaseView> :
         super.onDestroy()
         presenter.view = null
     }
+
 }
