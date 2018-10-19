@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/mnuProfileData"
+        android:icon="@drawable/ic_menu_profiledata"
+        android:title="@string/menu_profiledata"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/mnuDailyEntries"
+        android:title="@string/menu_dailyentries"
+        app:showAsAction="collapseActionView" />
+    <item
+        android:id="@+id/mnuManageSurvey"
+        android:title="@string/menu_manageSurvey"
+        app:showAsAction="collapseActionView" />
+    <item
+        android:id="@+id/mnuOther"
+        android:title="TEST_ACTION_01"
+        app:showAsAction="collapseActionView" />
+</menu>

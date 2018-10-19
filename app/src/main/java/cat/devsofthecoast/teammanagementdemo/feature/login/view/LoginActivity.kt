@@ -12,9 +12,9 @@ import cat.devsofthecoast.teammanagementdemo.core.mvp.ui.PresenterActivity
 import cat.devsofthecoast.teammanagementdemo.feature.commons.repository.TMDRepository
 import cat.devsofthecoast.teammanagementdemo.feature.commons.repository.impl.TMDRepositoryImpl
 import cat.devsofthecoast.teammanagementdemo.feature.commons.repository.impl.TMDService
+import cat.devsofthecoast.teammanagementdemo.feature.weekoverview.view.WeekOverviewActivity
 import cat.devsofthecoast.teammanagementdemo.feature.login.LoginContract
 import cat.devsofthecoast.teammanagementdemo.feature.login.presenter.LoginPresenter
-import cat.devsofthecoast.teammanagementdemo.feature.teamslist.view.TeamsListActivity
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -98,7 +98,7 @@ class LoginActivity : PresenterActivity<LoginContract.Presenter, LoginContract.V
     }
 
     override fun logginSucess() {
-        startActivity(TeamsListActivity.newIntent(this))
+        startActivity(WeekOverviewActivity.newIntent(this))
     }
 
     override fun logginFailed() {

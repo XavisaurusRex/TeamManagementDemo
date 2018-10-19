@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">teammanagementdemo</string>
     <string name="mainActivityTitle">Main Page</string>
+
+    <!-- Menu WeekOverviewActivity -->
+    <string name="menu_profiledata">Profile Data</string>
+    <string name="menu_dailyentries">Daily Entries</string>
+    <string name="menu_manageSurvey">Manage Survey</string>
 </resources>
