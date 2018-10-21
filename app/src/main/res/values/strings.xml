@@ -1,9 +1,21 @@
 <resources>
+    <!-- General app resources -->
     <string name="app_name">teammanagementdemo</string>
+    <string name="app_version">1.0</string>
+    <string name="app_error_version">"Build appVersion and resource appVersion doesn't match, you must update string resource app_version before continue"</string>
     <string name="mainActivityTitle">Main Page</string>
+
+    <!-- SplashScreenActivity -->
+    <string name="splashscreen_appname">team management</string>
+    <string name="splashscreen_organizationname">@string/organization_name</string>
+    <string name="splashscreen_desc_loadinglogo">loading using logo of team</string>
+
 
     <!-- Menu WeekOverviewActivity -->
     <string name="menu_profiledata">Profile Data</string>
     <string name="menu_dailyentries">Daily Entries</string>
     <string name="menu_manageSurvey">Manage Survey</string>
+
+    <!-- All literals related to TeamFlavour-->
+    <string name="organization_name">CB Sant Carles</string>
 </resources>

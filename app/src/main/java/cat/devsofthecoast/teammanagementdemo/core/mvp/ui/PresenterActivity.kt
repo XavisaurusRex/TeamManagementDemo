@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import cat.devsofthecoast.teammanagementdemo.core.mvp.presenter.BasePresenter
 import cat.devsofthecoast.teammanagementdemo.core.mvp.presenter.BaseView
 
+@Suppress("UNCHECKED_CAST")
 abstract class PresenterActivity<P : BasePresenter<V>, V : BaseView> :
         AppCompatActivity(), BaseView {
 
