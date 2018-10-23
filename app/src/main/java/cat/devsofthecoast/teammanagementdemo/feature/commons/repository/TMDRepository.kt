@@ -4,5 +4,5 @@ import cat.devsofthecoast.teammanagementdemo.feature.commons.repository.impl.Tea
 
 interface TMDRepository {
     fun getTeams(): List<Team>?
-    fun fillDatabase(input: String?): Boolean
+    fun fillDatabase(): Boolean
 }
