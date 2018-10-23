@@ -15,7 +15,8 @@
         android:gravity="center"
         android:text="@string/splashscreen_organizationname"
         android:textAppearance="@android:style/TextAppearance.Material.Body2"
-        android:textSize="@dimen/splashscreen_teamtitle"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/splashscreen_teamtitle_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

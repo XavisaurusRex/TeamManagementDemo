@@ -3,6 +3,7 @@ package cat.devsofthecoast.teammanagementdemo.feature.weekoverview.view
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -11,9 +12,14 @@ import cat.devsofthecoast.teammanagementdemo.R.id.*
 import cat.devsofthecoast.teammanagementdemo.TMDApp
 import cat.devsofthecoast.teammanagementdemo.core.mvp.config.BaseConfig
 import cat.devsofthecoast.teammanagementdemo.core.mvp.ui.PresenterActivity
+import cat.devsofthecoast.teammanagementdemo.feature.commons.utilities.toast
 import cat.devsofthecoast.teammanagementdemo.feature.teamslist.view.TeamsListActivity
 import cat.devsofthecoast.teammanagementdemo.feature.weekoverview.WeekOverviewContract
 import cat.devsofthecoast.teammanagementdemo.feature.weekoverview.presenter.WeekOverviewPresenter
+import kotlinx.android.synthetic.main.activity_daily_overview.*
+import cat.devsofthecoast.teammanagementdemo.BuildConfig
+import cat.devsofthecoast.teammanagementdemo.feature.devoptions.view.DevOptionsActivity
+
 
 class WeekOverviewActivity : PresenterActivity<WeekOverviewContract.Presenter, WeekOverviewContract.View>(), WeekOverviewContract.View {
 
@@ -23,6 +29,13 @@ class WeekOverviewActivity : PresenterActivity<WeekOverviewContract.Presenter, W
 
     override val presenter: WeekOverviewContract.Presenter by lazy {
         WeekOverviewPresenter(appConfig)
+    }
+
+    private var secretButtonPressed: Boolean = false
+    val handler = Handler()
+    var mLongPressed: Runnable = Runnable {
+        secretButtonPressed = true
+        toast("Long Click of 8 sec")
     }
 
     companion object {
@@ -51,6 +64,18 @@ class WeekOverviewActivity : PresenterActivity<WeekOverviewContract.Presenter, W
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_daily_overview)
         title = null
+
+        configureDevOptLongClick()
+    }
+
+    private fun configureDevOptLongClick() {
+        if(BuildConfig.DEBUG){
+            btnDevOpt.setOnLongClickListener {
+                startActivity(DevOptionsActivity.newIntent(this@WeekOverviewActivity))
+                true
+            }
+        }
+
 
     }
 

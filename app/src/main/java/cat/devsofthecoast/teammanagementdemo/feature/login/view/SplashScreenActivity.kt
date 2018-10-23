@@ -85,7 +85,7 @@ class SplashScreenActivity : PresenterActivity<LoginContract.Presenter, LoginCon
     }
 
     private fun checkAppVersion() {
-        if(BuildConfig.VERSION_NAME != getString(R.string.app_version)) {
+        if (BuildConfig.VERSION_NAME != getString(R.string.app_version)) {
             throw Exception(getString(R.string.app_error_version))
         }
     }

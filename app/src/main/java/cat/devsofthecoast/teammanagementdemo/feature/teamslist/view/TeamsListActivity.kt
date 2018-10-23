@@ -2,12 +2,9 @@ package cat.devsofthecoast.teammanagementdemo.feature.teamslist.view
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
-import android.view.animation.Animation
-import android.view.animation.AnimationSet
-import android.view.animation.Interpolator
-import android.view.animation.RotateAnimation
+import android.support.v4.content.ContextCompat
+import android.view.View
 import cat.devsofthecoast.teammanagementdemo.BuildConfig
 import cat.devsofthecoast.teammanagementdemo.R
 import cat.devsofthecoast.teammanagementdemo.TMDApp
@@ -27,18 +24,24 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.jackson.JacksonConverterFactory
-import android.view.animation.LinearInterpolator
-import android.R.attr.animation
-import android.R.attr.animation
-
-
-
-
 
 
 class TeamsListActivity : PresenterActivity<TeamsListContract.Presenter, TeamsListContract.View>(), TeamsListContract.View {
 
-    var rocketAnimation: AnimationDrawable? = null
+    var countEasterEggs: Int = 0
+    val EASTER_EGG_WINCOUNT = 7
+
+    val easterListener: View.OnClickListener = View.OnClickListener {
+        if (!(it.tag as Boolean)) {
+            it.setBackgroundColor(ContextCompat.getColor(this@TeamsListActivity, R.color.colorEasterEgg_on))
+            it.tag = true
+            udpateCountEasterEgg(true)
+        } else {
+            it.setBackgroundColor(ContextCompat.getColor(this@TeamsListActivity, R.color.colorEasterEgg_off))
+            it.tag = false
+            udpateCountEasterEgg(false)
+        }
+    }
 
     companion object {
 
@@ -84,28 +87,47 @@ class TeamsListActivity : PresenterActivity<TeamsListContract.Presenter, TeamsLi
         setContentView(R.layout.activity_main)
         title = getString(R.string.mainActivityTitle)
 
-        btnGetDatabaseEntry.setOnClickListener {
-            presenter.getTeams()
-        }
+        createEasterEgg()
+    }
 
-        val rotate = RotateAnimation(0f, 358f, Animation.RELATIVE_TO_SELF,0.5f, Animation.RELATIVE_TO_SELF,0.5f)
-        rotate.interpolator = LinearInterpolator()
-        rotate.duration = 3000
-        rotate.fillAfter = true
-        rotate.fillBefore = true
-        rotate.repeatCount = Animation.INFINITE
-        rotate.repeatMode = RotateAnimation.RESTART
-        ball.setOnClickListener {
-            ball.startAnimation(rotate)
+    private fun createEasterEgg() {
+        vLeftTop.tag = false
+        vRightTop.tag = false
+        vLeftBottom.tag = false
+        vRightBottom.tag = false
+        v05.tag = false
+        v06.tag = false
+        v07.tag = false
+
+        vLeftTop.setOnClickListener(easterListener)
+        vRightTop.setOnClickListener(easterListener)
+        vLeftBottom.setOnClickListener(easterListener)
+        vRightBottom.setOnClickListener(easterListener)
+        v05.setOnClickListener(easterListener)
+        v06.setOnClickListener(easterListener)
+        v07.setOnClickListener(easterListener)
+    }
+
+    private fun udpateCountEasterEgg(increment: Boolean) {
+        if (increment) {
+            countEasterEggs++
+            if (countEasterEggs == EASTER_EGG_WINCOUNT) {
+                ivSolaireHavel.visibility = View.VISIBLE
+                tvWinMessage.visibility = View.VISIBLE
+            } else {
+                ivSolaireHavel.visibility = View.GONE
+                tvWinMessage.visibility = View.GONE
+            }
+        } else {
+            countEasterEggs--
+            if (countEasterEggs != EASTER_EGG_WINCOUNT) {
+                ivSolaireHavel.visibility = View.GONE
+                tvWinMessage.visibility = View.GONE
+            }
         }
     }
 
-    override fun showTeams(teamsResult: List<Team>) {
-        tvLogs.text = ""
-        for (team: Team in teamsResult) {
-            tvLogs.append("TEAM NAME --> " + team.team_name + "\n")
-            tvLogs.append("TEAM ID -->" + team.team_id + "\n")
-            tvLogs.append("------------------------\n")
-        }
-    }
+    override fun showTeams(teamsResult: List<Team>) {}
+
+    override fun onBackPressed() {}
 }

@@ -6,4 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".feature.weekoverview.view.WeekOverviewActivity">
 
+    <View
+        android:id="@+id/btnDevOpt"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@color/colorInvisible"/>
+
+
 </android.support.constraint.ConstraintLayout>
