@@ -1,6 +1,6 @@
 package cat.devsofthecoast.teammanagementdemo.feature.commons.models.questions
 
-class BooleanQuestion() : BaseQuestion<Boolean?>() {
+open class BooleanQuestion : BaseQuestion<Boolean?>() {
 
     override val type: QuestionType = QuestionType.TYPE_BOOLEAN
 

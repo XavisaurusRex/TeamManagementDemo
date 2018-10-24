@@ -2,6 +2,7 @@ package cat.devsofthecoast.teammanagementdemo.feature.commons.repository.impl
 
 import android.util.Log
 import cat.devsofthecoast.teammanagementdemo.feature.commons.models.questions.*
+import cat.devsofthecoast.teammanagementdemo.feature.commons.models.questions.QuestionType.*
 import cat.devsofthecoast.teammanagementdemo.feature.commons.repository.TMDRepository
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -61,13 +62,21 @@ class TMDRepositoryImpl(private val service: TMDService) : TMDRepository {
         //endregion
 
         for (question: Question in questions) {
-            firebaseDatabase.child("questions").child(question.key!!).setValue(question) { databaseError: DatabaseError?, databaseReference: DatabaseReference ->
-                Log.d(this.javaClass.name,
-                        "Question \n" +
-                                "  key       -> ${question.key} \n" +
-                                "  statement -> ${question.statement} \n" +
-                                "  Added correctly to bdd")
+            when(question.type){
+                TYPE_BOOLEAN -> firebaseDatabase.child("questions").child(question.key!!).setValue(question as BooleanQuestion)
+                TYPE_PLAINTEXT -> firebaseDatabase.child("questions").child(question.key!!).setValue(question as PlaintextQuestion)
+                TYPE_SINGLECHOICE -> firebaseDatabase.child("questions").child(question.key!!).setValue(question as SingleChoiceQuestion)
+                TYPE_MULTICHOICE -> firebaseDatabase.child("questions").child(question.key!!).setValue(question as MultipleChoiceQuestion)
+                TYPE_NUMERIC -> firebaseDatabase.child("questions").child(question.key!!).setValue(question as NumericQuestion)
+                TYPE_HUMANBODY -> firebaseDatabase.child("questions").child(question.key!!).setValue(question as HumanBodyQuestion)
             }
+//             { databaseError: DatabaseError?, databaseReference: DatabaseReference ->
+//                Log.d(this.javaClass.name,
+//                        "Question \n" +
+//                                "  key       -> ${question.key} \n" +
+//                                "  statement -> ${question.statement} \n" +
+//                                "  Added correctly to bdd")
+//            }
         }
 
 
