@@ -24,17 +24,8 @@ class DatabaseFactory {
         this.key = getNewKey(reference)
     }
 
-    private fun DatabaseReference.addNewData(databaseModel: DatabaseModel): Task<Void> {
-        return this.child(databaseModel.key!!).setValue(databaseModel)
-    }
-
-    fun setNewQuestion(question: Question) {
-        setNewQuestion(question, null)
-    }
-
-    fun setNewQuestion(question: Question, listener: ((Boolean, Exception?) -> Unit)?) {
-        question.asginNewKey(refQuestions)
-        refQuestions.addNewData(question).addOnCompleteListener {
+    private fun DatabaseReference.addNewData(databaseModel: DatabaseModel,  listener: ((Boolean, Exception?) -> Unit)?) {
+        this.child(databaseModel.key!!).setValue(databaseModel).addOnCompleteListener {
             when {
                 it.isSuccessful -> {
                     listener?.invoke(it.isSuccessful, null)
@@ -43,6 +34,34 @@ class DatabaseFactory {
                 else -> listener?.invoke(false, PostingFirebaseException())
             }
         }
+    }
+
+    private fun DatabaseReference.addNewDataList(databaseModels: Map<String, DatabaseModel>, listener: ((Boolean, Exception?) -> Unit)?) {
+        this.setValue(databaseModels).addOnCompleteListener {
+            when {
+                it.isSuccessful -> {
+                    listener?.invoke(it.isSuccessful, null)
+                }
+                it.isCanceled -> listener?.invoke(it.isSuccessful, PostingFirebaseException())
+                else -> listener?.invoke(false, PostingFirebaseException())
+            }
+        }
+    }
+
+
+    fun setNewQuestion(question: Question, listener: ((Boolean, Exception?) -> Unit)?) {
+        question.asginNewKey(refQuestions)
+        refQuestions.addNewData(question, listener)
+    }
+
+    fun setNewQuestions(questions: List<Question>, listener: ((Boolean, Exception?) -> Unit)?) {
+        val keyQuestions: Map<String, Question> = mapOf()
+        for (question: Question in questions) {
+            question.asginNewKey(refQuestions)
+            keyQuestions.plus(Pair(question.key, question))
+        }
+        if(keyQuestions.isNotEmpty()){
+            refQuestions.addNewDataList(keyQuestions, listener)
     }
 
 }
