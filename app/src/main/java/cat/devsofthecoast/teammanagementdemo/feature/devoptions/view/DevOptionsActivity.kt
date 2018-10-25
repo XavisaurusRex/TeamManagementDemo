@@ -19,6 +19,7 @@ import cat.devsofthecoast.teammanagementdemo.feature.devoptions.presenter.DevOpt
 import cat.devsofthecoast.teammanagementdemo.feature.devoptions.usecase.FillDatabaseUseCase
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_dev_options.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

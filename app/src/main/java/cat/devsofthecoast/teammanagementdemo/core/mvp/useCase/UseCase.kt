@@ -22,10 +22,4 @@ abstract class UseCase<I, R>(private val config: BaseConfig) {
             this.errorHandler = errorHandler
         }.execute(params)
     }
-
-    interface Callback<R> {
-        fun onSuccess(result: R)
-
-        fun onError(t: Throwable)
-    }
 }

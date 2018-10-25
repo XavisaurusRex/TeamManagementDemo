@@ -23,6 +23,30 @@
           }
         },
         {
+          "client_id": "392870201355-detsa1ch1qdvj1m6qntahj2e0db59cq2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "cat.devsofthecoast.teammanagementdemo",
+            "certificate_hash": "c978b05bc9cff2141cda87e4ac75d0359dd7f75e"
+          }
+        },
+        {
+          "client_id": "392870201355-8ff63b73occe8ps8adbn3u23o7qh763j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "cat.devsofthecoast.teammanagementdemo",
+            "certificate_hash": "13c50ffb15bdbfa1fb23dc7e616fb017723f51cd"
+          }
+        },
+        {
+          "client_id": "392870201355-dnd64oapp6mlctjj32nln2c3fbk67s08.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "cat.devsofthecoast.teammanagementdemo",
+            "certificate_hash": "ddcb73fd0d8290b0c1b13bb2256d7f6e01f715e5"
+          }
+        },
+        {
           "client_id": "392870201355-51p7u2lcd8utjtlngsp452q70mk7buf6.apps.googleusercontent.com",
           "client_type": 3
         }

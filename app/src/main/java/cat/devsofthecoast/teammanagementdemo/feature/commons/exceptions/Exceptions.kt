@@ -4,3 +4,4 @@ import java.lang.Exception
 
 class InvalidTeamsException : Exception()
 class PostingFirebaseException : Exception()
+class PostingFirebaseTaskCanceled : Exception()

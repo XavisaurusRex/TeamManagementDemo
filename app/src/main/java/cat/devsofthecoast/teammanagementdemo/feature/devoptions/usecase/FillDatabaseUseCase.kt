@@ -2,6 +2,7 @@ package cat.devsofthecoast.teammanagementdemo.feature.devoptions.usecase
 
 import android.content.Context
 import cat.devsofthecoast.teammanagementdemo.core.mvp.config.BaseConfig
+import cat.devsofthecoast.teammanagementdemo.core.mvp.useCase.Callback
 import cat.devsofthecoast.teammanagementdemo.core.mvp.useCase.UseCase
 import cat.devsofthecoast.teammanagementdemo.core.mvp.useCase.UseCaseExecutor
 import cat.devsofthecoast.teammanagementdemo.feature.commons.exceptions.PostingFirebaseException
@@ -13,11 +14,11 @@ class FillDatabaseUseCase(val appConfig: BaseConfig,
 
 
     override fun run(input: Void?, callback: Callback<Boolean>?) {
-        val result: Boolean = repository.fillDatabase()
-        if (result) {
-            callback?.onSuccess(result)
-        } else {
-            callback?.onError(PostingFirebaseException())
+        try {
+            repository.setDummieDatabase()
+            callback?.onSuccess(true)
+        } catch (ex: Exception){
+            callback?.onError(ex)
         }
     }
 

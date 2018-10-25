@@ -22,7 +22,7 @@ open class UseCaseExecutor<I, R>(
         check(useCase != null) { "A valid UseCase reference should be provided." }
 
         threadExecutor.execute {
-            useCase?.run(input, object : UseCase.Callback<R> {
+            useCase?.run(input, object : Callback<R> {
                 override fun onSuccess(result: R) {
                     try {
                         postExecutor.execute {

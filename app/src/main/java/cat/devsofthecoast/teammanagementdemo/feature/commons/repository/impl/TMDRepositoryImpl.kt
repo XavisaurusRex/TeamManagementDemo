@@ -1,16 +1,31 @@
 package cat.devsofthecoast.teammanagementdemo.feature.commons.repository.impl
 
 import android.util.Log
+import cat.devsofthecoast.teammanagementdemo.feature.commons.databasefactory.DatabaseFactory
 import cat.devsofthecoast.teammanagementdemo.feature.commons.models.questions.*
-import cat.devsofthecoast.teammanagementdemo.feature.commons.models.questions.QuestionType.*
+import cat.devsofthecoast.teammanagementdemo.feature.commons.repository.DummyCreator
 import cat.devsofthecoast.teammanagementdemo.feature.commons.repository.TMDRepository
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 class TMDRepositoryImpl(private val service: TMDService) : TMDRepository {
+    private val databaseFactory = DatabaseFactory()
+    var firebaseDatabase = FirebaseDatabase.getInstance().reference
+
+    override fun setDummieDatabase() {
+        val questions: List<Question> = DummyCreator.createQuestions()
+        for (question: Question in questions) {
+            databaseFactory.setNewQuestion(question) { success: Boolean, exception: Exception? ->
+                if (!success) {
+                    throw exception!!
+                }
+            }
+        }
+    }
+
     override fun fillDatabase(): Boolean {
-        val firebaseDatabase = FirebaseDatabase.getInstance().reference
+
 
         //region questions and surveys
 
@@ -62,21 +77,13 @@ class TMDRepositoryImpl(private val service: TMDService) : TMDRepository {
         //endregion
 
         for (question: Question in questions) {
-            when(question.type){
-                TYPE_BOOLEAN -> firebaseDatabase.child("questions").child(question.key!!).setValue(question as BooleanQuestion)
-                TYPE_PLAINTEXT -> firebaseDatabase.child("questions").child(question.key!!).setValue(question as PlaintextQuestion)
-                TYPE_SINGLECHOICE -> firebaseDatabase.child("questions").child(question.key!!).setValue(question as SingleChoiceQuestion)
-                TYPE_MULTICHOICE -> firebaseDatabase.child("questions").child(question.key!!).setValue(question as MultipleChoiceQuestion)
-                TYPE_NUMERIC -> firebaseDatabase.child("questions").child(question.key!!).setValue(question as NumericQuestion)
-                TYPE_HUMANBODY -> firebaseDatabase.child("questions").child(question.key!!).setValue(question as HumanBodyQuestion)
+            firebaseDatabase.child("questions").child(question.key!!).setValue(question) { databaseError: DatabaseError?, databaseReference: DatabaseReference ->
+                Log.d(this.javaClass.name,
+                        "Question \n" +
+                                "  key       -> ${question.key} \n" +
+                                "  statement -> ${question.statement} \n" +
+                                "  Added correctly to bdd")
             }
-//             { databaseError: DatabaseError?, databaseReference: DatabaseReference ->
-//                Log.d(this.javaClass.name,
-//                        "Question \n" +
-//                                "  key       -> ${question.key} \n" +
-//                                "  statement -> ${question.statement} \n" +
-//                                "  Added correctly to bdd")
-//            }
         }
 
 

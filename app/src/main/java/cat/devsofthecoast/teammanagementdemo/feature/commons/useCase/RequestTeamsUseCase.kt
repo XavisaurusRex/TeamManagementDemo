@@ -1,6 +1,7 @@
 package cat.devsofthecoast.teammanagementdemo.feature.commons.useCase
 
 import cat.devsofthecoast.teammanagementdemo.core.mvp.config.BaseConfig
+import cat.devsofthecoast.teammanagementdemo.core.mvp.useCase.Callback
 import cat.devsofthecoast.teammanagementdemo.core.mvp.useCase.UseCase
 import cat.devsofthecoast.teammanagementdemo.core.mvp.useCase.UseCaseExecutor
 import cat.devsofthecoast.teammanagementdemo.feature.commons.exceptions.InvalidTeamsException
