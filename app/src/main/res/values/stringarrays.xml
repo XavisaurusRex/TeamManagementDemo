@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="databaseTables">
+        <item>@string/sp_opt_01</item>
+        <item>@string/sp_opt_02</item>
+        <item>@string/sp_opt_03</item>
+        <item>@string/sp_opt_04</item>
+        <item>@string/sp_opt_05</item>
+    </string-array>
+
+</resources>

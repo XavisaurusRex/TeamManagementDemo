@@ -1,23 +1,23 @@
-package cat.devsofthecoast.teammanagementdemo.feature.devoptions.usecase
+package cat.devsofthecoast.teammanagementdemo.feature.commons.useCase
 
-import android.content.Context
 import cat.devsofthecoast.teammanagementdemo.core.mvp.config.BaseConfig
 import cat.devsofthecoast.teammanagementdemo.core.mvp.useCase.Callback
 import cat.devsofthecoast.teammanagementdemo.core.mvp.useCase.UseCase
 import cat.devsofthecoast.teammanagementdemo.core.mvp.useCase.UseCaseExecutor
-import cat.devsofthecoast.teammanagementdemo.feature.commons.exceptions.PostingFirebaseException
 import cat.devsofthecoast.teammanagementdemo.feature.commons.repository.TMDRepository
 
 class FillDatabaseUseCase(val appConfig: BaseConfig,
-                          private val repository: TMDRepository,
-                          private val context: Context) : UseCase<Void?, Boolean>(appConfig) {
-
-
+                          private val repository: TMDRepository) : UseCase<Void?, Boolean>(appConfig) {
     override fun run(input: Void?, callback: Callback<Boolean>?) {
         try {
-            repository.setDummieDatabase()
-            callback?.onSuccess(true)
-        } catch (ex: Exception){
+            repository.setDummieDatabase { success, error ->
+                if (success) {
+                    callback?.onSuccess(success)
+                } else {
+                    callback?.onError(error!!)
+                }
+            }
+        } catch (ex: Exception) {
             callback?.onError(ex)
         }
     }

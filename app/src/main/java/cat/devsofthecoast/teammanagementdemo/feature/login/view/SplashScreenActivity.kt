@@ -14,21 +14,14 @@ import cat.devsofthecoast.teammanagementdemo.core.mvp.config.BaseConfig
 import cat.devsofthecoast.teammanagementdemo.core.mvp.ui.PresenterActivity
 import cat.devsofthecoast.teammanagementdemo.feature.commons.repository.TMDRepository
 import cat.devsofthecoast.teammanagementdemo.feature.commons.repository.impl.TMDRepositoryImpl
-import cat.devsofthecoast.teammanagementdemo.feature.commons.repository.impl.TMDService
 import cat.devsofthecoast.teammanagementdemo.feature.login.LoginContract
 import cat.devsofthecoast.teammanagementdemo.feature.login.presenter.LoginPresenter
 import cat.devsofthecoast.teammanagementdemo.feature.weekoverview.view.WeekOverviewActivity
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_splash_screen.*
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Retrofit
-import retrofit2.converter.jackson.JacksonConverterFactory
 
 class SplashScreenActivity : PresenterActivity<LoginContract.Presenter, LoginContract.View>(), LoginContract.View {
 
@@ -51,20 +44,8 @@ class SplashScreenActivity : PresenterActivity<LoginContract.Presenter, LoginCon
         (application as TMDApp).getConfig()
     }
 
-    private val service: TMDService by lazy {
-        val interceptor = HttpLoggingInterceptor()
-        interceptor.level = HttpLoggingInterceptor.Level.BODY
-        val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
-        val retrofit = Retrofit.Builder()
-                .client(client)
-                .baseUrl(BuildConfig.TEAMMANAGEMENT_API_BASE_URL)
-                .addConverterFactory(JacksonConverterFactory.create(ObjectMapper().registerKotlinModule()))
-                .build()
-        retrofit.create<TMDService>(TMDService::class.java)
-    }
-
     private val repository: TMDRepository by lazy {
-        TMDRepositoryImpl(service)
+        TMDRepositoryImpl()
     }
 
     override val presenter: LoginContract.Presenter by lazy {

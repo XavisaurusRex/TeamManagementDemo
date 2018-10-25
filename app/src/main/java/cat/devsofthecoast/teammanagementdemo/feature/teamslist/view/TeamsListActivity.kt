@@ -5,25 +5,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.view.View
-import cat.devsofthecoast.teammanagementdemo.BuildConfig
 import cat.devsofthecoast.teammanagementdemo.R
 import cat.devsofthecoast.teammanagementdemo.TMDApp
 import cat.devsofthecoast.teammanagementdemo.core.mvp.config.BaseConfig
 import cat.devsofthecoast.teammanagementdemo.core.mvp.ui.PresenterActivity
 import cat.devsofthecoast.teammanagementdemo.feature.commons.repository.TMDRepository
 import cat.devsofthecoast.teammanagementdemo.feature.commons.repository.impl.TMDRepositoryImpl
-import cat.devsofthecoast.teammanagementdemo.feature.commons.repository.impl.TMDService
-import cat.devsofthecoast.teammanagementdemo.feature.commons.repository.impl.Team
-import cat.devsofthecoast.teammanagementdemo.feature.commons.useCase.RequestTeamsUseCase
 import cat.devsofthecoast.teammanagementdemo.feature.teamslist.TeamsListContract
 import cat.devsofthecoast.teammanagementdemo.feature.teamslist.presenter.TeamsListPresenter
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import kotlinx.android.synthetic.main.activity_main.*
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Retrofit
-import retrofit2.converter.jackson.JacksonConverterFactory
 
 
 class TeamsListActivity : PresenterActivity<TeamsListContract.Presenter, TeamsListContract.View>(), TeamsListContract.View {
@@ -54,32 +44,16 @@ class TeamsListActivity : PresenterActivity<TeamsListContract.Presenter, TeamsLi
         }
     }
 
-    private val service: TMDService by lazy {
-        val interceptor = HttpLoggingInterceptor()
-        interceptor.level = HttpLoggingInterceptor.Level.BODY
-        val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
-        val retrofit = Retrofit.Builder()
-                .client(client)
-                .baseUrl(BuildConfig.TEAMMANAGEMENT_API_BASE_URL)
-                .addConverterFactory(JacksonConverterFactory.create(ObjectMapper().registerKotlinModule()))
-                .build()
-        retrofit.create<TMDService>(TMDService::class.java)
-    }
-
     override val presenter: TeamsListContract.Presenter by lazy {
-        TeamsListPresenter(appConfig, requestTeamsUseCase)
+        TeamsListPresenter(appConfig)
     }
 
     private val repository: TMDRepository by lazy {
-        TMDRepositoryImpl(service)
+        TMDRepositoryImpl()
     }
 
     private val appConfig: BaseConfig by lazy {
         (application as TMDApp).getConfig()
-    }
-
-    private val requestTeamsUseCase: RequestTeamsUseCase by lazy {
-        RequestTeamsUseCase(appConfig, repository)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -126,8 +100,4 @@ class TeamsListActivity : PresenterActivity<TeamsListContract.Presenter, TeamsLi
             }
         }
     }
-
-    override fun showTeams(teamsResult: List<Team>) {}
-
-    override fun onBackPressed() {}
 }

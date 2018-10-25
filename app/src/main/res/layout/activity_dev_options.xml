@@ -1,45 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".feature.devoptions.view.DevOptionsActivity">
 
-    <ToggleButton
-        android:id="@+id/tbEnvoirment"
+    <ScrollView
+        android:id="@+id/scvControllers"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textOn="PRE"
-        android:textOff="PRO"/>
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/scvLogs"
+        app:layout_constraintVertical_weight="1">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/clControllerContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Button
+                android:id="@+id/btnFillDatabase"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Fill database with dummie content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="@android:color/black" />
+
+            <Spinner
+                android:id="@+id/spSelectTable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/databaseTables"
+                app:layout_constraintTop_toBottomOf="@id/btnFillDatabase" />
+
+            <Button
+                android:id="@+id/btnGetAllQuestions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Get All Questions"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="@android:color/black"
+                app:layout_constraintTop_toBottomOf="@id/spSelectTable" />
+
+            <Button
+                android:id="@+id/btnGetSingleQuestion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Get One Question"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="@android:color/black"
+                app:layout_constraintTop_toBottomOf="@id/btnGetAllQuestions" />
+
+            <Button
+                android:id="@+id/btn1"
+                android:onClick="notImplementedClick"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Another Button"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="@android:color/black"
+                app:layout_constraintTop_toBottomOf="@id/btnGetSingleQuestion" />
+
+            <Button
+                android:id="@+id/btn2"
+                android:onClick="notImplementedClick"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Another Button"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="@android:color/black"
+                app:layout_constraintTop_toBottomOf="@id/btn1" />
+            <Button
+                android:id="@+id/btn3"
+                android:onClick="notImplementedClick"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Another Button"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="@android:color/black"
+                app:layout_constraintTop_toBottomOf="@id/btn2" />
+            <Button
+                android:id="@+id/btn4"
+                android:onClick="notImplementedClick"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Another Button"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="@android:color/black"
+                app:layout_constraintTop_toBottomOf="@id/btn3" />
+            <Button
+                android:id="@+id/btn5"
+                android:onClick="notImplementedClick"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Another Button"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="@android:color/black"
+                app:layout_constraintTop_toBottomOf="@id/btn4" />
+
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
 
     <Button
-        android:id="@+id/btnFillDatabase"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Fill database with dummie content"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:id="@+id/btnClearLogs"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Clear logs"
         android:textColor="@android:color/black"
-        app:layout_constraintTop_toBottomOf="@id/tbEnvoirment"/>
-
-    <Button
-        android:id="@+id/btnPost"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Post"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textColor="@android:color/black"
-        app:layout_constraintTop_toBottomOf="@id/btnFillDatabase"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/scvLogs" />
 
     <ScrollView
         android:id="@+id/scvLogs"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="0dp"
+        android:background="@color/colorEasterEgg_on"
+        app:layout_constraintVertical_weight="0.8"
+        app:layout_constraintTop_toBottomOf="@id/scvControllers"
         app:layout_constraintBottom_toBottomOf="parent">
+
         <TextView
             android:id="@+id/tvLogs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:lineSpacingMultiplier="1"/>
+            android:background="@color/colorEasterEgg_on"/>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>

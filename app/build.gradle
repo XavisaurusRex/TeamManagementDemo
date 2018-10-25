@@ -19,13 +19,13 @@ android {
         debug {
             minifyEnabled false
 
-            buildConfigField "String", "TEAMMANAGEMENT_API_BASE_URL", "\"https://teammanagementdemo.firebaseio.com/pre_db/\""
+            buildConfigField "String", "TEAMMANAGEMENT_BASE_LOCATION", "\"pre_db\""
         }
         release {
             minifyEnabled false
 
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "TEAMMANAGEMENT_API_BASE_URL", "\"https://teammanagementdemo.firebaseio.com/pre_db/\""
+            buildConfigField "String", "TEAMMANAGEMENT_BASE_LOCATION", "\"pro_db\""
         }
     }
 }
