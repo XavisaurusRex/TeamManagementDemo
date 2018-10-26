@@ -2,9 +2,9 @@ package cat.devsofthecoast.teammanagementdemo.feature.devoptions.presenter
 
 import cat.devsofthecoast.teammanagementdemo.core.mvp.config.BaseConfig
 import cat.devsofthecoast.teammanagementdemo.feature.devoptions.DevOptionsContract
-import cat.devsofthecoast.teammanagementdemo.feature.commons.useCase.FillDatabaseUseCase
-import cat.devsofthecoast.teammanagementdemo.feature.commons.useCase.GetAllQuestionsUseCase
-import cat.devsofthecoast.teammanagementdemo.feature.commons.useCase.GetQuestionUseCase
+import cat.devsofthecoast.teammanagementdemo.commons.useCase.FillDatabaseUseCase
+import cat.devsofthecoast.teammanagementdemo.commons.useCase.GetAllQuestionsUseCase
+import cat.devsofthecoast.teammanagementdemo.commons.useCase.GetQuestionUseCase
 
 class DevOptionsPresenter(
         private val appConfig: BaseConfig,

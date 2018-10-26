@@ -10,15 +10,15 @@ import cat.devsofthecoast.teammanagementdemo.R
 import cat.devsofthecoast.teammanagementdemo.TMDApp
 import cat.devsofthecoast.teammanagementdemo.core.mvp.config.BaseConfig
 import cat.devsofthecoast.teammanagementdemo.core.mvp.ui.PresenterActivity
-import cat.devsofthecoast.teammanagementdemo.feature.commons.models.questions.Question
-import cat.devsofthecoast.teammanagementdemo.feature.commons.repository.TMDRepository
-import cat.devsofthecoast.teammanagementdemo.feature.commons.repository.impl.TMDRepositoryImpl
+import cat.devsofthecoast.teammanagementdemo.commons.models.questions.Question
+import cat.devsofthecoast.teammanagementdemo.commons.repository.TMDRepository
+import cat.devsofthecoast.teammanagementdemo.commons.repository.impl.TMDRepositoryImpl
 import cat.devsofthecoast.teammanagementdemo.feature.devoptions.DevOptionsContract
 import cat.devsofthecoast.teammanagementdemo.feature.devoptions.presenter.DevOptionsPresenter
-import cat.devsofthecoast.teammanagementdemo.feature.commons.useCase.FillDatabaseUseCase
-import cat.devsofthecoast.teammanagementdemo.feature.commons.useCase.GetAllQuestionsUseCase
-import cat.devsofthecoast.teammanagementdemo.feature.commons.useCase.GetQuestionUseCase
-import cat.devsofthecoast.teammanagementdemo.feature.commons.utilities.toast
+import cat.devsofthecoast.teammanagementdemo.commons.useCase.FillDatabaseUseCase
+import cat.devsofthecoast.teammanagementdemo.commons.useCase.GetAllQuestionsUseCase
+import cat.devsofthecoast.teammanagementdemo.commons.useCase.GetQuestionUseCase
+import cat.devsofthecoast.teammanagementdemo.commons.utilities.toast
 import kotlinx.android.synthetic.main.activity_dev_options.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -27,29 +27,8 @@ import java.util.*
 class DevOptionsActivity : PresenterActivity<DevOptionsContract.Presenter, DevOptionsContract.View>(), DevOptionsContract.View {
 
 
-    private val appConfig: BaseConfig by lazy {
-        (application as TMDApp).getConfig()
-    }
-
-    private val repository: TMDRepository by lazy {
-        TMDRepositoryImpl()
-    }
-
-    private val fillDatabaseUseCase: FillDatabaseUseCase by lazy {
-        FillDatabaseUseCase(appConfig, repository)
-    }
-
-    private val getAllQuestionsUseCase: GetAllQuestionsUseCase by lazy {
-        GetAllQuestionsUseCase(appConfig, repository)
-    }
-
-    private val getQuestionUseCase by lazy {
-        GetQuestionUseCase(appConfig, repository)
-    }
-
-
     override val presenter: DevOptionsContract.Presenter by lazy {
-        DevOptionsPresenter(appConfig, fillDatabaseUseCase, getAllQuestionsUseCase, getQuestionUseCase)
+        (application as TMDApp).presenterModule.devOptionsPresenter
     }
 
     val runnable = Runnable { scvLogs.fullScroll(ScrollView.FOCUS_DOWN) }

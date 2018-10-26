@@ -12,8 +12,8 @@ import cat.devsofthecoast.teammanagementdemo.R
 import cat.devsofthecoast.teammanagementdemo.TMDApp
 import cat.devsofthecoast.teammanagementdemo.core.mvp.config.BaseConfig
 import cat.devsofthecoast.teammanagementdemo.core.mvp.ui.PresenterActivity
-import cat.devsofthecoast.teammanagementdemo.feature.commons.repository.TMDRepository
-import cat.devsofthecoast.teammanagementdemo.feature.commons.repository.impl.TMDRepositoryImpl
+import cat.devsofthecoast.teammanagementdemo.commons.repository.TMDRepository
+import cat.devsofthecoast.teammanagementdemo.commons.repository.impl.TMDRepositoryImpl
 import cat.devsofthecoast.teammanagementdemo.feature.login.LoginContract
 import cat.devsofthecoast.teammanagementdemo.feature.login.presenter.LoginPresenter
 import cat.devsofthecoast.teammanagementdemo.feature.weekoverview.view.WeekOverviewActivity

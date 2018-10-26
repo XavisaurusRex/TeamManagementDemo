@@ -1,0 +1,27 @@
+package cat.devsofthecoast.teammanagementdemo.commons.useCase
+
+import cat.devsofthecoast.teammanagementdemo.core.mvp.config.BaseConfig
+import cat.devsofthecoast.teammanagementdemo.core.mvp.useCase.Callback
+import cat.devsofthecoast.teammanagementdemo.core.mvp.useCase.UseCase
+import cat.devsofthecoast.teammanagementdemo.core.mvp.useCase.UseCaseExecutor
+import cat.devsofthecoast.teammanagementdemo.commons.repository.TMDRepository
+
+class FillDatabaseUseCase(val appConfig: BaseConfig,
+                          private val repository: TMDRepository) : UseCase<Void?, Boolean>(appConfig) {
+    override fun run(input: Void?, callback: Callback<Boolean>?) {
+        try {
+            repository.setDummieDatabase { success, error ->
+                if (success) {
+                    callback?.onSuccess(success)
+                } else {
+                    callback?.onError(error!!)
+                }
+            }
+        } catch (ex: Exception) {
+            callback?.onError(ex)
+        }
+    }
+
+    class Executor(config: BaseConfig, builder: (UseCaseExecutor<Void?, Boolean>.() -> Unit)?) :
+            UseCaseExecutor<Void?, Boolean>(config, builder)
+}

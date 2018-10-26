@@ -12,7 +12,7 @@ import cat.devsofthecoast.teammanagementdemo.R.id.*
 import cat.devsofthecoast.teammanagementdemo.TMDApp
 import cat.devsofthecoast.teammanagementdemo.core.mvp.config.BaseConfig
 import cat.devsofthecoast.teammanagementdemo.core.mvp.ui.PresenterActivity
-import cat.devsofthecoast.teammanagementdemo.feature.commons.utilities.toast
+import cat.devsofthecoast.teammanagementdemo.commons.utilities.toast
 import cat.devsofthecoast.teammanagementdemo.feature.teamslist.view.TeamsListActivity
 import cat.devsofthecoast.teammanagementdemo.feature.weekoverview.WeekOverviewContract
 import cat.devsofthecoast.teammanagementdemo.feature.weekoverview.presenter.WeekOverviewPresenter
