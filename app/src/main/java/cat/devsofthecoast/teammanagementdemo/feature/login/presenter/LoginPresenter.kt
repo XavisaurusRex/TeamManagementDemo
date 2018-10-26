@@ -1,7 +1,7 @@
 package cat.devsofthecoast.teammanagementdemo.feature.login.presenter
 
 import android.util.Log
-import cat.devsofthecoast.teammanagementdemo.core.mvp.config.BaseConfig
+import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.config.BaseConfig
 import cat.devsofthecoast.teammanagementdemo.feature.login.LoginContract
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.auth.FirebaseAuth

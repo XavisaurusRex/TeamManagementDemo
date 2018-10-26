@@ -1,7 +1,7 @@
 package cat.devsofthecoast.teammanagementdemo.feature.devoptions
 
-import cat.devsofthecoast.teammanagementdemo.core.mvp.presenter.BasePresenter
-import cat.devsofthecoast.teammanagementdemo.core.mvp.presenter.BaseView
+import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.presenter.BasePresenter
+import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.presenter.BaseView
 import cat.devsofthecoast.teammanagementdemo.commons.models.questions.Question
 
 interface DevOptionsContract {

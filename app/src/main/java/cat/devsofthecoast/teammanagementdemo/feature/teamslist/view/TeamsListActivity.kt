@@ -7,10 +7,10 @@ import android.support.v4.content.ContextCompat
 import android.view.View
 import cat.devsofthecoast.teammanagementdemo.R
 import cat.devsofthecoast.teammanagementdemo.TMDApp
-import cat.devsofthecoast.teammanagementdemo.core.mvp.config.BaseConfig
-import cat.devsofthecoast.teammanagementdemo.core.mvp.ui.PresenterActivity
-import cat.devsofthecoast.teammanagementdemo.commons.repository.TMDRepository
-import cat.devsofthecoast.teammanagementdemo.commons.repository.impl.TMDRepositoryImpl
+import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.config.BaseConfig
+import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.ui.PresenterActivity
+import cat.devsofthecoast.teammanagementdemo.commons.repository.questions.QuestionsRepository
+import cat.devsofthecoast.teammanagementdemo.commons.repository.questions.impl.QuestionsRepositoryImpl
 import cat.devsofthecoast.teammanagementdemo.feature.teamslist.TeamsListContract
 import cat.devsofthecoast.teammanagementdemo.feature.teamslist.presenter.TeamsListPresenter
 import kotlinx.android.synthetic.main.activity_main.*
@@ -48,8 +48,8 @@ class TeamsListActivity : PresenterActivity<TeamsListContract.Presenter, TeamsLi
         TeamsListPresenter(appConfig)
     }
 
-    private val repository: TMDRepository by lazy {
-        TMDRepositoryImpl()
+    private val repository: QuestionsRepository by lazy {
+        QuestionsRepositoryImpl()
     }
 
     private val appConfig: BaseConfig by lazy {

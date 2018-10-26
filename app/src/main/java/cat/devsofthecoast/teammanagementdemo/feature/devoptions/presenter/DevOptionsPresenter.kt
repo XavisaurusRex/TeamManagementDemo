@@ -1,6 +1,6 @@
 package cat.devsofthecoast.teammanagementdemo.feature.devoptions.presenter
 
-import cat.devsofthecoast.teammanagementdemo.core.mvp.config.BaseConfig
+import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.config.BaseConfig
 import cat.devsofthecoast.teammanagementdemo.feature.devoptions.DevOptionsContract
 import cat.devsofthecoast.teammanagementdemo.commons.useCase.FillDatabaseUseCase
 import cat.devsofthecoast.teammanagementdemo.commons.useCase.GetAllQuestionsUseCase

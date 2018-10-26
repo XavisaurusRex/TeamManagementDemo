@@ -3,21 +3,21 @@ package cat.devsofthecoast.teammanagementdemo.dependencyinjection
 import cat.devsofthecoast.teammanagementdemo.commons.useCase.FillDatabaseUseCase
 import cat.devsofthecoast.teammanagementdemo.commons.useCase.GetAllQuestionsUseCase
 import cat.devsofthecoast.teammanagementdemo.commons.useCase.GetQuestionUseCase
-import cat.devsofthecoast.teammanagementdemo.core.mvp.config.BaseConfig
+import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.config.BaseConfig
 
 class UseCaseModule(
-        val appConfig: BaseConfig,
-        val repositoryModule: RepositoryModule) {
+        private val appConfig: BaseConfig,
+        private val repositoryModule: RepositoryModule) {
 
     val fillDatabaseUseCase: FillDatabaseUseCase by lazy {
-        FillDatabaseUseCase(appConfig, repositoryModule.tmdRepository)
+        FillDatabaseUseCase(appConfig, repositoryModule.questionsRepository)
     }
 
     val getAllQuestionsUseCase: GetAllQuestionsUseCase by lazy {
-        GetAllQuestionsUseCase(appConfig, repositoryModule.tmdRepository)
+        GetAllQuestionsUseCase(appConfig, repositoryModule.questionsRepository)
     }
 
     val getQuestionUseCase: GetQuestionUseCase by lazy {
-        GetQuestionUseCase(appConfig, repositoryModule.tmdRepository)
+        GetQuestionUseCase(appConfig, repositoryModule.questionsRepository)
     }
 }

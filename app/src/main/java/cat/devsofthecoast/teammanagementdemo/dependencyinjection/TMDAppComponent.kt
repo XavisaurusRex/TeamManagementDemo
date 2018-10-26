@@ -1,10 +1,9 @@
 package cat.devsofthecoast.teammanagementdemo.dependencyinjection
 
-import cat.devsofthecoast.teammanagementdemo.core.mvp.config.BaseConfig
+import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.config.BaseConfig
 
 class TMDAppComponent(
-        val appConfig: BaseConfig
-) {
+        val appConfig: BaseConfig) {
 
     val presenterModule: PresenterModule by lazy {
         PresenterModule(appConfig, useCaseModule)

@@ -1,7 +1,6 @@
 package cat.devsofthecoast.teammanagementdemo.commons.repository
 
 import cat.devsofthecoast.teammanagementdemo.commons.models.questions.*
-import com.google.firebase.database.FirebaseDatabase
 
 object DummyCreator {
     fun createQuestions(): List<Question> {

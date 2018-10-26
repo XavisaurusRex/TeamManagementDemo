@@ -10,10 +10,10 @@ import android.view.animation.AnimationUtils
 import cat.devsofthecoast.teammanagementdemo.BuildConfig
 import cat.devsofthecoast.teammanagementdemo.R
 import cat.devsofthecoast.teammanagementdemo.TMDApp
-import cat.devsofthecoast.teammanagementdemo.core.mvp.config.BaseConfig
-import cat.devsofthecoast.teammanagementdemo.core.mvp.ui.PresenterActivity
-import cat.devsofthecoast.teammanagementdemo.commons.repository.TMDRepository
-import cat.devsofthecoast.teammanagementdemo.commons.repository.impl.TMDRepositoryImpl
+import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.config.BaseConfig
+import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.ui.PresenterActivity
+import cat.devsofthecoast.teammanagementdemo.commons.repository.questions.QuestionsRepository
+import cat.devsofthecoast.teammanagementdemo.commons.repository.questions.impl.QuestionsRepositoryImpl
 import cat.devsofthecoast.teammanagementdemo.feature.login.LoginContract
 import cat.devsofthecoast.teammanagementdemo.feature.login.presenter.LoginPresenter
 import cat.devsofthecoast.teammanagementdemo.feature.weekoverview.view.WeekOverviewActivity
@@ -44,8 +44,8 @@ class SplashScreenActivity : PresenterActivity<LoginContract.Presenter, LoginCon
         (application as TMDApp).getConfig()
     }
 
-    private val repository: TMDRepository by lazy {
-        TMDRepositoryImpl()
+    private val repository: QuestionsRepository by lazy {
+        QuestionsRepositoryImpl()
     }
 
     override val presenter: LoginContract.Presenter by lazy {

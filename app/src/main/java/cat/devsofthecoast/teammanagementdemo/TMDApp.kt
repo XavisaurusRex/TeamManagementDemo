@@ -1,8 +1,8 @@
 package cat.devsofthecoast.teammanagementdemo
 
 import android.app.Application
-import cat.devsofthecoast.teammanagementdemo.config.TMDAppConfig
-import cat.devsofthecoast.teammanagementdemo.core.mvp.config.BaseConfig
+import cat.devsofthecoast.teammanagementdemo.commons.config.TMDAppConfig
+import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.config.BaseConfig
 import cat.devsofthecoast.teammanagementdemo.dependencyinjection.TMDAppComponent
 
 class TMDApp : Application() {

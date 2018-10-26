@@ -1,10 +1,18 @@
 package cat.devsofthecoast.teammanagementdemo.feature.weekoverview
 
-import cat.devsofthecoast.teammanagementdemo.core.mvp.presenter.BasePresenter
-import cat.devsofthecoast.teammanagementdemo.core.mvp.presenter.BaseView
+import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.presenter.BasePresenter
+import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.presenter.BaseView
+import cat.devsofthecoast.teammanagementdemo.commons.models.questions.Question
 
 interface WeekOverviewContract {
-    interface View : BaseView
+    interface View : BaseView {
+        fun configureInteractions()
 
-    abstract class Presenter : BasePresenter<View>()
+        fun onGetQuestionSuccess(question: Question)
+        fun onGetQuestionError(error: Throwable)
+    }
+
+    abstract class Presenter : BasePresenter<View>() {
+        abstract fun getQuestion(key: String)
+    }
 }

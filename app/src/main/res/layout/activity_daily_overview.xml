@@ -6,12 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".feature.weekoverview.view.WeekOverviewActivity">
 
+    <Button
+        android:id="@+id/btnRetry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="Retry"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintVertical_weight="1" />
+
     <View
         android:id="@+id/btnDevOpt"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:background="@color/colorInvisible"/>
-
+        android:background="@color/colorInvisible"
+        app:layout_constraintBottom_toBottomOf="parent" />
+    <include layout="@layout/controller_question"/>
 
 </android.support.constraint.ConstraintLayout>

@@ -1,26 +1,26 @@
 package cat.devsofthecoast.teammanagementdemo.commons.useCase
 
-import cat.devsofthecoast.teammanagementdemo.core.mvp.config.BaseConfig
-import cat.devsofthecoast.teammanagementdemo.core.mvp.useCase.Callback
-import cat.devsofthecoast.teammanagementdemo.core.mvp.useCase.UseCase
-import cat.devsofthecoast.teammanagementdemo.core.mvp.useCase.UseCaseExecutor
-import cat.devsofthecoast.teammanagementdemo.commons.exceptions.NullResponseFirebase
+import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.config.BaseConfig
+import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.useCase.Callback
+import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.useCase.UseCase
+import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.useCase.UseCaseExecutor
 import cat.devsofthecoast.teammanagementdemo.commons.models.questions.Question
-import cat.devsofthecoast.teammanagementdemo.commons.repository.TMDRepository
+import cat.devsofthecoast.teammanagementdemo.commons.repository.questions.QuestionsRepository
+import cat.devsofthecoast.teammanagementdemo.commons.services.ServiceCallback
 
 class GetQuestionUseCase(val appConfig: BaseConfig,
-                         private val repository: TMDRepository) : UseCase<String, Question>(appConfig) {
+                         private val repository: QuestionsRepository) : UseCase<String, Question>(appConfig) {
     override fun run(input: String?, callback: Callback<Question>?) {
         try {
-            repository.getQuestion(input!!) { success, error ->
-                when {
-                    error != null -> callback?.onError(error)
-                    success == null -> callback?.onError(NullResponseFirebase())
-                    else -> {
-                        callback?.onSuccess(success)
-                    }
+            repository.getQuestion(input!!, object : ServiceCallback<Question?> {
+                override fun onSuccess(value: Question?) {
+                    callback?.onSuccess(value!!)
                 }
-            }
+
+                override fun <E : Throwable> onError(error: E) {
+                    callback?.onError(error)
+                }
+            })
         } catch (ex: Throwable) {
             callback?.onError(ex)
         }
