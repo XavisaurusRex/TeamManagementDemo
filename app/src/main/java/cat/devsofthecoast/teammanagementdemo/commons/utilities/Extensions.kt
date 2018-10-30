@@ -20,8 +20,7 @@ inline fun Context.readJsonFile(fileName: String): String? {
         val inputStream: InputStream = this.assets.open(fileName)
 
         json = inputStream.readTextAndClose(Charsets.UTF_8)
-    }
-    catch (ex:Exception){
+    } catch (ex: Exception) {
         Log.e(this.javaClass.name, "error opening file $fileName", ex)
     }
 

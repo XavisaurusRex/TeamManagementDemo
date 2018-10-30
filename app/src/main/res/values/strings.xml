@@ -11,7 +11,7 @@
     <string name="splashscreen_desc_loadinglogo">loading using logo of team</string>
 
 
-    <!-- Menu WeekOverviewActivity -->
+    <!-- Menu SurveyActivity -->
     <string name="menu_profiledata">Profile Data</string>
     <string name="menu_dailyentries">Daily Entries</string>
     <string name="menu_manageSurvey">Manage Survey</string>
@@ -25,4 +25,12 @@
 
     <!-- All literals related to TeamFlavour-->
     <string name="organization_name">CB Sant Carles</string>
+
+
+    <!-- All literals related to QuestionView -->
+    <string name="question_demo_statment">Are you okay?</string>
+    <string name="question_affirmative">Yes</string>
+    <string name="question_negative">No</string>
+    <string name="question_picture_desc">Picture of questions</string>
+    <string name="question_edittext_hint">Response</string>
 </resources>

@@ -1,0 +1,19 @@
+<vector android:height="24dp" android:viewportHeight="480"
+    android:viewportWidth="480" android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
+    <path android:fillColor="#FFD700" android:pathData="M400,0h80v80h-80V0z"/>
+    <path android:fillColor="#17AFDC" android:pathData="M432,400l-48,80h96L432,400z"/>
+    <path android:fillColor="#24DB6A" android:pathData="M440,240m-40,0a40,40 0,1 1,80 0a40,40 0,1 1,-80 0"/>
+    <path android:fillColor="#F4393D" android:pathData="M368,240l-64.216,-40L304,224H184v32h120v24L368,240z"/>
+    <path android:fillColor="#F4393D" android:pathData="M288,48l16,24c-31.298,20.866 -68.073,32 -105.689,32H184v32h26.941c39.712,0 78.431,-12.408 110.745,-35.49L344,120l16,-72H288z"/>
+    <path android:fillColor="#F4393D" android:pathData="M288,432l16,-24c-31.298,-20.866 -68.073,-32 -105.689,-32H184v-32h26.941c39.712,0 78.431,12.408 110.745,35.49L344,360l16,72H288z"/>
+    <path android:fillColor="#7A7A7A" android:pathData="M48,0h40v16H48V0z"/>
+    <path android:fillColor="#7A7A7A" android:pathData="M16,32H0V8c0,-4.418 3.582,-8 8,-8h24v16H16V32z"/>
+    <path android:fillColor="#7A7A7A" android:pathData="M0,48h16v40H0V48z"/>
+    <path android:fillColor="#7A7A7A" android:pathData="M0,392h16v40H0V392z"/>
+    <path android:fillColor="#7A7A7A" android:pathData="M32,480H8c-4.418,0 -8,-3.582 -8,-8v-24h16v16h16V480z"/>
+    <path android:fillColor="#7A7A7A" android:pathData="M48,464h40v16H48V464z"/>
+    <path android:fillColor="#7DAFFF" android:pathData="M107.727,152h-6.763c13.353,-11.578 14.791,-31.789 3.213,-45.141s-31.789,-14.791 -45.141,-3.213s-14.791,31.789 -3.213,45.141c0.994,1.146 2.067,2.22 3.213,3.213h-6.762C27.822,152 16,171.822 16,196.273V272h24v120h80V272h24v-75.727C144,171.822 132.178,152 107.727,152z"/>
+    <path android:fillColor="#6589FC" android:pathData="M112,184h8v88h-8V184z"/>
+    <path android:fillColor="#6589FC" android:pathData="M40,184h8v88h-8V184z"/>
+    <path android:fillColor="#6589FC" android:pathData="M72,264h16v128H72V264z"/>
+</vector>

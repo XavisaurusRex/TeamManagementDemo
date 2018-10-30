@@ -1,17 +1,31 @@
 package cat.devsofthecoast.teammanagementdemo.feature.devoptions.presenter
 
 import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.config.BaseConfig
-import cat.devsofthecoast.teammanagementdemo.feature.devoptions.DevOptionsContract
+import cat.devsofthecoast.teammanagementdemo.commons.useCase.ClearDatabseChildUseCase
 import cat.devsofthecoast.teammanagementdemo.commons.useCase.FillDatabaseUseCase
 import cat.devsofthecoast.teammanagementdemo.commons.useCase.GetAllQuestionsUseCase
 import cat.devsofthecoast.teammanagementdemo.commons.useCase.GetQuestionUseCase
+import cat.devsofthecoast.teammanagementdemo.feature.devoptions.DevOptionsContract
 
 class DevOptionsPresenter(
         private val appConfig: BaseConfig,
         private val fillDatabaseUseCase: FillDatabaseUseCase,
         private val getAllQuestionsUseCase: GetAllQuestionsUseCase,
-        private val getQuestionUseCase: GetQuestionUseCase)
+        private val getQuestionUseCase: GetQuestionUseCase,
+        private val clearDatabseChildUseCase: ClearDatabseChildUseCase)
     : DevOptionsContract.Presenter() {
+
+    override fun clearDatabase(child: String) {
+        ClearDatabseChildUseCase.Executor(appConfig) {
+            useCase = clearDatabseChildUseCase
+            onSuccess = {
+                view?.onClearDatabaseChildSuccess(it)
+            }
+            onError = {
+                view?.onClearDatabaseChildError(it)
+            }
+        }.execute(child)
+    }
 
     override fun fillDatabase() {
         FillDatabaseUseCase.Executor(appConfig) {

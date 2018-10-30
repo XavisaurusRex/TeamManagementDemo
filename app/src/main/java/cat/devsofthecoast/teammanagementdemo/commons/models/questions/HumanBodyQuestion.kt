@@ -9,10 +9,13 @@ open class HumanBodyQuestion : BaseQuestion<HumanBodyQuestion.HumanBodyResponse>
     override var picture_url: String? = null
 
     @Exclude
-    override var questionResponse: HumanBodyResponse? = HumanBodyResponse(.0, .0)
+    override var questionResponse: HumanBodyResponse = HumanBodyResponse(.0, .0)
         @Exclude
         get() = field
         @Exclude
-        set(value) {field=value}
+        set(value) {
+            field = value
+        }
+
     data class HumanBodyResponse(var cordX: Double, var cordY: Double)
 }

@@ -54,11 +54,11 @@
                 app:layout_constraintTop_toBottomOf="@id/btnGetAllQuestions" />
 
             <Button
-                android:id="@+id/btn1"
+                android:id="@+id/btnClearQuestions"
                 android:onClick="notImplementedClick"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Another Button"
+                android:text="Clear Questions"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 android:textColor="@android:color/black"
                 app:layout_constraintTop_toBottomOf="@id/btnGetSingleQuestion" />
@@ -71,7 +71,8 @@
                 android:text="Another Button"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 android:textColor="@android:color/black"
-                app:layout_constraintTop_toBottomOf="@id/btn1" />
+                app:layout_constraintTop_toBottomOf="@id/btnClearQuestions" />
+
             <Button
                 android:id="@+id/btn3"
                 android:onClick="notImplementedClick"
@@ -81,6 +82,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 android:textColor="@android:color/black"
                 app:layout_constraintTop_toBottomOf="@id/btn2" />
+
             <Button
                 android:id="@+id/btn4"
                 android:onClick="notImplementedClick"
@@ -90,6 +92,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 android:textColor="@android:color/black"
                 app:layout_constraintTop_toBottomOf="@id/btn3" />
+
             <Button
                 android:id="@+id/btn5"
                 android:onClick="notImplementedClick"
@@ -128,6 +131,6 @@
             android:id="@+id/tvLogs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorEasterEgg_on"/>
+            android:background="@color/colorEasterEgg_on" />
     </ScrollView>
 </android.support.constraint.ConstraintLayout>

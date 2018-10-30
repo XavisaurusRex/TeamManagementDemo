@@ -2,7 +2,7 @@ package cat.devsofthecoast.teammanagementdemo.commons.models.questions
 
 import com.google.firebase.database.Exclude
 
-open class MultipleChoiceQuestion : BaseQuestion<List<Int>>() {
+open class MultipleChoiceQuestion : BaseQuestion<ArrayList<Int>>() {
     override val type: QuestionType = QuestionType.TYPE_MULTICHOICE
     override var key: String? = null
     override var statement: String? = null
@@ -11,10 +11,12 @@ open class MultipleChoiceQuestion : BaseQuestion<List<Int>>() {
     var options: List<String> = listOf()
 
     @Exclude
-    override var questionResponse: List<Int>? = listOf()
+    override var questionResponse: ArrayList<Int> = arrayListOf()
         @Exclude
         get() = field
         @Exclude
-        set(value) {field=value}
+        set(value) {
+            field = value
+        }
 
 }

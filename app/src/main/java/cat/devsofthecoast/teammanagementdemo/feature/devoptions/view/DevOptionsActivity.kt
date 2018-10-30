@@ -53,10 +53,12 @@ class DevOptionsActivity : PresenterActivity<DevOptionsContract.Presenter, DevOp
         }
 
         btnGetSingleQuestion.setOnClickListener {
-            // todo hardcoded key, get one demo question or simply take the first...
             presenter.getSingleQuestion("-LPh4y9Tj47h1wa7gMke")
         }
 
+        btnClearQuestions.setOnClickListener {
+            presenter.clearDatabase("questions")
+        }
         btnClearLogs.setOnClickListener {
             tvLogs.text = ""
         }
@@ -102,5 +104,13 @@ class DevOptionsActivity : PresenterActivity<DevOptionsContract.Presenter, DevOp
 
     fun notImplementedClick(v: View) {
         postLog("Not Implemented Logic in this button")
+    }
+
+    override fun onClearDatabaseChildSuccess(boolean: Boolean) {
+        postLog("Database child cleared")
+    }
+
+    override fun onClearDatabaseChildError(ex: Throwable) {
+        postLog("Error removing data from Firebase: ${ex.message}")
     }
 }

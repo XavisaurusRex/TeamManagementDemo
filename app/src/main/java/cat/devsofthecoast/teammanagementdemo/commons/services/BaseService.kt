@@ -29,7 +29,7 @@ abstract class BaseService {
         this.key = reference.getNewKey()
     }
 
-    protected fun getSingleSnapShot(databaseReference: DatabaseReference, listener: ((DataSnapshot?) -> Unit)){
+    protected fun getSingleSnapShot(databaseReference: DatabaseReference, listener: ((DataSnapshot?) -> Unit)) {
         databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 listener.invoke(dataSnapshot)
@@ -47,5 +47,9 @@ abstract class BaseService {
 
     protected fun addNewData(databaseReference: DatabaseReference, databaseModel: DatabaseModel, onCompleteListener: OnCompleteListener<Void>) {
         databaseReference.child(databaseModel.key!!).setValue(databaseModel).addOnCompleteListener(onCompleteListener)
+    }
+
+    protected fun removeAll(databaseReference: DatabaseReference, onCompleteListener: OnCompleteListener<Void>) {
+        databaseReference.removeValue().addOnCompleteListener(onCompleteListener)
     }
 }

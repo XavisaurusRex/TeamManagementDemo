@@ -3,6 +3,7 @@ package cat.devsofthecoast.teammanagementdemo.feature.weekoverview.view
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -15,20 +16,24 @@ import cat.devsofthecoast.teammanagementdemo.commons.models.questions.Question
 import cat.devsofthecoast.teammanagementdemo.commons.utilities.toast
 import cat.devsofthecoast.teammanagementdemo.feature.devoptions.view.DevOptionsActivity
 import cat.devsofthecoast.teammanagementdemo.feature.teamslist.view.TeamsListActivity
-import cat.devsofthecoast.teammanagementdemo.feature.weekoverview.WeekOverviewContract
+import cat.devsofthecoast.teammanagementdemo.feature.weekoverview.SurveyContract
+import cat.devsofthecoast.teammanagementdemo.feature.weekoverview.adapter.impl.QuestionsAdapterImpl
 import kotlinx.android.synthetic.main.activity_daily_overview.*
 
 
-class WeekOverviewActivity : PresenterActivity<WeekOverviewContract.Presenter, WeekOverviewContract.View>(), WeekOverviewContract.View {
+class SurveyActivity : PresenterActivity<SurveyContract.Presenter, SurveyContract.View>(), SurveyContract.View {
 
-    override val presenter: WeekOverviewContract.Presenter by lazy {
-        (application as TMDApp).presenterModule.weekOverviewPresenter
+    override val presenter: SurveyContract.Presenter by lazy {
+        (application as TMDApp).presenterModule.surveyPresenter
+    }
+
+    val questionsAdapter: QuestionsAdapterImpl by lazy {
+        QuestionsAdapterImpl(this, arrayListOf())
     }
 
     companion object {
         fun newIntent(context: Context): Intent {
-            val intent = Intent(context, WeekOverviewActivity::class.java)
-            return intent
+            return Intent(context, SurveyActivity::class.java)
         }
     }
 
@@ -53,34 +58,47 @@ class WeekOverviewActivity : PresenterActivity<WeekOverviewContract.Presenter, W
         title = null
 
         configureInteractions()
-        startPetitions()
-    }
-
-    private fun startPetitions() {
-
     }
 
     override fun configureInteractions() {
         if (BuildConfig.DEBUG) {
             btnDevOpt.setOnLongClickListener {
-                startActivity(DevOptionsActivity.newIntent(this@WeekOverviewActivity))
+                startActivity(DevOptionsActivity.newIntent(this@SurveyActivity))
                 true
             }
         }
 
-        btnRetry.setOnClickListener {
-            presenter.getQuestion("-LPh4y9Tj47h1wa7gMke")
+        btnGetQuestions.setOnClickListener {
+            presenter.getAllQuestions()
         }
 
+        btnClearAll.setOnClickListener {
+            if (questionsAdapter.size() > 0) {
+                questionsAdapter.removeAll()
+            }
+        }
+
+        rcySurvey.layoutManager = LinearLayoutManager(this)
+        rcySurvey.adapter = questionsAdapter
     }
 
     override fun onBackPressed() {}
 
     override fun onGetQuestionSuccess(question: Question) {
         toast("question received")
+        questionsAdapter.add(question)
+
     }
 
     override fun onGetQuestionError(error: Throwable) {
         toast("cannot get question: ${error.message}")
+    }
+
+    override fun onGetAllQuestionsSuccess(questions: ArrayList<Question>) {
+        questionsAdapter.add(questions)
+    }
+
+    override fun onGetAllQuestionsError(error: Throwable) {
+        toast("cannot get questions: ${error.message}")
     }
 }

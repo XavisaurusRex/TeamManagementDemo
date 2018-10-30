@@ -4,18 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".feature.weekoverview.view.WeekOverviewActivity">
-
-    <Button
-        android:id="@+id/btnRetry"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:text="Retry"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintVertical_weight="1" />
+    tools:context=".feature.weekoverview.view.SurveyActivity">
 
     <View
         android:id="@+id/btnDevOpt"
@@ -23,6 +12,39 @@
         android:layout_height="50dp"
         android:background="@color/colorInvisible"
         app:layout_constraintBottom_toBottomOf="parent" />
-    <include layout="@layout/controller_question"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rcySurvey"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/btnGetQuestions"
+        app:layout_constraintTop_toTopOf="parent"
+        android:clipToPadding="false"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:padding="8dp" />
+
+    <Button
+        android:id="@+id/btnClearAll"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="Clear All"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnGetQuestions"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_weight="1" />
+
+    <Button
+        android:id="@+id/btnGetQuestions"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="Charge Questions from db"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btnClearAll"
+        app:layout_constraintHorizontal_weight="1" />
+
 
 </android.support.constraint.ConstraintLayout>

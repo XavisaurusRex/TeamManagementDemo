@@ -21,7 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".feature.weekoverview.view.WeekOverviewActivity">
+        <activity android:name=".feature.weekoverview.view.SurveyActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 

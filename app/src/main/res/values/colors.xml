@@ -8,4 +8,8 @@
 
     <color name="colorEasterEgg_on">#e9ffc8</color>
     <color name="colorEasterEgg_off">#00000000</color>
+
+    <!-- Strings related to Questions -->
+    <color name="colorQuestionStatment">#bfbfbf</color>
+    <color name="colorQuestionBackground">#7d7e83</color>
 </resources>

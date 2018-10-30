@@ -4,5 +4,5 @@ import com.google.firebase.database.IgnoreExtraProperties
 
 @IgnoreExtraProperties
 abstract class BaseQuestion<T> : Question() {
-    abstract var questionResponse: T?
+    abstract var questionResponse: T
 }

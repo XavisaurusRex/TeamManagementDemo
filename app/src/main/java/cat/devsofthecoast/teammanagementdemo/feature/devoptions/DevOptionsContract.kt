@@ -14,11 +14,15 @@ interface DevOptionsContract {
 
         fun onGetQuestionsSuccess(question: Question)
         fun onGetQuestionsError(ex: Throwable)
+
+        fun onClearDatabaseChildSuccess(boolean: Boolean)
+        fun onClearDatabaseChildError(ex: Throwable)
     }
 
     abstract class Presenter : BasePresenter<View>() {
         abstract fun fillDatabase()
         abstract fun getAllQuestions()
         abstract fun getSingleQuestion(key: String)
+        abstract fun clearDatabase(child: String)
     }
 }

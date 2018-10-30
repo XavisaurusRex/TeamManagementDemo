@@ -1,6 +1,6 @@
 package cat.devsofthecoast.teammanagementdemo.commons.models.users
 
-class Trainer: BaseUser() {
+class Trainer : BaseUser() {
     override var key: String? = null
     override var name: String? = null
     override var surname: String? = null

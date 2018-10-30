@@ -1,10 +1,11 @@
 package cat.devsofthecoast.teammanagementdemo.commons.models.questions
 
-enum class QuestionType {
-    TYPE_BOOLEAN,
-    TYPE_PLAINTEXT,
-    TYPE_SINGLECHOICE,
-    TYPE_MULTICHOICE,
-    TYPE_NUMERIC,
-    TYPE_HUMANBODY
+enum class QuestionType(val value: Int) {
+    TYPE_BOOLEAN(0),
+    TYPE_PLAINTEXT(1),
+    TYPE_SINGLECHOICE(2),
+    TYPE_MULTICHOICE(3),
+    TYPE_NUMERIC(4),
+    TYPE_HUMANBODY(5)
+
 }

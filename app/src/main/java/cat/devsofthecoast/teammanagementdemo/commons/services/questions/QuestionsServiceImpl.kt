@@ -83,6 +83,15 @@ class QuestionsServiceImpl : BaseService(), QuestionsService {
         }
     }
 
-    //endregion
-
+    override fun clearDatabaseChild(child: String, listener: ServiceCallback<Boolean>?) {
+        removeAll(refQuestions,OnCompleteListener {
+            when {
+                it.isSuccessful -> {
+                    listener?.onSuccess(it.isSuccessful)
+                }
+                it.isCanceled -> listener?.onError(PostingFirebaseException())
+                else -> listener?.onError(PostingFirebaseException())
+            }
+        } )
+    }
 }

@@ -37,7 +37,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginBottom="400dp"
-        android:layout_marginRight="100dp"/>
+        android:layout_marginRight="100dp" />
 
     <View
         android:id="@+id/v06"
@@ -66,8 +66,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:textSize="30sp"
-        android:layout_margin="20dp"/>
-
+        android:layout_margin="20dp" />
 
 
     <ImageView
@@ -75,7 +74,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/solaire_havel"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/tvWinMessage"
@@ -88,6 +87,6 @@
         app:layout_constraintTop_toTopOf="parent"
         android:textSize="50sp"
         android:layout_marginTop="50dp"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
 </android.support.constraint.ConstraintLayout>

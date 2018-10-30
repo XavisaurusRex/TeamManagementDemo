@@ -2,7 +2,7 @@ package cat.devsofthecoast.teammanagementdemo.commons.models.questions
 
 import com.google.firebase.database.Exclude
 
-open class BooleanQuestion : BaseQuestion<Boolean?>() {
+open class BooleanQuestion : BaseQuestion<Boolean>() {
 
     override val type: QuestionType = QuestionType.TYPE_BOOLEAN
 
@@ -11,9 +11,11 @@ open class BooleanQuestion : BaseQuestion<Boolean?>() {
     override var picture_url: String? = null
 
     @Exclude
-    override var questionResponse: Boolean? = null
+    override var questionResponse: Boolean = false
         @Exclude
         get() = field
         @Exclude
-        set(value) {field=value}
+        set(value) {
+            field = value
+        }
 }
