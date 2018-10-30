@@ -1,9 +1,9 @@
 package cat.devsofthecoast.teammanagementdemo.commons.controllers.questioncontroller
 
 import android.content.Context
-import android.support.annotation.AttrRes
 import android.util.AttributeSet
 import android.widget.RadioButton
+import androidx.annotation.AttrRes
 import cat.devsofthecoast.teammanagementdemo.R
 import cat.devsofthecoast.teammanagementdemo.commons.models.questions.SingleChoiceQuestion
 import kotlinx.android.synthetic.main.controller_basequestion.view.*
@@ -28,7 +28,7 @@ class SingleChoiceController : BaseQuestionController<SingleChoiceQuestion> {
         super.changeQuestion(newQuestion)
         rgOptionsContainer.setOnSelectOptionListener { radioButton: RadioButton, i: Int -> null }
 
-        if(newQuestion.picture_url != null){
+        if (newQuestion.picture_url != null) {
             setPicture(newQuestion.picture_url.toString())
         } else {
             ivPicture.setImageDrawable(resources.getDrawable(R.drawable.ic_def_singlechoicequestion, null))

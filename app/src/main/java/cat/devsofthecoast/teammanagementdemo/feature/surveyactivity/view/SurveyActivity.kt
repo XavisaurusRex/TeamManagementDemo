@@ -1,12 +1,12 @@
-package cat.devsofthecoast.teammanagementdemo.feature.weekoverview.view
+package cat.devsofthecoast.teammanagementdemo.feature.surveyactivity.view
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import androidx.recyclerview.widget.LinearLayoutManager
 import cat.devsofthecoast.teammanagementdemo.BuildConfig
 import cat.devsofthecoast.teammanagementdemo.R
 import cat.devsofthecoast.teammanagementdemo.R.id.*
@@ -16,9 +16,9 @@ import cat.devsofthecoast.teammanagementdemo.commons.models.questions.Question
 import cat.devsofthecoast.teammanagementdemo.commons.utilities.toast
 import cat.devsofthecoast.teammanagementdemo.feature.devoptions.view.DevOptionsActivity
 import cat.devsofthecoast.teammanagementdemo.feature.teamslist.view.TeamsListActivity
-import cat.devsofthecoast.teammanagementdemo.feature.weekoverview.SurveyContract
-import cat.devsofthecoast.teammanagementdemo.feature.weekoverview.adapter.impl.QuestionsAdapterImpl
-import kotlinx.android.synthetic.main.activity_daily_overview.*
+import cat.devsofthecoast.teammanagementdemo.feature.surveyactivity.SurveyContract
+import cat.devsofthecoast.teammanagementdemo.feature.surveyactivity.adapter.impl.QuestionsAdapterImpl
+import kotlinx.android.synthetic.main.activity_survey.*
 
 
 class SurveyActivity : PresenterActivity<SurveyContract.Presenter, SurveyContract.View>(), SurveyContract.View {
@@ -54,7 +54,7 @@ class SurveyActivity : PresenterActivity<SurveyContract.Presenter, SurveyContrac
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_daily_overview)
+        setContentView(R.layout.activity_survey)
         title = null
 
         configureInteractions()

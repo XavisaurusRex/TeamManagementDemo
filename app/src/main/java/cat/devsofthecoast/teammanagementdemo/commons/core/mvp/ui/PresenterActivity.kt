@@ -1,7 +1,7 @@
 package cat.devsofthecoast.teammanagementdemo.commons.core.mvp.ui
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.presenter.BasePresenter
 import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.presenter.BaseView
 

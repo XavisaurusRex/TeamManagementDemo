@@ -16,7 +16,7 @@ import cat.devsofthecoast.teammanagementdemo.commons.repository.questions.Questi
 import cat.devsofthecoast.teammanagementdemo.commons.repository.questions.impl.QuestionsRepositoryImpl
 import cat.devsofthecoast.teammanagementdemo.feature.login.LoginContract
 import cat.devsofthecoast.teammanagementdemo.feature.login.presenter.LoginPresenter
-import cat.devsofthecoast.teammanagementdemo.feature.weekoverview.view.SurveyActivity
+import cat.devsofthecoast.teammanagementdemo.feature.surveyactivity.view.SurveyActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException

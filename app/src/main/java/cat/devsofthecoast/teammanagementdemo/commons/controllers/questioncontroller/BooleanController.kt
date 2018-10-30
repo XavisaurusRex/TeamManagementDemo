@@ -1,8 +1,8 @@
 package cat.devsofthecoast.teammanagementdemo.commons.controllers.questioncontroller
 
 import android.content.Context
-import android.support.annotation.AttrRes
 import android.util.AttributeSet
+import androidx.annotation.AttrRes
 import cat.devsofthecoast.teammanagementdemo.R
 import cat.devsofthecoast.teammanagementdemo.commons.models.questions.BooleanQuestion
 import kotlinx.android.synthetic.main.controller_basequestion.view.*
@@ -26,7 +26,7 @@ class BooleanController : BaseQuestionController<BooleanQuestion> {
     override fun changeQuestion(newQuestion: BooleanQuestion) {
         super.changeQuestion(newQuestion)
 
-        if(newQuestion.picture_url != null){
+        if (newQuestion.picture_url != null) {
             setPicture(newQuestion.picture_url.toString())
         } else {
             ivPicture.setImageDrawable(resources.getDrawable(R.drawable.ic_def_booleanquestion, null))

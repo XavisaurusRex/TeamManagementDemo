@@ -1,9 +1,9 @@
 package cat.devsofthecoast.teammanagementdemo.commons.controllers.questioncontroller
 
 import android.content.Context
-import android.support.annotation.AttrRes
 import android.util.AttributeSet
 import android.widget.CheckBox
+import androidx.annotation.AttrRes
 import cat.devsofthecoast.teammanagementdemo.R
 import cat.devsofthecoast.teammanagementdemo.commons.models.questions.MultipleChoiceQuestion
 import kotlinx.android.synthetic.main.controller_basequestion.view.*
@@ -27,7 +27,7 @@ class MultipleChoiceController : BaseQuestionController<MultipleChoiceQuestion> 
         super.changeQuestion(newQuestion)
         cgOptions.setOnSelectOptionListener { checkBox: CheckBox, i: Int, b: Boolean -> null }
 
-        if(newQuestion.picture_url != null){
+        if (newQuestion.picture_url != null) {
             setPicture(newQuestion.picture_url.toString())
         } else {
             ivPicture.setImageDrawable(resources.getDrawable(R.drawable.ic_def_multiplechoicequestion, null))
