@@ -7,5 +7,4 @@ enum class QuestionType(val value: Int) {
     TYPE_MULTICHOICE(3),
     TYPE_NUMERIC(4),
     TYPE_HUMANBODY(5)
-
 }

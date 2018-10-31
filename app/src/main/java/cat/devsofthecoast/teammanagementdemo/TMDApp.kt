@@ -13,7 +13,7 @@ class TMDApp : Application() {
     }
 
     private val appComponent by lazy {
-        TMDAppComponent(config)
+        TMDAppComponent(config, applicationContext)
     }
 
     val presenterModule by lazy {

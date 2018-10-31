@@ -1,5 +1,6 @@
 package cat.devsofthecoast.teammanagementdemo.dependencyinjection
 
+import android.content.Context
 import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.config.BaseConfig
 import cat.devsofthecoast.teammanagementdemo.commons.useCase.ClearDatabseChildUseCase
 import cat.devsofthecoast.teammanagementdemo.commons.useCase.FillDatabaseUseCase
@@ -8,10 +9,11 @@ import cat.devsofthecoast.teammanagementdemo.commons.useCase.GetQuestionUseCase
 
 class UseCaseModule(
         private val appConfig: BaseConfig,
+        private val context: Context,
         private val repositoryModule: RepositoryModule) {
 
     val fillDatabaseUseCase: FillDatabaseUseCase by lazy {
-        FillDatabaseUseCase(appConfig, repositoryModule.questionsRepository)
+        FillDatabaseUseCase(appConfig, context, repositoryModule.questionsRepository)
     }
 
     val getAllQuestionsUseCase: GetAllQuestionsUseCase by lazy {

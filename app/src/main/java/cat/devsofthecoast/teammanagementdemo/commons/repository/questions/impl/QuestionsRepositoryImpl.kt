@@ -1,10 +1,11 @@
 package cat.devsofthecoast.teammanagementdemo.commons.repository.questions.impl
 
 import cat.devsofthecoast.teammanagementdemo.commons.models.questions.Question
-import cat.devsofthecoast.teammanagementdemo.commons.repository.DummyCreator
 import cat.devsofthecoast.teammanagementdemo.commons.repository.questions.QuestionsRepository
 import cat.devsofthecoast.teammanagementdemo.commons.services.ServiceCallback
+import cat.devsofthecoast.teammanagementdemo.commons.services.dummiecreator.DummyCreator
 import cat.devsofthecoast.teammanagementdemo.commons.services.questions.QuestionsServiceImpl
+import org.json.JSONArray
 
 class QuestionsRepositoryImpl : QuestionsRepository {
     private val service = QuestionsServiceImpl()
@@ -18,8 +19,7 @@ class QuestionsRepositoryImpl : QuestionsRepository {
         service.getAllQuestions(listener)
     }
 
-    override fun setDummieDatabase(listener: ServiceCallback<Boolean>?) {
-        val questions: List<Question> = DummyCreator.createQuestions()
+    override fun setQuestions(questions: List<Question>, listener: ServiceCallback<Boolean>?) {
         service.setNewQuestions(questions, listener)
     }
 
