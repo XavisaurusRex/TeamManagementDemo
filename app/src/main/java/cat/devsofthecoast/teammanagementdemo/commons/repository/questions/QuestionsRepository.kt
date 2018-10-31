@@ -7,11 +7,9 @@ import java.util.*
 
 interface QuestionsRepository {
 
-    fun setDummieDatabase(statements: JSONArray, responseOptions: JSONArray, listener: ServiceCallback<Boolean>?)
-
-    fun getAllQuestions(listener: ServiceCallback<ArrayList<Question>?>?)
-
+    fun setQuestions(questions: List<Question>, listener: ServiceCallback<Boolean>?)
     fun getQuestion(key: String, listener: ServiceCallback<Question?>?)
 
+    fun getAllQuestions(listener: ServiceCallback<ArrayList<Question>?>?)
     fun clearChild(child: String, serviceCallback: ServiceCallback<Boolean>)
 }

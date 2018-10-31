@@ -1,4 +1,4 @@
-package cat.devsofthecoast.teammanagementdemo.commons.services.questions
+package cat.devsofthecoast.teammanagementdemo.commons.services.questions.impl
 
 import cat.devsofthecoast.teammanagementdemo.commons.exceptions.NullResponseFirebase
 import cat.devsofthecoast.teammanagementdemo.commons.exceptions.PostingFirebaseException
@@ -7,6 +7,7 @@ import cat.devsofthecoast.teammanagementdemo.commons.models.questions.QuestionFa
 import cat.devsofthecoast.teammanagementdemo.commons.models.questions.QuestionType
 import cat.devsofthecoast.teammanagementdemo.commons.services.BaseService
 import cat.devsofthecoast.teammanagementdemo.commons.services.ServiceCallback
+import cat.devsofthecoast.teammanagementdemo.commons.services.questions.QuestionsService
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.database.DataSnapshot
 

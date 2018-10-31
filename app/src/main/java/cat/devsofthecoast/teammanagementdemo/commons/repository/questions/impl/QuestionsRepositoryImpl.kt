@@ -3,9 +3,7 @@ package cat.devsofthecoast.teammanagementdemo.commons.repository.questions.impl
 import cat.devsofthecoast.teammanagementdemo.commons.models.questions.Question
 import cat.devsofthecoast.teammanagementdemo.commons.repository.questions.QuestionsRepository
 import cat.devsofthecoast.teammanagementdemo.commons.services.ServiceCallback
-import cat.devsofthecoast.teammanagementdemo.commons.services.dummiecreator.DummyCreator
-import cat.devsofthecoast.teammanagementdemo.commons.services.questions.QuestionsServiceImpl
-import org.json.JSONArray
+import cat.devsofthecoast.teammanagementdemo.commons.services.questions.impl.QuestionsServiceImpl
 
 class QuestionsRepositoryImpl : QuestionsRepository {
     private val service = QuestionsServiceImpl()

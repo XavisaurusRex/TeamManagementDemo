@@ -1,7 +1,8 @@
 package cat.devsofthecoast.teammanagementdemo.commons.models.users
 
-abstract class BaseUser {
-    abstract var key: String?
+import cat.devsofthecoast.teammanagementdemo.commons.models.DatabaseModel
+
+abstract class BaseUser: DatabaseModel() {
     abstract var name: String?
     abstract var surname: String?
     abstract var picture_url: String?

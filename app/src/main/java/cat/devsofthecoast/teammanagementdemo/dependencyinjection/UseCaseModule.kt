@@ -13,7 +13,9 @@ class UseCaseModule(
         private val repositoryModule: RepositoryModule) {
 
     val fillDatabaseUseCase: FillDatabaseUseCase by lazy {
-        FillDatabaseUseCase(appConfig, context, repositoryModule.questionsRepository)
+        FillDatabaseUseCase(appConfig, context,
+                repositoryModule.questionsRepository,
+                repositoryModule.playersRepository)
     }
 
     val getAllQuestionsUseCase: GetAllQuestionsUseCase by lazy {
