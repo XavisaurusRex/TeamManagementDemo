@@ -1,4 +1,4 @@
-package cat.devsofthecoast.teammanagementdemo.feature.weekoverview.adapter
+package cat.devsofthecoast.teammanagementdemo.feature.surveyactivity.adapter
 
 import cat.devsofthecoast.teammanagementdemo.commons.models.questions.Question
 

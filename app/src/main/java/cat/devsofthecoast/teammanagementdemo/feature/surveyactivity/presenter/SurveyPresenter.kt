@@ -1,9 +1,9 @@
-package cat.devsofthecoast.teammanagementdemo.feature.weekoverview.presenter
+package cat.devsofthecoast.teammanagementdemo.feature.surveyactivity.presenter
 
 import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.config.BaseConfig
 import cat.devsofthecoast.teammanagementdemo.commons.useCase.GetAllQuestionsUseCase
 import cat.devsofthecoast.teammanagementdemo.commons.useCase.GetQuestionUseCase
-import cat.devsofthecoast.teammanagementdemo.feature.weekoverview.SurveyContract
+import cat.devsofthecoast.teammanagementdemo.feature.surveyactivity.SurveyContract
 
 class SurveyPresenter(
         private val appConfig: BaseConfig,

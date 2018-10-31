@@ -1,10 +1,10 @@
 package cat.devsofthecoast.teammanagementdemo.commons.controllers.questioncontroller
 
 import android.content.Context
-import android.support.annotation.AttrRes
-import android.support.constraint.ConstraintLayout
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import androidx.annotation.AttrRes
+import androidx.constraintlayout.widget.ConstraintLayout
 import cat.devsofthecoast.teammanagementdemo.R
 import cat.devsofthecoast.teammanagementdemo.commons.models.questions.Question
 import com.bumptech.glide.Glide
@@ -41,7 +41,7 @@ abstract class BaseQuestionController<Q : Question> : ConstraintLayout {
         tvStatment.text = newQuestion.statement
     }
 
-    protected fun setPicture(url: String){
+    protected fun setPicture(url: String) {
         Glide.with(this).load(url).into(ivPicture)
     }
 
