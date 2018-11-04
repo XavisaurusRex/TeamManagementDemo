@@ -2,7 +2,7 @@ package cat.devsofthecoast.teammanagementdemo.feature.devoptions.presenter
 
 import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.config.BaseConfig
 import cat.devsofthecoast.teammanagementdemo.commons.useCase.ClearDatabseChildUseCase
-import cat.devsofthecoast.teammanagementdemo.commons.useCase.FillDatabaseUseCase
+import cat.devsofthecoast.teammanagementdemo.commons.useCase.demo.FillDatabaseUseCase
 import cat.devsofthecoast.teammanagementdemo.commons.useCase.GetAllQuestionsUseCase
 import cat.devsofthecoast.teammanagementdemo.commons.useCase.GetQuestionUseCase
 import cat.devsofthecoast.teammanagementdemo.feature.devoptions.DevOptionsContract

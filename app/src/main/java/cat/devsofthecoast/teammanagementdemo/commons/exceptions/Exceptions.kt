@@ -2,7 +2,7 @@ package cat.devsofthecoast.teammanagementdemo.commons.exceptions
 
 import java.lang.Exception
 
-class PostingFirebaseException : Exception() {
+class PostingFirebaseException : Throwable() {
     override val message: String = "General Error posting data"
 }
 

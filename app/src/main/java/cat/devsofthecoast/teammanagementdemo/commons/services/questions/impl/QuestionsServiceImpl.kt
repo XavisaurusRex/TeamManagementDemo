@@ -10,9 +10,11 @@ import cat.devsofthecoast.teammanagementdemo.commons.services.ServiceCallback
 import cat.devsofthecoast.teammanagementdemo.commons.services.questions.QuestionsService
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseReference
 
 class QuestionsServiceImpl : BaseService(), QuestionsService {
-
+    private val QUESTIONS_LOCATION = "questions"
+    override val refTable: DatabaseReference = firebaseDatabase.child(QUESTIONS_LOCATION)
 
     //region QUESTIONS
 
@@ -30,7 +32,7 @@ class QuestionsServiceImpl : BaseService(), QuestionsService {
     }
 
     override fun getQuestion(key: String, listener: ServiceCallback<Question?>?) {
-        getSingleSnapShot(refQuestions.child(key)) { dataSnapshot: DataSnapshot? ->
+        getSingleSnapShot(refTable.child(key)) { dataSnapshot: DataSnapshot? ->
             if (dataSnapshot != null) {
                 listener?.onSuccess(getQuestion(dataSnapshot))
             } else {
@@ -40,7 +42,7 @@ class QuestionsServiceImpl : BaseService(), QuestionsService {
     }
 
     override fun getAllQuestions(listener: ServiceCallback<ArrayList<Question>?>?) {
-        getSingleSnapShot(refQuestions) { dataSnapshot: DataSnapshot? ->
+        getSingleSnapShot(refTable) { dataSnapshot: DataSnapshot? ->
             if (dataSnapshot != null) {
                 listener?.onSuccess(getQuestions(dataSnapshot))
             } else {
@@ -51,8 +53,8 @@ class QuestionsServiceImpl : BaseService(), QuestionsService {
 
 
     override fun setNewQuestion(question: Question, listener: ServiceCallback<Boolean>?) {
-        question.assignNewKey(refQuestions)
-        addNewData(refQuestions, question, OnCompleteListener {
+        if(question.key == null) assignNewKey(question)
+        addNewData(question, OnCompleteListener {
             when {
                 it.isSuccessful -> {
                     listener?.onSuccess(it.isSuccessful)
@@ -66,11 +68,11 @@ class QuestionsServiceImpl : BaseService(), QuestionsService {
     override fun setNewQuestions(questions: List<Question>, listener: ServiceCallback<Boolean>?) {
         val keysQuestions = mutableMapOf<String, Question>()
         for (question: Question in questions) {
-            question.assignNewKey(refQuestions)
+            if(question.key == null) assignNewKey(question)
             keysQuestions[question.key!!] = question
         }
         if (keysQuestions.isNotEmpty()) {
-            addNewDataList(refQuestions, keysQuestions, OnCompleteListener {
+            addNewDataList(keysQuestions, OnCompleteListener {
                 when {
                     it.isSuccessful -> {
                         listener?.onSuccess(it.isSuccessful)
@@ -85,7 +87,7 @@ class QuestionsServiceImpl : BaseService(), QuestionsService {
     }
 
     override fun clearDatabaseChild(child: String, listener: ServiceCallback<Boolean>?) {
-        removeAll(refQuestions,OnCompleteListener {
+        removeAll(OnCompleteListener {
             when {
                 it.isSuccessful -> {
                     listener?.onSuccess(it.isSuccessful)

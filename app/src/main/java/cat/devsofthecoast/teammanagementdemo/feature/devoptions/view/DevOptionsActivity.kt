@@ -45,14 +45,14 @@ class DevOptionsActivity : PresenterActivity<DevOptionsContract.Presenter, DevOp
             presenter.fillDatabase()
         }
 
-        btnGetAllQuestions.setOnClickListener {
+        btnGetAll.setOnClickListener {
             when (spSelectTable.selectedItemPosition) {
                 0 -> presenter.getAllQuestions()
                 1, 2, 3, 4 -> postLog("Not Implemented Tables")
             }
         }
 
-        btnGetSingleQuestion.setOnClickListener {
+        btnGetSingle.setOnClickListener {
             presenter.getSingleQuestion("-LPh4y9Tj47h1wa7gMke")
         }
 

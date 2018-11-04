@@ -3,7 +3,7 @@ package cat.devsofthecoast.teammanagementdemo.dependencyinjection
 import android.content.Context
 import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.config.BaseConfig
 import cat.devsofthecoast.teammanagementdemo.commons.useCase.ClearDatabseChildUseCase
-import cat.devsofthecoast.teammanagementdemo.commons.useCase.FillDatabaseUseCase
+import cat.devsofthecoast.teammanagementdemo.commons.useCase.demo.FillDatabaseUseCase
 import cat.devsofthecoast.teammanagementdemo.commons.useCase.GetAllQuestionsUseCase
 import cat.devsofthecoast.teammanagementdemo.commons.useCase.GetQuestionUseCase
 
@@ -15,7 +15,9 @@ class UseCaseModule(
     val fillDatabaseUseCase: FillDatabaseUseCase by lazy {
         FillDatabaseUseCase(appConfig, context,
                 repositoryModule.questionsRepository,
-                repositoryModule.playersRepository)
+                repositoryModule.playersRepository,
+                repositoryModule.teamsRepository,
+                repositoryModule.trainersRepository)
     }
 
     val getAllQuestionsUseCase: GetAllQuestionsUseCase by lazy {

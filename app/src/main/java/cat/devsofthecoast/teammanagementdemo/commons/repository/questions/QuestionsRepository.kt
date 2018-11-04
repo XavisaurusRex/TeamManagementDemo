@@ -1,11 +1,12 @@
 package cat.devsofthecoast.teammanagementdemo.commons.repository.questions
 
 import cat.devsofthecoast.teammanagementdemo.commons.models.questions.Question
+import cat.devsofthecoast.teammanagementdemo.commons.repository.base.BaseRepository
 import cat.devsofthecoast.teammanagementdemo.commons.services.ServiceCallback
 import org.json.JSONArray
 import java.util.*
 
-interface QuestionsRepository {
+interface QuestionsRepository: BaseRepository {
 
     fun setQuestions(questions: List<Question>, listener: ServiceCallback<Boolean>?)
     fun getQuestion(key: String, listener: ServiceCallback<Question?>?)

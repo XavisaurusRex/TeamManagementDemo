@@ -14,6 +14,7 @@
         app:layout_constraintBottom_toTopOf="@id/scvLogs"
         app:layout_constraintVertical_weight="1">
 
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clControllerContainer"
             android:layout_width="match_parent"
@@ -24,7 +25,7 @@
                 android:id="@+id/btnFillDatabase"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Fill database with dummie content"
+                android:text="Create dummie content"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 android:textColor="@android:color/black" />
 
@@ -33,76 +34,35 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:entries="@array/databaseTables"
-                app:layout_constraintTop_toBottomOf="@id/btnFillDatabase" />
+                app:layout_constraintTop_toBottomOf="@id/btnFillDatabase"/>
 
             <Button
-                android:id="@+id/btnGetAllQuestions"
+                android:id="@+id/btnGetAll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Get All Questions"
+                android:text="Get All"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 android:textColor="@android:color/black"
                 app:layout_constraintTop_toBottomOf="@id/spSelectTable" />
 
             <Button
-                android:id="@+id/btnGetSingleQuestion"
+                android:id="@+id/btnGetSingle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Get One Question"
+                android:text="Get First Entry"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 android:textColor="@android:color/black"
-                app:layout_constraintTop_toBottomOf="@id/btnGetAllQuestions" />
+                app:layout_constraintTop_toBottomOf="@id/btnGetAll" />
 
             <Button
                 android:id="@+id/btnClearQuestions"
                 android:onClick="notImplementedClick"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Clear Questions"
+                android:text="Remove selected values"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 android:textColor="@android:color/black"
-                app:layout_constraintTop_toBottomOf="@id/btnGetSingleQuestion" />
-
-            <Button
-                android:id="@+id/btn2"
-                android:onClick="notImplementedClick"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Another Button"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                android:textColor="@android:color/black"
-                app:layout_constraintTop_toBottomOf="@id/btnClearQuestions" />
-
-            <Button
-                android:id="@+id/btn3"
-                android:onClick="notImplementedClick"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Another Button"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                android:textColor="@android:color/black"
-                app:layout_constraintTop_toBottomOf="@id/btn2" />
-
-            <Button
-                android:id="@+id/btn4"
-                android:onClick="notImplementedClick"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Another Button"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                android:textColor="@android:color/black"
-                app:layout_constraintTop_toBottomOf="@id/btn3" />
-
-            <Button
-                android:id="@+id/btn5"
-                android:onClick="notImplementedClick"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Another Button"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                android:textColor="@android:color/black"
-                app:layout_constraintTop_toBottomOf="@id/btn4" />
-
+                app:layout_constraintTop_toBottomOf="@id/btnGetSingle" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
