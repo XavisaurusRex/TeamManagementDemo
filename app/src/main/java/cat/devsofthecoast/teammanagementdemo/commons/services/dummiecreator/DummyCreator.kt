@@ -124,7 +124,6 @@ object DummyCreator {
     }
 
     fun asociateRandomly(questions: List<Question>, players: List<Player>, trainers: List<Trainer>, teams: List<Team>) {
-        val r = Random()
         for(i in 0 until teams.size){
             val team = teams[i]
             for (player in players.subList(i * PLAYERS_IN_TEAM, i * PLAYERS_IN_TEAM + PLAYERS_IN_TEAM)){

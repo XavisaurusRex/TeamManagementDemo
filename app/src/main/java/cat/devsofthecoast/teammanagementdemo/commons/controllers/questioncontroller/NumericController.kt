@@ -22,9 +22,10 @@ class NumericController : BaseQuestionController<NumericQuestion> {
     override var question: NumericQuestion? = null
     override var listener: QuestionControllerListener<NumericQuestion>? = null
 
+    @Suppress("UNUSED_EXPRESSION")
     override fun changeQuestion(newQuestion: NumericQuestion) {
         super.changeQuestion(newQuestion)
-        npResponse.setOnValueChangedListener { numberPicker, lastValue, newValue -> null }
+        npResponse.setOnValueChangedListener { _, _, _ -> null }
 
         if (newQuestion.picture_url != null) {
             setPicture(newQuestion.picture_url.toString())
@@ -36,7 +37,7 @@ class NumericController : BaseQuestionController<NumericQuestion> {
         npResponse.maxValue = newQuestion.max
 
         npResponse.value = newQuestion.questionResponse
-        npResponse.setOnValueChangedListener { numberPicker, lastValue, newValue ->
+        npResponse.setOnValueChangedListener { _, _, newValue ->
             newQuestion.questionResponse = newValue
             listener?.onChangeResponse(newQuestion)
         }

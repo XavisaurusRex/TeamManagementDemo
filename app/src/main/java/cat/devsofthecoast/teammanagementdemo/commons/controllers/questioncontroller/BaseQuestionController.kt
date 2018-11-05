@@ -24,6 +24,7 @@ abstract class BaseQuestionController<Q : Question> : ConstraintLayout {
         init(context, attrs, defStyleAttr)
     }
 
+    @Suppress("UNUSED_PARAMETER")
     private fun init(context: Context, attrs: AttributeSet?, @AttrRes defStyleAttr: Int?) {
         LayoutInflater.from(context)
                 .inflate(R.layout.controller_basequestion, this, true)

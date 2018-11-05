@@ -39,7 +39,7 @@ class TMDCheckboxGroup : RadioGroup {
         val rb = CheckBox(context)
         rb.text = option
         rb.tag = childCount
-        rb.setOnCheckedChangeListener { compoundButton: CompoundButton, checked: Boolean ->
+        rb.setOnCheckedChangeListener { _: CompoundButton, checked: Boolean ->
             listener?.invoke(rb, rb.tag as Int, checked)
         }
         this.addView(rb, this.childCount, buttonsParams)

@@ -26,7 +26,7 @@ class SingleChoiceController : BaseQuestionController<SingleChoiceQuestion> {
 
     override fun changeQuestion(newQuestion: SingleChoiceQuestion) {
         super.changeQuestion(newQuestion)
-        rgOptionsContainer.setOnSelectOptionListener { radioButton: RadioButton, i: Int -> null }
+        rgOptionsContainer.setOnSelectOptionListener { _: RadioButton, _: Int -> null }
 
         if (newQuestion.picture_url != null) {
             setPicture(newQuestion.picture_url.toString())
@@ -38,7 +38,7 @@ class SingleChoiceController : BaseQuestionController<SingleChoiceQuestion> {
         rgOptionsContainer.deselectAll()
         rgOptionsContainer.selectAt(newQuestion.questionResponse)
 
-        rgOptionsContainer.setOnSelectOptionListener { radioButton: RadioButton, selectedIndex: Int ->
+        rgOptionsContainer.setOnSelectOptionListener { _: RadioButton, selectedIndex: Int ->
             question?.questionResponse = selectedIndex
             listener?.onChangeResponse(question!!)
         }

@@ -1,4 +1,4 @@
-package cat.devsofthecoast.teammanagementdemo.feature.weekpreview.view
+package cat.devsofthecoast.teammanagementdemo.feature.surveyactivity.view
 
 import android.content.Context
 import android.net.Uri
@@ -41,7 +41,7 @@ class BlankFragment : androidx.fragment.app.Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_blank2, container, false)
+        return inflater.inflate(R.layout.fragment_blank, container, false)
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -51,11 +51,7 @@ class BlankFragment : androidx.fragment.app.Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is OnFragmentInteractionListener) {
-            listener = context
-        } else {
-            throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
-        }
+
     }
 
     override fun onDetach() {
@@ -80,8 +76,6 @@ class BlankFragment : androidx.fragment.app.Fragment() {
     }
 
     companion object {
-
-        val TAG: String = "BlankFragment"
         /**
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.

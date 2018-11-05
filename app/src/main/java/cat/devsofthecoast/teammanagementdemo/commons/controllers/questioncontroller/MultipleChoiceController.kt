@@ -25,7 +25,7 @@ class MultipleChoiceController : BaseQuestionController<MultipleChoiceQuestion> 
 
     override fun changeQuestion(newQuestion: MultipleChoiceQuestion) {
         super.changeQuestion(newQuestion)
-        cgOptions.setOnSelectOptionListener { checkBox: CheckBox, i: Int, b: Boolean -> null }
+        cgOptions.setOnSelectOptionListener { _: CheckBox, _: Int, _: Boolean -> null }
 
         if (newQuestion.picture_url != null) {
             setPicture(newQuestion.picture_url.toString())
@@ -37,7 +37,7 @@ class MultipleChoiceController : BaseQuestionController<MultipleChoiceQuestion> 
         cgOptions.deselectAll()
         cgOptions.selectPositions(newQuestion.questionResponse)
 
-        cgOptions.setOnSelectOptionListener { checkBox: CheckBox, index: Int, isChecked: Boolean ->
+        cgOptions.setOnSelectOptionListener { _: CheckBox, index: Int, isChecked: Boolean ->
             if (isChecked) question?.questionResponse?.add(index)
             else question?.questionResponse?.remove(index)
             listener?.onChangeResponse(question!!)

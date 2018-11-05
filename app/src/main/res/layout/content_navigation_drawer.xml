@@ -3,18 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/navigationDrawerBackground">
+    android:background="@color/navigationDrawerBackground"
+    android:padding="30dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/llSelectedProfile"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:padding="15dp"
         app:layout_constraintBottom_toTopOf="@id/tvMessage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintrtical_weight="20">
+        app:layout_constraintVertical_chainStyle="spread_inside"
+        app:layout_constraintVertical_weight="20">
 
         <ImageView
             android:id="@+id/ivProfile"
@@ -22,6 +23,7 @@
             android:layout_height="0dp"
             android:adjustViewBounds="true"
             android:backgroundTint="@android:color/black"
+            android:contentDescription="hola"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_menu_profiledata"
             app:layout_constraintBottom_toTopOf="@id/tvProfileDesc"
@@ -37,14 +39,22 @@
             android:layout_height="0dp"
             android:gravity="center"
             android:text="xavixavi97@gmail.com"
-            android:textSize="10dp"
+            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ivProfile"
             app:layout_constraintVertical_weight="0.2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <Button
+        android:id="@+id/btnSurveyActivity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Survey Activity"
+        app:layout_constraintTop_toBottomOf="@id/llSelectedProfile"
+        android:backgroundTint="@android:color/holo_blue_light" />
     <TextView
         android:id="@+id/tvMessage"
         android:layout_width="0dp"
@@ -54,5 +64,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/llSelectedProfile"
-        app:layout_constraintVertical_weight="70" />
+        app:layout_constraintVertical_weight="70"
+        android:visibility="invisible"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -102,6 +102,7 @@ class DevOptionsActivity : PresenterActivity<DevOptionsContract.Presenter, DevOp
         postLog("Error Getting data from Firebase: ${ex.message}")
     }
 
+    @Suppress("UNUSED_PARAMETER")
     fun notImplementedClick(v: View) {
         postLog("Not Implemented Logic in this button")
     }

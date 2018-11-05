@@ -38,7 +38,7 @@ class TMDRadioGroup : RadioGroup {
         val rb = RadioButton(context)
         rb.text = option
         rb.tag = childCount
-        rb.setOnCheckedChangeListener { compoundButton: CompoundButton, checked: Boolean ->
+        rb.setOnCheckedChangeListener { _: CompoundButton, checked: Boolean ->
             if (checked) {
                 listener?.invoke(rb, rb.tag as Int)
             }
