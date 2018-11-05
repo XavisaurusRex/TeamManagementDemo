@@ -12,4 +12,5 @@
     <!-- Strings related to Questions -->
     <color name="colorQuestionStatment">#bfbfbf</color>
     <color name="colorQuestionBackground">#7d7e83</color>
+    <color name="navigationDrawerBackground">#c6e7ff</color>
 </resources>

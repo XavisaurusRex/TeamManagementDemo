@@ -34,7 +34,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".feature.teamslist.view.TeamsListActivity" />
-        <activity android:name=".feature.devoptions.view.DevOptionsActivity"></activity>
+        <activity android:name=".feature.devoptions.view.DevOptionsActivity" />
+        <activity
+            android:name=".feature.weekpreview.view.WeekPreviewActivity"
+            android:theme="@style/Theme.Design.NoActionBar"
+            android:label="@string/title_activity_week_preview" />
     </application>
 
 </manifest>

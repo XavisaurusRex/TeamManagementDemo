@@ -5,6 +5,8 @@ import cat.devsofthecoast.teammanagementdemo.feature.devoptions.DevOptionsContra
 import cat.devsofthecoast.teammanagementdemo.feature.devoptions.presenter.DevOptionsPresenter
 import cat.devsofthecoast.teammanagementdemo.feature.surveyactivity.SurveyContract
 import cat.devsofthecoast.teammanagementdemo.feature.surveyactivity.presenter.SurveyPresenter
+import cat.devsofthecoast.teammanagementdemo.feature.weekpreview.WeekPreviewContract
+import cat.devsofthecoast.teammanagementdemo.feature.weekpreview.presenter.WeekPreviewPresenter
 
 class PresenterModule(
         private val appConfig: BaseConfig,
@@ -24,5 +26,11 @@ class PresenterModule(
                 appConfig,
                 useCaseModule.getQuestionUseCase,
                 useCaseModule.getAllQuestionsUseCase)
+    }
+
+    val weekpreviewPresenter: WeekPreviewContract.Presenter by lazy {
+        WeekPreviewPresenter(
+                appConfig
+        )
     }
 }
