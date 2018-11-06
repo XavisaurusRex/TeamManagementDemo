@@ -13,7 +13,7 @@
         android:theme="@style/TMDTheme"
         android:versionName="@string/app_version">
         <activity
-            android:name=".feature.login.view.SplashScreenActivity"
+            android:name="cat.devsofthecoast.teammanagementdemo.feature.activities.login.view.LoginActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,9 +21,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".feature.teamslist.view.TeamsListActivity" />
+        <activity android:name="cat.devsofthecoast.teammanagementdemo.feature.fragments.teamslist.view.TeamsListActivity" />
         <activity
-            android:name=".feature.headactivity.view.HeadActivity"
+            android:name="cat.devsofthecoast.teammanagementdemo.feature.activities.headactivity.view.HeadActivity"
             android:label="@string/title_activity_week_preview"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
             <intent-filter>

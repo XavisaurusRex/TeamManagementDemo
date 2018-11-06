@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".feature.surveyfragment.view.SurveyFragment">
+    tools:context=".feature.fragments.surveyfragment.view.SurveyFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcySurvey"

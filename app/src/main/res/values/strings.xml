@@ -5,7 +5,7 @@
     <string name="app_error_version">"Build appVersion and resource appVersion doesn't match, you must update string resource app_version before continue"</string>
     <string name="mainActivityTitle">Main Page</string>
 
-    <!-- SplashScreenActivity -->
+    <!-- LoginActivity -->
     <string name="splashscreen_appname">team management</string>
     <string name="splashscreen_organizationname">@string/organization_name</string>
     <string name="splashscreen_desc_loadinglogo">loading using logo of team</string>
