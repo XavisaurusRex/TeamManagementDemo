@@ -11,8 +11,8 @@
     <string name="splashscreen_desc_loadinglogo">loading using logo of team</string>
 
 
-    <!-- Menu SurveyFragment -->
-    <string name="menu_profiledata">Profile Data</string>
+    <!-- HeaderActivity -->
+    <string name="menu_logout">Logout</string>
     <string name="menu_dailyentries">Daily Entries</string>
     <string name="menu_manageSurvey">Manage Survey</string>
 

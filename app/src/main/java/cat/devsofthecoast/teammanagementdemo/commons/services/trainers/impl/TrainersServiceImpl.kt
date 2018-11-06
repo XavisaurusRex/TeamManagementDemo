@@ -1,11 +1,13 @@
 package cat.devsofthecoast.teammanagementdemo.commons.services.trainers.impl
 
+import cat.devsofthecoast.teammanagementdemo.commons.exceptions.NullResponseFirebase
 import cat.devsofthecoast.teammanagementdemo.commons.exceptions.PostingFirebaseException
 import cat.devsofthecoast.teammanagementdemo.commons.models.users.Trainer
 import cat.devsofthecoast.teammanagementdemo.commons.services.BaseService
 import cat.devsofthecoast.teammanagementdemo.commons.services.ServiceCallback
 import cat.devsofthecoast.teammanagementdemo.commons.services.trainers.TrainersService
 import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseReference
 
 class TrainersServiceImpl : BaseService(), TrainersService {
@@ -30,6 +32,22 @@ class TrainersServiceImpl : BaseService(), TrainersService {
             })
         } else {
             listener?.onError(PostingFirebaseException())
+        }
+    }
+
+
+    override fun getTrainer(trainerKey: String, serviceCallback: ServiceCallback<Trainer?>) {
+        getSingleSnapShot(refTable.child(trainerKey)) { dataSnapshot: DataSnapshot? ->
+            if (dataSnapshot != null) {
+                val trainer: Trainer? = dataSnapshot.getValue(Trainer::class.java)
+                if (trainer != null) {
+                    serviceCallback.onSuccess(trainer)
+                } else {
+                    serviceCallback.onError(NullResponseFirebase())
+                }
+            } else {
+                serviceCallback.onError(NullResponseFirebase())
+            }
         }
     }
 }

@@ -9,7 +9,7 @@ import cat.devsofthecoast.teammanagementdemo.R
 import cat.devsofthecoast.teammanagementdemo.TMDApp
 import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.ui.PresenterFragment
 import cat.devsofthecoast.teammanagementdemo.feature.fragments.weekpreview.WeekPreviewContract
-import kotlinx.android.synthetic.main.activity_week_preview.*
+import kotlinx.android.synthetic.main.activity_header.*
 
 class WeekPreviewFragment: PresenterFragment<WeekPreviewContract.Presenter, WeekPreviewContract.View>(), WeekPreviewContract.View {
     override val presenter: WeekPreviewContract.Presenter by lazy {

@@ -6,4 +6,5 @@ import cat.devsofthecoast.teammanagementdemo.commons.services.ServiceCallback
 
 interface TrainersRepository : BaseRepository {
     fun setTrainers(trainers: List<Trainer>, listener: ServiceCallback<Boolean>?)
+    fun getTrainer(trainerKey: String, serviceCallback: ServiceCallback<Trainer?>)
 }

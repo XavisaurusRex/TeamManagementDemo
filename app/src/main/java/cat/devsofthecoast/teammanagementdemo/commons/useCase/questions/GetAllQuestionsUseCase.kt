@@ -1,4 +1,4 @@
-package cat.devsofthecoast.teammanagementdemo.commons.useCase
+package cat.devsofthecoast.teammanagementdemo.commons.useCase.questions
 
 import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.config.BaseConfig
 import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.useCase.Callback

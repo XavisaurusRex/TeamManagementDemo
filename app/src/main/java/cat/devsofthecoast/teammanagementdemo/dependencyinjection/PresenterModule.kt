@@ -1,14 +1,16 @@
 package cat.devsofthecoast.teammanagementdemo.dependencyinjection
 
 import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.config.BaseConfig
-import cat.devsofthecoast.teammanagementdemo.feature.fragments.devoptions.DevOptionsContract
-import cat.devsofthecoast.teammanagementdemo.feature.fragments.devoptions.presenter.DevOptionsPresenter
-import cat.devsofthecoast.teammanagementdemo.feature.fragments.surveyfragment.SurveyContract
-import cat.devsofthecoast.teammanagementdemo.feature.fragments.surveyfragment.presenter.SurveyPresenter
 import cat.devsofthecoast.teammanagementdemo.feature.activities.headactivity.HeadContract
 import cat.devsofthecoast.teammanagementdemo.feature.activities.headactivity.presenter.HeadPresenter
 import cat.devsofthecoast.teammanagementdemo.feature.activities.login.LoginContract
 import cat.devsofthecoast.teammanagementdemo.feature.activities.login.presenter.LoginPresenter
+import cat.devsofthecoast.teammanagementdemo.feature.activities.signuptrainer.SignupContract
+import cat.devsofthecoast.teammanagementdemo.feature.activities.signuptrainer.presenter.SignupPresenter
+import cat.devsofthecoast.teammanagementdemo.feature.fragments.devoptions.DevOptionsContract
+import cat.devsofthecoast.teammanagementdemo.feature.fragments.devoptions.presenter.DevOptionsPresenter
+import cat.devsofthecoast.teammanagementdemo.feature.fragments.surveyfragment.SurveyContract
+import cat.devsofthecoast.teammanagementdemo.feature.fragments.surveyfragment.presenter.SurveyPresenter
 import cat.devsofthecoast.teammanagementdemo.feature.fragments.weekpreview.WeekPreviewContract
 import cat.devsofthecoast.teammanagementdemo.feature.fragments.weekpreview.presenter.WeekPreviewPresenter
 
@@ -40,12 +42,19 @@ class PresenterModule(
 
     val loginPresenter: LoginContract.Presenter by lazy {
         LoginPresenter(
-                appConfig
+                appConfig,
+                useCaseModule.getTrainerUseCase
         )
     }
 
     val weekpreviewPresenter: WeekPreviewContract.Presenter by lazy {
         WeekPreviewPresenter(
+                appConfig
+        )
+    }
+
+    val signupPresenter: SignupContract.Presenter by lazy {
+        SignupPresenter(
                 appConfig
         )
     }

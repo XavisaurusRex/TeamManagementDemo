@@ -3,8 +3,8 @@ package cat.devsofthecoast.teammanagementdemo.feature.fragments.devoptions.prese
 import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.config.BaseConfig
 import cat.devsofthecoast.teammanagementdemo.commons.useCase.ClearDatabseChildUseCase
 import cat.devsofthecoast.teammanagementdemo.commons.useCase.demo.FillDatabaseUseCase
-import cat.devsofthecoast.teammanagementdemo.commons.useCase.GetAllQuestionsUseCase
-import cat.devsofthecoast.teammanagementdemo.commons.useCase.GetQuestionUseCase
+import cat.devsofthecoast.teammanagementdemo.commons.useCase.questions.GetAllQuestionsUseCase
+import cat.devsofthecoast.teammanagementdemo.commons.useCase.questions.GetQuestionUseCase
 import cat.devsofthecoast.teammanagementdemo.feature.fragments.devoptions.DevOptionsContract
 
 class DevOptionsPresenter(

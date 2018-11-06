@@ -2,9 +2,7 @@ package cat.devsofthecoast.teammanagementdemo.feature.activities.headactivity.vi
 
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
-import android.view.DragEvent
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -14,13 +12,19 @@ import cat.devsofthecoast.teammanagementdemo.BuildConfig
 import cat.devsofthecoast.teammanagementdemo.R
 import cat.devsofthecoast.teammanagementdemo.TMDApp
 import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.ui.PresenterActivity
+import cat.devsofthecoast.teammanagementdemo.feature.activities.headactivity.HeadContract
+import cat.devsofthecoast.teammanagementdemo.feature.activities.login.view.LoginActivity
 import cat.devsofthecoast.teammanagementdemo.feature.fragments.devoptions.view.DevOptionsFragment
 import cat.devsofthecoast.teammanagementdemo.feature.fragments.surveyfragment.view.SurveyFragment
-import cat.devsofthecoast.teammanagementdemo.feature.activities.headactivity.HeadContract
 import cat.devsofthecoast.teammanagementdemo.feature.fragments.weekpreview.view.WeekPreviewFragment
-import kotlinx.android.synthetic.main.activity_week_preview.*
+import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.activity_header.*
 import kotlinx.android.synthetic.main.content_navigation_drawer.*
 import kotlinx.android.synthetic.main.toolbar.*
+import androidx.core.content.IntentCompat
+import android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK
+
+
 
 
 class HeadActivity : PresenterActivity<HeadContract.Presenter, HeadContract.View>(), HeadContract.View {
@@ -39,7 +43,7 @@ class HeadActivity : PresenterActivity<HeadContract.Presenter, HeadContract.View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_week_preview)
+        setContentView(R.layout.activity_header)
 
         setSupportActionBar(toolbar)
 
@@ -56,24 +60,11 @@ class HeadActivity : PresenterActivity<HeadContract.Presenter, HeadContract.View
             startFragment(SurveyFragment())
         }
 
-        if(BuildConfig.DEBUG){
+        if (BuildConfig.DEBUG) {
             btnDevOptions.visibility = View.VISIBLE
             btnDevOptions.setOnClickListener {
                 startFragment(DevOptionsFragment())
             }
-        }
-
-        navigationView.setOnDragListener { view, dragEvent ->
-            when(dragEvent.action){
-                DragEvent.ACTION_DRAG_STARTED -> header.
-                        DragEvent.ACTION_DRAG_ENTERED ->
-                DragEvent.ACTION_DRAG_LOCATION ->
-                DragEvent.ACTION_DROP ->
-                DragEvent.ACTION_DRAG_EXITED ->
-                DragEvent.ACTION_DRAG_ENDED ->
-            }
-            true
-
         }
     }
 
@@ -97,9 +88,19 @@ class HeadActivity : PresenterActivity<HeadContract.Presenter, HeadContract.View
                 mDrawer.openDrawer(GravityCompat.START)
                 return true
             }
-        }//...
+            R.id.mnuLogout -> {
+                logout()
+
+            }
+        }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun logout() {
+        FirebaseAuth.getInstance().signOut()
+        startActivity(LoginActivity.newIntent(this@HeadActivity, true, true))
+        finishAffinity()
     }
 
 

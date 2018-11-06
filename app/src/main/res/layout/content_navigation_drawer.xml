@@ -41,45 +41,44 @@
             android:text="xavixavi97@gmail.com"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ivProfile"
             app:layout_constraintVertical_weight="0.2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <Button
+        android:id="@+id/btnTeamInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="My Team"
+        app:layout_constraintTop_toBottomOf="@id/llSelectedProfile" />
 
     <Button
         android:id="@+id/btnSurveyActivity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Survey Activity"
-        app:layout_constraintTop_toBottomOf="@id/llSelectedProfile"
-        android:backgroundTint="@android:color/holo_blue_light" />
-
-    <Button
-        android:id="@+id/btnTeamInfo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Team"
-        app:layout_constraintTop_toBottomOf="@id/btnSurveyActivity"
-        android:backgroundTint="@android:color/holo_blue_light" />
+        app:layout_constraintTop_toBottomOf="@id/btnTeamInfo" />
 
     <Button
         android:id="@+id/btnDevOptions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/btnTeamInfo"
-        android:text="Developer Options" />
+        android:text="Developer Options"
+        app:layout_constraintTop_toBottomOf="@id/btnSurveyActivity" />
 
     <TextView
         android:id="@+id/tvMessage"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="HOLA"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/llSelectedProfile"
-        app:layout_constraintVertical_weight="70"
-        android:visibility="invisible"/>
+        app:layout_constraintVertical_weight="70" />
 </androidx.constraintlayout.widget.ConstraintLayout>

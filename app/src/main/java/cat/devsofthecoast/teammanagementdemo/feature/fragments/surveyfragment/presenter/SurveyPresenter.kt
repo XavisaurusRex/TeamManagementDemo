@@ -1,8 +1,8 @@
 package cat.devsofthecoast.teammanagementdemo.feature.fragments.surveyfragment.presenter
 
 import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.config.BaseConfig
-import cat.devsofthecoast.teammanagementdemo.commons.useCase.GetAllQuestionsUseCase
-import cat.devsofthecoast.teammanagementdemo.commons.useCase.GetQuestionUseCase
+import cat.devsofthecoast.teammanagementdemo.commons.useCase.questions.GetAllQuestionsUseCase
+import cat.devsofthecoast.teammanagementdemo.commons.useCase.questions.GetQuestionUseCase
 import cat.devsofthecoast.teammanagementdemo.feature.fragments.surveyfragment.SurveyContract
 
 class SurveyPresenter(

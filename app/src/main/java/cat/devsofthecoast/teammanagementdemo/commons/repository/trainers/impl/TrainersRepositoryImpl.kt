@@ -13,12 +13,16 @@ class TrainersRepositoryImpl : TrainersRepository {
         service.setTrainers(trainers, listener)
     }
 
+    override fun getTrainer(trainerKey: String, serviceCallback: ServiceCallback<Trainer?>) {
+        service.getTrainer(trainerKey, serviceCallback)
+    }
+
     override fun assignKey(databaseModel: DatabaseModel) {
         service.assignNewKey(databaseModel)
     }
 
     override fun assignKeys(databaseModels: List<DatabaseModel>) {
-        for (databaseModel in databaseModels){
+        for (databaseModel in databaseModels) {
             assignKey(databaseModel)
         }
     }
