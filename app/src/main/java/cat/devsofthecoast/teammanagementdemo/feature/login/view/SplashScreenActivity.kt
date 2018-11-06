@@ -16,8 +16,7 @@ import cat.devsofthecoast.teammanagementdemo.commons.repository.questions.Questi
 import cat.devsofthecoast.teammanagementdemo.commons.repository.questions.impl.QuestionsRepositoryImpl
 import cat.devsofthecoast.teammanagementdemo.feature.login.LoginContract
 import cat.devsofthecoast.teammanagementdemo.feature.login.presenter.LoginPresenter
-import cat.devsofthecoast.teammanagementdemo.feature.surveyactivity.view.SurveyActivity
-import cat.devsofthecoast.teammanagementdemo.feature.weekpreview.view.WeekPreviewActivity
+import cat.devsofthecoast.teammanagementdemo.feature.headactivity.view.HeadActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
@@ -100,7 +99,7 @@ class SplashScreenActivity : PresenterActivity<LoginContract.Presenter, LoginCon
             override fun onAnimationEnd(p0: Animation?) {}
 
             override fun onAnimationRepeat(p0: Animation?) {
-                startActivity(WeekPreviewActivity.newIntent(this@SplashScreenActivity))
+                startActivity(HeadActivity.newIntent(this@SplashScreenActivity))
             }
         })
     }

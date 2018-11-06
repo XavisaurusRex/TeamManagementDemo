@@ -1,9 +1,9 @@
-package cat.devsofthecoast.teammanagementdemo.feature.weekpreview
+package cat.devsofthecoast.teammanagementdemo.feature.headactivity
 
 import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.presenter.BasePresenter
 import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.presenter.BaseView
 
-interface WeekPreviewContract {
+interface HeadContract {
     interface View : BaseView {
     }
 

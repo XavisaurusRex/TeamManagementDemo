@@ -1,4 +1,4 @@
-package cat.devsofthecoast.teammanagementdemo.feature.surveyactivity.adapter.impl
+package cat.devsofthecoast.teammanagementdemo.feature.surveyfragment.adapter.impl
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import cat.devsofthecoast.teammanagementdemo.R
 import cat.devsofthecoast.teammanagementdemo.commons.controllers.questioncontroller.*
 import cat.devsofthecoast.teammanagementdemo.commons.models.questions.*
-import cat.devsofthecoast.teammanagementdemo.feature.surveyactivity.adapter.QuestionsAdapter
+import cat.devsofthecoast.teammanagementdemo.feature.surveyfragment.adapter.QuestionsAdapter
 import java.util.*
 
 class QuestionsAdapterImpl(

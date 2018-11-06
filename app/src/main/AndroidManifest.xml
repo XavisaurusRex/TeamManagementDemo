@@ -21,7 +21,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".feature.surveyactivity.view.SurveyActivity">
+        <activity android:name=".feature.teamslist.view.TeamsListActivity" />
+        <activity
+            android:name=".feature.headactivity.view.HeadActivity"
+            android:label="@string/title_activity_week_preview"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -33,12 +37,6 @@
                     android:scheme="https" />
             </intent-filter>
         </activity>
-        <activity android:name=".feature.teamslist.view.TeamsListActivity" />
-        <activity android:name=".feature.devoptions.view.DevOptionsActivity" />
-        <activity
-            android:name=".feature.weekpreview.view.WeekPreviewActivity"
-            android:label="@string/title_activity_week_preview"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
     </application>
 
 </manifest>

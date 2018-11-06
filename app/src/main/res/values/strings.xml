@@ -11,12 +11,12 @@
     <string name="splashscreen_desc_loadinglogo">loading using logo of team</string>
 
 
-    <!-- Menu SurveyActivity -->
+    <!-- Menu SurveyFragment -->
     <string name="menu_profiledata">Profile Data</string>
     <string name="menu_dailyentries">Daily Entries</string>
     <string name="menu_manageSurvey">Manage Survey</string>
 
-    <!-- DevOptionsActivity -->
+    <!-- DevOptionsFragment -->
     <string name="sp_opt_01">questions</string>
     <string name="sp_opt_02">players</string>
     <string name="sp_opt_03">trainers</string>

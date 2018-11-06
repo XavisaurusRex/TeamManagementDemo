@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/background_light"
+    android:fitsSystemWindows="true">
+
+    <include layout="@layout/toolbar"/>
+
+
+    <FrameLayout
+        android:id="@+id/flContent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+    <!--<androidx.core.widget.NestedScrollView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--app:layout_behavior="@string/appbar_scrolling_view_behavior">-->
+
+    <!--<TextView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:lineSpacingExtra="8dp"-->
+    <!--android:padding="@dimen/activity_horizontal_margin"-->
+    <!--android:text="lorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsumlorelipsum"-->
+    <!--android:textSize="20sp" />-->
+
+    <!--</androidx.core.widget.NestedScrollView>-->
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,4 +1,4 @@
-package cat.devsofthecoast.teammanagementdemo.feature.weekpreview.view
+package cat.devsofthecoast.teammanagementdemo.feature.headactivity.view
 
 import android.content.Context
 import android.content.Intent
@@ -7,25 +7,28 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.core.view.GravityCompat
+import androidx.fragment.app.Fragment
+import cat.devsofthecoast.teammanagementdemo.BuildConfig
 import cat.devsofthecoast.teammanagementdemo.R
 import cat.devsofthecoast.teammanagementdemo.TMDApp
 import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.ui.PresenterActivity
-import cat.devsofthecoast.teammanagementdemo.feature.surveyactivity.view.SurveyActivity
-import cat.devsofthecoast.teammanagementdemo.feature.weekpreview.WeekPreviewContract
+import cat.devsofthecoast.teammanagementdemo.feature.devoptions.view.DevOptionsFragment
+import cat.devsofthecoast.teammanagementdemo.feature.surveyfragment.view.SurveyFragment
+import cat.devsofthecoast.teammanagementdemo.feature.headactivity.HeadContract
 import kotlinx.android.synthetic.main.activity_week_preview.*
 import kotlinx.android.synthetic.main.content_navigation_drawer.*
 import kotlinx.android.synthetic.main.toolbar.*
 
 
-class WeekPreviewActivity : PresenterActivity<WeekPreviewContract.Presenter, WeekPreviewContract.View>(), WeekPreviewContract.View {
-    override val presenter: WeekPreviewContract.Presenter by lazy {
+class HeadActivity : PresenterActivity<HeadContract.Presenter, HeadContract.View>(), HeadContract.View {
+    override val presenter: HeadContract.Presenter by lazy {
         (application as TMDApp).presenterModule.weekpreviewPresenter
     }
 
 
     companion object {
         fun newIntent(context: Context): Intent {
-            return Intent(context, WeekPreviewActivity::class.java)
+            return Intent(context, HeadActivity::class.java)
         }
     }
 
@@ -33,8 +36,6 @@ class WeekPreviewActivity : PresenterActivity<WeekPreviewContract.Presenter, Wee
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-
         setContentView(R.layout.activity_week_preview)
 
         setSupportActionBar(toolbar)
@@ -47,10 +48,21 @@ class WeekPreviewActivity : PresenterActivity<WeekPreviewContract.Presenter, Wee
 
     private fun configureInteractions() {
         btnSurveyActivity.setOnClickListener {
-            supportFragmentManager.beginTransaction()
-                    .replace(R.id.flContent, SurveyActivity())
-                    .commit()
+            startFragment(SurveyFragment())
         }
+
+        if(BuildConfig.DEBUG){
+            btnDevOptions.visibility = View.VISIBLE
+            btnDevOptions.setOnClickListener {
+                startFragment(DevOptionsFragment())
+            }
+        }
+    }
+
+    private fun startFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.flContent, fragment)
+                .commit()
     }
 
     // Menu icons are inflated just as they were with actionbar
@@ -63,6 +75,7 @@ class WeekPreviewActivity : PresenterActivity<WeekPreviewContract.Presenter, Wee
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
+                //todo must show and hide drawer, not only show
                 mDrawer.openDrawer(GravityCompat.START)
                 return true
             }

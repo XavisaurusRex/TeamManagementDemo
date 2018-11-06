@@ -4,11 +4,13 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ScrollView
 import cat.devsofthecoast.teammanagementdemo.R
 import cat.devsofthecoast.teammanagementdemo.TMDApp
-import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.ui.PresenterActivity
+import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.ui.PresenterFragment
 import cat.devsofthecoast.teammanagementdemo.commons.models.questions.Question
 import cat.devsofthecoast.teammanagementdemo.feature.devoptions.DevOptionsContract
 import kotlinx.android.synthetic.main.activity_dev_options.*
@@ -16,11 +18,10 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class DevOptionsActivity : PresenterActivity<DevOptionsContract.Presenter, DevOptionsContract.View>(), DevOptionsContract.View {
-
+class DevOptionsFragment : PresenterFragment<DevOptionsContract.Presenter, DevOptionsContract.View>(), DevOptionsContract.View {
 
     override val presenter: DevOptionsContract.Presenter by lazy {
-        (application as TMDApp).presenterModule.devOptionsPresenter
+        (activity?.application as TMDApp).presenterModule.devOptionsPresenter
     }
 
     val runnable = Runnable { scvLogs.fullScroll(ScrollView.FOCUS_DOWN) }
@@ -28,15 +29,18 @@ class DevOptionsActivity : PresenterActivity<DevOptionsContract.Presenter, DevOp
 
     companion object {
         fun newIntent(context: Context): Intent {
-            val intent = Intent(context, DevOptionsActivity::class.java)
+            val intent = Intent(context, DevOptionsFragment::class.java)
             return intent
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_dev_options)
 
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.activity_dev_options, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         configureInteractions()
     }
 
