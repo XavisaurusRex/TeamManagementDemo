@@ -35,6 +35,18 @@ class TrainersServiceImpl : BaseService(), TrainersService {
         }
     }
 
+    override fun setTrainer(trainer: Trainer, listener: ServiceCallback<Void?>?) {
+        addNewData(trainer, OnCompleteListener {
+            when {
+                it.isSuccessful -> {
+                    listener?.onSuccess(null)
+                }
+
+                it.isCanceled -> listener?.onError(PostingFirebaseException())
+                else -> listener?.onError(PostingFirebaseException())
+            }
+        })
+    }
 
     override fun getTrainer(trainerKey: String, serviceCallback: ServiceCallback<Trainer?>) {
         getSingleSnapShot(refTable.child(trainerKey)) { dataSnapshot: DataSnapshot? ->

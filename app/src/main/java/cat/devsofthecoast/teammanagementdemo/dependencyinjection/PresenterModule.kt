@@ -55,7 +55,8 @@ class PresenterModule(
 
     val signupPresenter: SignupContract.Presenter by lazy {
         SignupPresenter(
-                appConfig
+                appConfig,
+                useCaseModule.setTrainerUseCase
         )
     }
 }

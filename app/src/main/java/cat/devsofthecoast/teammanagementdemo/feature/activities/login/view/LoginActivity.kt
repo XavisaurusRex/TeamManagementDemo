@@ -110,27 +110,28 @@ class LoginActivity : PresenterActivity<LoginContract.Presenter, LoginContract.V
     }
 
     override fun loggedTrainerOnSuccess(trainer: Trainer) {
-        //TODO CONTINUE HERE
         val validName = trainer.name != null && trainer.surname != null
         val validTeam = trainer.team != null
         if(validName && validTeam){
-            allright()
+            nextActivity(
+                    HeadActivity.newIntent(this)
+            )
         }
         else {
-            startActivity(
-                    SignupTrainerActivity.newIntent(this@LoginActivity, trainer)
+            nextActivity(
+                    SignupTrainerActivity.newIntent(this, trainer)
             )
         }
     }
 
-    fun allright(){
+    private fun nextActivity(intent: Intent) {
         ivLoadingBall.animation.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationStart(p0: Animation?) {}
 
             override fun onAnimationEnd(p0: Animation?) {}
 
             override fun onAnimationRepeat(p0: Animation?) {
-                startActivity(HeadActivity.newIntent(this@LoginActivity))
+                startActivity(intent)
                 finish()
             }
         })

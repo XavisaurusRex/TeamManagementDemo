@@ -6,13 +6,13 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import cat.devsofthecoast.teammanagementdemo.BuildConfig
 import cat.devsofthecoast.teammanagementdemo.R
 import cat.devsofthecoast.teammanagementdemo.TMDApp
 import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.ui.PresenterActivity
 import cat.devsofthecoast.teammanagementdemo.feature.activities.headactivity.HeadContract
+import cat.devsofthecoast.teammanagementdemo.feature.activities.headactivity.controllers.TMDActionBarDrawerToggle
 import cat.devsofthecoast.teammanagementdemo.feature.activities.login.view.LoginActivity
 import cat.devsofthecoast.teammanagementdemo.feature.fragments.devoptions.view.DevOptionsFragment
 import cat.devsofthecoast.teammanagementdemo.feature.fragments.surveyfragment.view.SurveyFragment
@@ -21,17 +21,15 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_header.*
 import kotlinx.android.synthetic.main.content_navigation_drawer.*
 import kotlinx.android.synthetic.main.toolbar.*
-import androidx.core.content.IntentCompat
-import android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK
-
-
 
 
 class HeadActivity : PresenterActivity<HeadContract.Presenter, HeadContract.View>(), HeadContract.View {
+
     override val presenter: HeadContract.Presenter by lazy {
         (application as TMDApp).presenterModule.headContract
     }
 
+    private var toggle: TMDActionBarDrawerToggle? = null
 
     companion object {
         fun newIntent(context: Context): Intent {
@@ -47,7 +45,7 @@ class HeadActivity : PresenterActivity<HeadContract.Presenter, HeadContract.View
 
         setSupportActionBar(toolbar)
 
-        supportActionBar?.setHomeAsUpIndicator(android.R.drawable.ic_menu_help)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_menu)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         configureInteractions()
@@ -66,6 +64,15 @@ class HeadActivity : PresenterActivity<HeadContract.Presenter, HeadContract.View
                 startFragment(DevOptionsFragment())
             }
         }
+
+        configureNavigationView()
+    }
+
+    private fun configureNavigationView() {
+        toggle = TMDActionBarDrawerToggle(this, tmdDrawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        toggle!!.setOnDrawerStateChange(tmdDrawerLayout)
+        tmdDrawerLayout.addDrawerListener(toggle!!)
+        tmdDrawerLayout.setOnChangeDrawerStateListener(this)
     }
 
     private fun startFragment(fragment: Fragment) {
@@ -74,9 +81,7 @@ class HeadActivity : PresenterActivity<HeadContract.Presenter, HeadContract.View
                 .commit()
     }
 
-    // Menu icons are inflated just as they were with actionbar
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_weekoverview, menu)
         return true
     }
@@ -84,13 +89,10 @@ class HeadActivity : PresenterActivity<HeadContract.Presenter, HeadContract.View
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
-                //todo must show and hide drawer, not only show
-                mDrawer.openDrawer(GravityCompat.START)
-                return true
+                tmdDrawerLayout.toggleState()
             }
             R.id.mnuLogout -> {
                 logout()
-
             }
         }
 
@@ -103,5 +105,11 @@ class HeadActivity : PresenterActivity<HeadContract.Presenter, HeadContract.View
         finishAffinity()
     }
 
+    override fun onDrawerOpened() {
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_left_arrow)
+    }
 
+    override fun onDrawerClosed() {
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_menu)
+    }
 }

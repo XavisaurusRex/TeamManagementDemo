@@ -9,8 +9,11 @@ import com.google.firebase.auth.FirebaseAuth
 
 interface SignupContract {
     interface View : BaseView {
+        fun onUpdateCreatePlayerSuccess()
+        fun onUpdateCreatePlayerError(throwable: Throwable)
     }
 
     abstract class Presenter : BasePresenter<View>() {
+        abstract fun createUpdateTrainer(trainer: Trainer)
     }
 }

@@ -17,6 +17,10 @@ class TrainersRepositoryImpl : TrainersRepository {
         service.getTrainer(trainerKey, serviceCallback)
     }
 
+    override fun setTrainer(trainer: Trainer, listener: ServiceCallback<Void?>?) {
+        service.setTrainer(trainer, listener)
+    }
+
     override fun assignKey(databaseModel: DatabaseModel) {
         service.assignNewKey(databaseModel)
     }
