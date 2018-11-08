@@ -6,11 +6,12 @@
     <color name="colorForeground">#d4d7ff</color>
     <color name="colorInvisible">#00000000</color>
 
-    <color name="colorEasterEgg_on">#e9ffc8</color>
+    <color name="colorEasterEgg_on">#ffecc8</color>
     <color name="colorEasterEgg_off">#00000000</color>
 
     <!-- Strings related to Questions -->
     <color name="colorQuestionStatment">#bfbfbf</color>
     <color name="colorQuestionBackground">#7d7e83</color>
     <color name="navigationDrawerBackground">#c6e7ff</color>
+    <color name="colorTeamTitle">#bee5fff8</color>
 </resources>

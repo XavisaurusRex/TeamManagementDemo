@@ -60,7 +60,6 @@ class SurveyFragment : PresenterFragment<SurveyContract.Presenter, SurveyContrac
     override fun onGetQuestionSuccess(question: Question) {
         activity?.toast("question received")
         questionsAdapter.add(question)
-
     }
 
     override fun onGetQuestionError(error: Throwable) {

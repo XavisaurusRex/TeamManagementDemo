@@ -6,6 +6,7 @@ import cat.devsofthecoast.teammanagementdemo.commons.useCase.demo.ClearDatabseCh
 import cat.devsofthecoast.teammanagementdemo.commons.useCase.demo.FillDatabaseUseCase
 import cat.devsofthecoast.teammanagementdemo.commons.useCase.questions.GetAllQuestionsUseCase
 import cat.devsofthecoast.teammanagementdemo.commons.useCase.questions.GetQuestionUseCase
+import cat.devsofthecoast.teammanagementdemo.commons.useCase.teams.GetTeamsUseCase
 import cat.devsofthecoast.teammanagementdemo.commons.useCase.trainers.GetTrainerUseCase
 import cat.devsofthecoast.teammanagementdemo.commons.useCase.trainers.SetTrainerUseCase
 
@@ -40,6 +41,10 @@ class UseCaseModule(
 
     val setTrainerUseCase: SetTrainerUseCase by lazy {
         SetTrainerUseCase(appConfig, repositoryModule.trainersRepository)
+    }
+
+    val getTeamsUseCase: GetTeamsUseCase by lazy {
+        GetTeamsUseCase(appConfig, repositoryModule.teamsRepository)
     }
 
 }

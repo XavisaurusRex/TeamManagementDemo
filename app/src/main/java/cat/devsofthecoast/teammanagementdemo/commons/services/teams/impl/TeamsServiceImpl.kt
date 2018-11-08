@@ -1,5 +1,6 @@
 package cat.devsofthecoast.teammanagementdemo.commons.services.teams.impl
 
+import cat.devsofthecoast.teammanagementdemo.commons.exceptions.NullResponseFirebase
 import cat.devsofthecoast.teammanagementdemo.commons.exceptions.PostingFirebaseException
 import cat.devsofthecoast.teammanagementdemo.commons.models.Team
 import cat.devsofthecoast.teammanagementdemo.commons.services.BaseService
@@ -7,6 +8,12 @@ import cat.devsofthecoast.teammanagementdemo.commons.services.ServiceCallback
 import cat.devsofthecoast.teammanagementdemo.commons.services.teams.TeamsService
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.database.DatabaseReference
+import android.content.ClipData.Item
+import cat.devsofthecoast.teammanagementdemo.commons.models.questions.Question
+import cat.devsofthecoast.teammanagementdemo.commons.models.users.Trainer
+import com.google.firebase.database.GenericTypeIndicator
+
+
 
 class TeamsServiceImpl : BaseService(), TeamsService {
 
@@ -31,6 +38,20 @@ class TeamsServiceImpl : BaseService(), TeamsService {
             })
         } else {
             listener?.onError(PostingFirebaseException())
+        }
+    }
+
+    override fun getTeams(serviceCallback: ServiceCallback<ArrayList<Team>>) {
+        getSingleSnapShot(refTable) {
+            if(it != null) {
+                val teams: ArrayList<Team> = arrayListOf()
+                it.children.forEach {
+                    teams.add(it.getValue(Team::class.java)!!)
+                }
+                serviceCallback.onSuccess(teams)
+            } else {
+                serviceCallback.onError(NullResponseFirebase())
+            }
         }
     }
 }

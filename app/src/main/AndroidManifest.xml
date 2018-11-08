@@ -37,7 +37,8 @@
                     android:scheme="https" />
             </intent-filter>
         </activity>
-        <activity android:name=".feature.activities.signuptrainer.view.SignupTrainerActivity"></activity>
+        <activity android:name=".feature.activities.signuptrainer.view.SignupTrainerActivity" />
+        <activity android:name=".feature.activities.selectteam.view.SelectTeamActivity"></activity>
     </application>
 
 </manifest>

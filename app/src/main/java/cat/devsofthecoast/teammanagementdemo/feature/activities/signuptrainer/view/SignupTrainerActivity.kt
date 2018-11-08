@@ -10,6 +10,7 @@ import cat.devsofthecoast.teammanagementdemo.commons.models.users.Trainer
 import cat.devsofthecoast.teammanagementdemo.commons.utilities.toast
 import cat.devsofthecoast.teammanagementdemo.feature.activities.headactivity.view.HeadActivity
 import cat.devsofthecoast.teammanagementdemo.feature.activities.login.view.LoginActivity
+import cat.devsofthecoast.teammanagementdemo.feature.activities.selectteam.view.SelectTeamActivity
 import cat.devsofthecoast.teammanagementdemo.feature.activities.signuptrainer.SignupContract
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
@@ -72,7 +73,9 @@ class SignupTrainerActivity : PresenterActivity<SignupContract.Presenter, Signup
 
     private fun registerUpdateTrainer() {
         if (checkCorrectValues()) {
-            //TODO CONTINUE HERE, Have to charge trainer name surname phone from controllers
+            trainer?.name = tvName.text.toString()
+            trainer?.surname = tvSurname.text.toString()
+            trainer?.phoneNumber = tvPhoneNumber.text.toString().toInt()
             presenter.createUpdateTrainer(trainer!!)
         }
     }
@@ -113,7 +116,7 @@ class SignupTrainerActivity : PresenterActivity<SignupContract.Presenter, Signup
 
     override fun onUpdateCreatePlayerSuccess() {
         startActivity(
-                HeadActivity.newIntent(this)
+                SelectTeamActivity.newIntent(this)
         )
     }
 
