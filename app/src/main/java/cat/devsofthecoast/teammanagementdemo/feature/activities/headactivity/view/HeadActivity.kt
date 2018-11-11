@@ -57,7 +57,7 @@ class HeadActivity : PresenterActivity<HeadContract.Presenter, HeadContract.View
 
         configureInteractions()
 
-        startFragment(WeekPreviewFragment())
+        startFragment(DevOptionsFragment())
     }
 
     private fun configureInteractions() {

@@ -1,12 +1,16 @@
 package cat.devsofthecoast.teammanagementdemo.commons.models
 
-class DailyEntry {
-    var timestamp: Int? = null
-    var responses: Map<String, TeamResponses>? = mapOf()
+import android.provider.ContactsContract
 
-    inner class TeamResponses {
-        var team_key: String? = null
-        var survey: List<String>? = null
-        var responses: Map<String, Any>? = null
+class DailyEntry : DatabaseModel() {
+    // key must be timestamp
+    override var key: String? = null
+    var teamResponses: HashMap<String, TeamResponses> = hashMapOf()
+
+    class TeamResponses {
+        var team: String? = null
+        var survey: ArrayList<String> = arrayListOf()
+        // <player, <question, Any>>
+        var playersResponses: HashMap<String, HashMap<String, Any>> = hashMapOf()
     }
 }

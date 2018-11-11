@@ -11,9 +11,9 @@ class DailyEntriesPresenter(
     override fun getDailyEntries(team: Team) {
         //TODO HERE SHOULD CALL WS
         val list: ArrayList<DailyEntry> = arrayListOf()
-        for(i in 0 until 10){
+        for (i in 0 until 10) {
             val dailyEntry = DailyEntry()
-            dailyEntry.timestamp = 100 * i
+            dailyEntry.key = (100 * i).toString()
             list.add(dailyEntry)
         }
 

@@ -25,7 +25,7 @@ class DailyEntriesAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.itemView.tvTimeStamp.text = dailyEntries[position].timestamp.toString()
+        holder.itemView.tvTimeStamp.text = dailyEntries[position].key
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {}

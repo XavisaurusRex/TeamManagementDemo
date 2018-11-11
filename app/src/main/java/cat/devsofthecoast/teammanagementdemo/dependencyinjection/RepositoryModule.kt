@@ -1,5 +1,7 @@
 package cat.devsofthecoast.teammanagementdemo.dependencyinjection
 
+import cat.devsofthecoast.teammanagementdemo.commons.repository.dailyentries.DailyEntriesRepository
+import cat.devsofthecoast.teammanagementdemo.commons.repository.dailyentries.impl.DailyEntriesRepositoryImpl
 import cat.devsofthecoast.teammanagementdemo.commons.repository.players.PlayersRepository
 import cat.devsofthecoast.teammanagementdemo.commons.repository.players.impl.PlayersRepositoryImpl
 import cat.devsofthecoast.teammanagementdemo.commons.repository.questions.QuestionsRepository
@@ -24,5 +26,9 @@ class RepositoryModule {
 
     val trainersRepository: TrainersRepository by lazy {
         TrainersRepositoryImpl()
+    }
+
+    val dailyEntriesRepository: DailyEntriesRepository by lazy {
+        DailyEntriesRepositoryImpl()
     }
 }

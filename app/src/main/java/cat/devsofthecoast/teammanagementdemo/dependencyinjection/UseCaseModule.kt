@@ -20,7 +20,8 @@ class UseCaseModule(
                 repositoryModule.questionsRepository,
                 repositoryModule.playersRepository,
                 repositoryModule.teamsRepository,
-                repositoryModule.trainersRepository)
+                repositoryModule.trainersRepository,
+                repositoryModule.dailyEntriesRepository)
     }
 
     val getAllQuestionsUseCase: GetAllQuestionsUseCase by lazy {

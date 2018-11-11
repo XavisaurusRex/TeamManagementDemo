@@ -118,8 +118,9 @@ class LoginActivity : PresenterActivity<LoginContract.Presenter, LoginContract.V
             )
         }
         else {
+            // todo restore after create db
             nextActivity(
-                    SignupTrainerActivity.newIntent(this, trainer)
+                    HeadActivity.newIntent(this)
             )
         }
     }
@@ -139,7 +140,8 @@ class LoginActivity : PresenterActivity<LoginContract.Presenter, LoginContract.V
 
     override fun loggedTrainerOnError(throwable: Throwable) {
         startActivity(
-                SignupTrainerActivity.newIntent(this@LoginActivity)
+                //restore after
+                HeadActivity.newIntent(this@LoginActivity)
         )
     }
 }
