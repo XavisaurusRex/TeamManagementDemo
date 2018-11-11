@@ -63,6 +63,16 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 android:textColor="@android:color/black"
                 app:layout_constraintTop_toBottomOf="@id/btnGetSingle" />
+
+            <Button
+                android:id="@+id/btnTestTimestamps"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Test Timestamps"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="@android:color/black"
+                app:layout_constraintTop_toBottomOf="@id/btnClearQuestions" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

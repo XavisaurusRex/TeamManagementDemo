@@ -12,6 +12,7 @@ import cat.devsofthecoast.teammanagementdemo.R
 import cat.devsofthecoast.teammanagementdemo.TMDApp
 import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.ui.PresenterFragment
 import cat.devsofthecoast.teammanagementdemo.commons.models.questions.Question
+import cat.devsofthecoast.teammanagementdemo.commons.utilities.DateUtils
 import cat.devsofthecoast.teammanagementdemo.feature.fragments.devoptions.DevOptionsContract
 import kotlinx.android.synthetic.main.activity_dev_options.*
 import java.text.SimpleDateFormat
@@ -26,14 +27,17 @@ class DevOptionsFragment : PresenterFragment<DevOptionsContract.Presenter, DevOp
 
     val runnable = Runnable { scvLogs.fullScroll(ScrollView.FOCUS_DOWN) }
     val formatHMS = SimpleDateFormat("hh:mm:ss", Locale.US)
-
+    val formatYYYYMMDD = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
     companion object {
         fun newIntent(context: Context): Intent {
             val intent = Intent(context, DevOptionsFragment::class.java)
             return intent
         }
     }
-
+    val nowExactly: Calendar by lazy {
+        Calendar.getInstance()
+    }
+    var day = 1
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.activity_dev_options, container, false)
@@ -42,6 +46,14 @@ class DevOptionsFragment : PresenterFragment<DevOptionsContract.Presenter, DevOp
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         configureInteractions()
+
+        val year = nowExactly.get(Calendar.YEAR)
+        val month = nowExactly.get(Calendar.MONTH)
+        val day = nowExactly.get(Calendar.DATE)
+        nowExactly.timeInMillis = 0
+        nowExactly.set(
+                year, month, day,
+                0, 0, 0)
     }
 
     private fun configureInteractions() {
@@ -63,6 +75,15 @@ class DevOptionsFragment : PresenterFragment<DevOptionsContract.Presenter, DevOp
         btnClearQuestions.setOnClickListener {
             presenter.clearDatabase("questions")
         }
+
+        btnTestTimestamps.setOnClickListener {
+
+            DateUtils.substractDays(nowExactly, day)
+            postLog("DATE - $day -> ${formatYYYYMMDD.format(nowExactly.timeInMillis)}")
+            postLog("DATE TIMESTAMP - $day -> ${nowExactly.timeInMillis}")
+            postLog("----------------------------------------------------------")
+        }
+
         btnClearLogs.setOnClickListener {
             tvLogs.text = ""
         }

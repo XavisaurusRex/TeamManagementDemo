@@ -64,11 +64,18 @@
         app:layout_constraintTop_toBottomOf="@id/btnTeamInfo" />
 
     <Button
+        android:id="@+id/btnDailyEntries"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Daily Entries"
+        app:layout_constraintTop_toBottomOf="@id/btnSurveyActivity" />
+
+    <Button
         android:id="@+id/btnDevOptions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Developer Options"
-        app:layout_constraintTop_toBottomOf="@id/btnSurveyActivity" />
+        app:layout_constraintTop_toBottomOf="@id/btnDailyEntries" />
 
     <TextView
         android:id="@+id/tvMessage"

@@ -6,13 +6,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import cat.devsofthecoast.teammanagementdemo.R
 import cat.devsofthecoast.teammanagementdemo.commons.controllers.questioncontroller.*
+import cat.devsofthecoast.teammanagementdemo.commons.controllers.recycler.AdapterList
 import cat.devsofthecoast.teammanagementdemo.commons.models.questions.*
 import cat.devsofthecoast.teammanagementdemo.feature.fragments.surveyfragment.adapter.QuestionsAdapter
 import java.util.*
 
-class QuestionsAdapterImpl(
+class QuestionsAdapter(
         private val context: Context,
-        private val questions: ArrayList<Question>) : RecyclerView.Adapter<RecyclerView.ViewHolder>(), QuestionsAdapter {
+        private val questions: ArrayList<Question>) : RecyclerView.Adapter<RecyclerView.ViewHolder>(), AdapterList<Question> {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {

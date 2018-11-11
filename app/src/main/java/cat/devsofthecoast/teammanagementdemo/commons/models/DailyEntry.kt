@@ -1,7 +1,7 @@
 package cat.devsofthecoast.teammanagementdemo.commons.models
 
 class DailyEntry {
-    var timestamp: String? = null
+    var timestamp: Int? = null
     var responses: Map<String, TeamResponses>? = mapOf()
 
     inner class TeamResponses {

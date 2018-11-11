@@ -12,9 +12,8 @@ import cat.devsofthecoast.teammanagementdemo.commons.utilities.toast
 import cat.devsofthecoast.teammanagementdemo.feature.activities.headactivity.view.HeadActivity
 import cat.devsofthecoast.teammanagementdemo.feature.activities.login.view.LoginActivity
 import cat.devsofthecoast.teammanagementdemo.feature.activities.selectteam.SelectTeamContract
-import cat.devsofthecoast.teammanagementdemo.feature.activities.selectteam.adapter.impl.TeamsAdapterImpl
+import cat.devsofthecoast.teammanagementdemo.feature.activities.selectteam.adapter.impl.TeamsAdapter
 import kotlinx.android.synthetic.main.activity_select_team.*
-import kotlinx.android.synthetic.main.fragment_survey.*
 
 class SelectTeamActivity : PresenterActivity<SelectTeamContract.Presenter, SelectTeamContract.View>(), SelectTeamContract.View {
 
@@ -29,8 +28,8 @@ class SelectTeamActivity : PresenterActivity<SelectTeamContract.Presenter, Selec
     }
 
 
-    private val teamsAdapter: TeamsAdapterImpl by lazy {
-        TeamsAdapterImpl(this, arrayListOf())
+    private val teamsAdapter: TeamsAdapter by lazy {
+        TeamsAdapter(this, arrayListOf())
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,7 +42,7 @@ class SelectTeamActivity : PresenterActivity<SelectTeamContract.Presenter, Selec
 
     private fun configureInteractions() {
         rcyTeams.layoutManager = LinearLayoutManager(this)
-        rcyTeams.adapter = TeamsAdapterImpl(this, arrayListOf())
+        rcyTeams.adapter = TeamsAdapter(this, arrayListOf())
 
         btnNext.setOnClickListener {
             startActivity(

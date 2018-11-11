@@ -8,6 +8,7 @@ import cat.devsofthecoast.teammanagementdemo.feature.activities.login.presenter.
 import cat.devsofthecoast.teammanagementdemo.feature.activities.selectteam.presenter.SelectTeamPresenter
 import cat.devsofthecoast.teammanagementdemo.feature.activities.signuptrainer.SignupContract
 import cat.devsofthecoast.teammanagementdemo.feature.activities.signuptrainer.presenter.SignupPresenter
+import cat.devsofthecoast.teammanagementdemo.feature.fragments.dailyentries.presenter.DailyEntriesPresenter
 import cat.devsofthecoast.teammanagementdemo.feature.fragments.devoptions.DevOptionsContract
 import cat.devsofthecoast.teammanagementdemo.feature.fragments.devoptions.presenter.DevOptionsPresenter
 import cat.devsofthecoast.teammanagementdemo.feature.fragments.surveyfragment.SurveyContract
@@ -65,6 +66,13 @@ class PresenterModule(
         SelectTeamPresenter(
                 appConfig,
                 useCaseModule.getTeamsUseCase
+        )
+    }
+
+
+    val dailyEntriesPresenter: DailyEntriesPresenter by lazy {
+        DailyEntriesPresenter(
+                appConfig
         )
     }
 }

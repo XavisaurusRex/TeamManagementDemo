@@ -13,7 +13,7 @@ import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.ui.PresenterFragme
 import cat.devsofthecoast.teammanagementdemo.commons.models.questions.Question
 import cat.devsofthecoast.teammanagementdemo.commons.utilities.toast
 import cat.devsofthecoast.teammanagementdemo.feature.fragments.surveyfragment.SurveyContract
-import cat.devsofthecoast.teammanagementdemo.feature.fragments.surveyfragment.adapter.impl.QuestionsAdapterImpl
+import cat.devsofthecoast.teammanagementdemo.feature.fragments.surveyfragment.adapter.impl.QuestionsAdapter
 import kotlinx.android.synthetic.main.fragment_survey.*
 
 
@@ -23,8 +23,8 @@ class SurveyFragment : PresenterFragment<SurveyContract.Presenter, SurveyContrac
         (activity!!.application as TMDApp).presenterModule.surveyPresenter
     }
 
-    private val questionsAdapter: QuestionsAdapterImpl by lazy {
-        QuestionsAdapterImpl(activity!!, arrayListOf())
+    private val questionsAdapter: QuestionsAdapter by lazy {
+        QuestionsAdapter(activity!!, arrayListOf())
     }
 
     companion object {

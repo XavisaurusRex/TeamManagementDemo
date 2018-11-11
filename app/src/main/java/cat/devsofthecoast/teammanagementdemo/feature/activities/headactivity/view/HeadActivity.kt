@@ -11,9 +11,11 @@ import cat.devsofthecoast.teammanagementdemo.BuildConfig
 import cat.devsofthecoast.teammanagementdemo.R
 import cat.devsofthecoast.teammanagementdemo.TMDApp
 import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.ui.PresenterActivity
+import cat.devsofthecoast.teammanagementdemo.commons.utilities.toast
 import cat.devsofthecoast.teammanagementdemo.feature.activities.headactivity.HeadContract
 import cat.devsofthecoast.teammanagementdemo.feature.activities.headactivity.controllers.TMDActionBarDrawerToggle
 import cat.devsofthecoast.teammanagementdemo.feature.activities.login.view.LoginActivity
+import cat.devsofthecoast.teammanagementdemo.feature.fragments.dailyentries.view.DailyEntriesFragment
 import cat.devsofthecoast.teammanagementdemo.feature.fragments.devoptions.view.DevOptionsFragment
 import cat.devsofthecoast.teammanagementdemo.feature.fragments.surveyfragment.view.SurveyFragment
 import cat.devsofthecoast.teammanagementdemo.feature.fragments.weekpreview.view.WeekPreviewFragment
@@ -24,6 +26,9 @@ import kotlinx.android.synthetic.main.toolbar.*
 
 
 class HeadActivity : PresenterActivity<HeadContract.Presenter, HeadContract.View>(), HeadContract.View {
+
+    private val NAVIGATOR_CLOSED:Int = R.drawable.ic_menu
+    private val NAVIGATOR_OPEN:Int = R.drawable.ic_left_arrow
 
     override val presenter: HeadContract.Presenter by lazy {
         (application as TMDApp).presenterModule.headContract
@@ -37,7 +42,9 @@ class HeadActivity : PresenterActivity<HeadContract.Presenter, HeadContract.View
         }
     }
 
-    override fun onBackPressed() {}
+    override fun onBackPressed() {
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +52,7 @@ class HeadActivity : PresenterActivity<HeadContract.Presenter, HeadContract.View
 
         setSupportActionBar(toolbar)
 
-        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_menu)
+        supportActionBar?.setHomeAsUpIndicator(NAVIGATOR_CLOSED)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         configureInteractions()
@@ -56,6 +63,14 @@ class HeadActivity : PresenterActivity<HeadContract.Presenter, HeadContract.View
     private fun configureInteractions() {
         btnSurveyActivity.setOnClickListener {
             startFragment(SurveyFragment())
+        }
+
+        btnTeamInfo.setOnClickListener {
+            toast("not implemented fragment")
+        }
+
+        btnDailyEntries.setOnClickListener {
+            startFragment(DailyEntriesFragment())
         }
 
         if (BuildConfig.DEBUG) {
@@ -106,10 +121,10 @@ class HeadActivity : PresenterActivity<HeadContract.Presenter, HeadContract.View
     }
 
     override fun onDrawerOpened() {
-        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_left_arrow)
+        supportActionBar?.setHomeAsUpIndicator(NAVIGATOR_OPEN)
     }
 
     override fun onDrawerClosed() {
-        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_menu)
+        supportActionBar?.setHomeAsUpIndicator(NAVIGATOR_CLOSED)
     }
 }

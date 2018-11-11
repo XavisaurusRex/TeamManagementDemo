@@ -7,23 +7,23 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import cat.devsofthecoast.teammanagementdemo.R
 import cat.devsofthecoast.teammanagementdemo.commons.models.Team
-import cat.devsofthecoast.teammanagementdemo.feature.activities.selectteam.adapter.TeamsAdapter
+import cat.devsofthecoast.teammanagementdemo.commons.controllers.recycler.AdapterList
 import kotlinx.android.synthetic.main.item_team_view.view.*
 import java.util.*
 
-class TeamsAdapterImpl(
+class TeamsAdapter(
         private val context: Context,
-        private val teams: ArrayList<Team>) : RecyclerView.Adapter<TeamsAdapterImpl.ViewHolder>(), TeamsAdapter {
+        private val teams: ArrayList<Team>) : RecyclerView.Adapter<TeamsAdapter.ViewHolder>(), AdapterList<Team> {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TeamsAdapterImpl.ViewHolder {
-        return TeamsAdapterImpl.ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_team_view, parent, true))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TeamsAdapter.ViewHolder {
+        return TeamsAdapter.ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_team_view, parent, true))
     }
 
     override fun getItemCount(): Int {
         return teams.size
     }
 
-    override fun onBindViewHolder(holder: TeamsAdapterImpl.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: TeamsAdapter.ViewHolder, position: Int) {
         holder.itemView.tvName.text = teams[position].name
     }
 
