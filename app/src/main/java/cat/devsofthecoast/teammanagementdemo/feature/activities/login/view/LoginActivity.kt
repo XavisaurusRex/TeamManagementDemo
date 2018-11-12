@@ -13,7 +13,6 @@ import cat.devsofthecoast.teammanagementdemo.R
 import cat.devsofthecoast.teammanagementdemo.TMDApp
 import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.ui.PresenterActivity
 import cat.devsofthecoast.teammanagementdemo.commons.models.users.Trainer
-import cat.devsofthecoast.teammanagementdemo.commons.utilities.toast
 import cat.devsofthecoast.teammanagementdemo.feature.activities.headactivity.view.HeadActivity
 import cat.devsofthecoast.teammanagementdemo.feature.activities.login.LoginContract
 import cat.devsofthecoast.teammanagementdemo.feature.activities.signuptrainer.view.SignupTrainerActivity
@@ -112,15 +111,13 @@ class LoginActivity : PresenterActivity<LoginContract.Presenter, LoginContract.V
     override fun loggedTrainerOnSuccess(trainer: Trainer) {
         val validName = trainer.name != null && trainer.surname != null
         val validTeam = trainer.team != null
-        if(validName && validTeam){
+        if (validName && validTeam) {
             nextActivity(
                     HeadActivity.newIntent(this)
             )
-        }
-        else {
-            // todo restore after create db
+        } else {
             nextActivity(
-                    HeadActivity.newIntent(this)
+                    SignupTrainerActivity.newIntent(this, trainer)
             )
         }
     }
@@ -140,8 +137,7 @@ class LoginActivity : PresenterActivity<LoginContract.Presenter, LoginContract.V
 
     override fun loggedTrainerOnError(throwable: Throwable) {
         startActivity(
-                //restore after
-                HeadActivity.newIntent(this@LoginActivity)
+                SignupTrainerActivity.newIntent(this@LoginActivity)
         )
     }
 }

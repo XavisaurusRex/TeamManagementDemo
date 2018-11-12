@@ -1,6 +1,7 @@
 package cat.devsofthecoast.teammanagementdemo.commons.useCase.demo
 
 import android.content.Context
+import android.util.Log
 import cat.devsofthecoast.teammanagementdemo.R
 import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.config.BaseConfig
 import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.useCase.Callback
@@ -42,11 +43,11 @@ class FillDatabaseUseCase(
             val teams: List<Team> = DummyCreator.createTeams(jsonObject.getJSONArray("teamnames"))
 
             assignKeys(questions, players, trainers, teams)
+            DummyCreator.asociateRandomly(questions, players, trainers, teams)
 
             val dailyEntries: List<DailyEntry> = DummyCreator.createDailyEntries(teams, questions, jsonObject.getJSONArray("question_statments"))
             assignKeys(dailyEntries)
 
-            DummyCreator.asociateRandomly(questions, players, trainers, teams)
 
             setQuestions(questions) {
                 setPlayers(players) {
@@ -60,7 +61,7 @@ class FillDatabaseUseCase(
                 }
             }
         } catch (ex: Throwable) {
-            ex.printStackTrace()
+            Log.e(this::javaClass.name, "${ex.message}", ex)
             callback?.onError(ex)
         }
     }
@@ -86,9 +87,9 @@ class FillDatabaseUseCase(
         for (dailyEntry in dailyEntries){
             dailyEntry.key = formatedCalendar.timeInMillis.toString()
             formatedCalendar.set(
-                    calendar[Calendar.YEAR],
-                    calendar[Calendar.MONTH],
-                    calendar[Calendar.DATE]-1
+                    formatedCalendar[Calendar.YEAR],
+                    formatedCalendar[Calendar.MONTH],
+                    formatedCalendar[Calendar.DATE]-1
             )
         }
     }

@@ -51,7 +51,7 @@ object DummyCreator {
             }
             QuestionType.TYPE_NUMERIC -> {
                 val question = NumericQuestion()
-                question.max = r.nextInt(50)
+                question.max = r.nextInt(50)+1
                 question.min = r.nextInt(question.max)
                 question
             }
@@ -144,7 +144,7 @@ object DummyCreator {
                             QuestionType.TYPE_BOOLEAN -> playerResponses[question_id] = random.nextBoolean()
                             QuestionType.TYPE_PLAINTEXT -> playerResponses[question_id] = randomResponses.getString(random.nextInt(randomResponses.length()))
                             QuestionType.TYPE_SINGLECHOICE -> playerResponses[question_id] = random.nextInt((act_quest as SingleChoiceQuestion).options.size)
-                            QuestionType.TYPE_MULTICHOICE -> playerResponses[question_id] = listOf(random.nextInt((act_quest as SingleChoiceQuestion).options.size))
+                            QuestionType.TYPE_MULTICHOICE -> playerResponses[question_id] = listOf(random.nextInt((act_quest as MultipleChoiceQuestion).options.size))
                             QuestionType.TYPE_NUMERIC -> {
                                 val questt = act_quest as NumericQuestion
                                 playerResponses[question_id] = random.nextInt(questt.max - questt.min) + questt.min
@@ -166,7 +166,7 @@ object DummyCreator {
 
     private fun getQuest(questions: List<Question>, question_id: String): Question? {
         var question: Question? = null
-        var iteration: Int = -1
+        var iteration: Int = 0
         var found = false
         while (iteration < questions.size && !found) {
             found = questions[iteration].key == question_id
@@ -187,7 +187,7 @@ object DummyCreator {
             }
 
             val trainer = trainers[i]
-            team.trainer = trainer.key!!
+            team.trainer.add(trainer.key!!)
             trainer.team = team.key!!
 
             for (question in questions.subList(i * DEFAULT_SURVEY_SIZE, i * DEFAULT_SURVEY_SIZE + DEFAULT_SURVEY_SIZE)) {

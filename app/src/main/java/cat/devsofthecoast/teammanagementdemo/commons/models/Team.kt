@@ -7,5 +7,5 @@ class Team: DatabaseModel() {
 
     var survey: ArrayList<String> = arrayListOf()
     var players: ArrayList<String> = arrayListOf()
-    var trainer: String? = null
+    var trainer: ArrayList<String> = arrayListOf()
 }
