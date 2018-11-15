@@ -3,8 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/round_corners"
-    android:backgroundTint="@color/colorEasterEgg_on">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/selectable_item"
+    android:elevation="7dp"
+    android:layout_margin="5dp"
+    tools:context=".feature.activities.selectteam.view.SelectTeamActivity">
     <TextView
         android:id="@+id/tvName"
         android:layout_width="0dp"

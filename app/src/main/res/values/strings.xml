@@ -46,4 +46,9 @@
     <string name="button_next">Next</string>
     <string name="button_cancel">Cancel</string>
     <string name="button_finish">Finish</string>
+    <string name="button_ok">OK</string>
+
+    <!-- TMDDialog Controller -->
+    <string name="controller_dialog_description_example">Loreipsum Loreipsum Loreipsum Loreipsum Loreipsum Loreipsum Loreipsum Loreipsum Loreipsum Loreipsum Loreipsum Loreipsum Loreipsum Loreipsum Loreipsum Loreipsum Loreipsum Loreipsum</string>
+    <string name="controller_dialog_title_example">Are you sure want to set title?</string>
 </resources>

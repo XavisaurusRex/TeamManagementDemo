@@ -11,4 +11,6 @@ interface TeamsAdapter {
 
     fun size(): Int
     fun removeAll()
+
+    fun getSelectedTeam(): Team?
 }

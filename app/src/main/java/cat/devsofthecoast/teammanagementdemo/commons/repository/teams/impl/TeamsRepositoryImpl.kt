@@ -14,8 +14,16 @@ class TeamsRepositoryImpl : TeamsRepository {
         service.setTeams(teams, listener)
     }
 
+    override fun setTeam(input: Team, serviceCallback: ServiceCallback<Void?>) {
+        service.setTeam(input, serviceCallback)
+    }
+
     override fun getTeams(serviceCallback: ServiceCallback<ArrayList<Team>>) {
         service.getTeams(serviceCallback)
+    }
+
+    override fun getTeam(key: String, serviceCallback: ServiceCallback<Team>) {
+        service.getTeam(key, serviceCallback)
     }
 
     override fun assignKey(databaseModel: DatabaseModel) {

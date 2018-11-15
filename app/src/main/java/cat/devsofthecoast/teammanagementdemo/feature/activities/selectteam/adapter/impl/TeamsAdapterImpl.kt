@@ -14,9 +14,18 @@ import java.util.*
 class TeamsAdapterImpl(
         private val context: Context,
         private val teams: ArrayList<Team>) : RecyclerView.Adapter<TeamsAdapterImpl.ViewHolder>(), TeamsAdapter {
+    private var selectedView: View? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TeamsAdapterImpl.ViewHolder {
-        return TeamsAdapterImpl.ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_team_view, parent, true))
+        val view = LayoutInflater.from(context).inflate(R.layout.item_team_view, parent, false)
+        view.setOnClickListener {
+            if (it.background.level == 0) {
+                it.background.level = 1
+                selectedView?.background?.level = 0
+                selectedView = it
+            }
+        }
+        return TeamsAdapterImpl.ViewHolder(view)
     }
 
     override fun getItemCount(): Int {
@@ -25,9 +34,14 @@ class TeamsAdapterImpl(
 
     override fun onBindViewHolder(holder: TeamsAdapterImpl.ViewHolder, position: Int) {
         holder.itemView.tvName.text = teams[position].name
+        holder.itemView.tag = teams[position]
     }
 
-    class ViewHolder(view: View): RecyclerView.ViewHolder(view)
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view)
+
+    override fun getSelectedTeam(): Team? {
+        return selectedView?.tag as Team?
+    }
 
     override fun add(team: Team) {
         this.teams.add(team)

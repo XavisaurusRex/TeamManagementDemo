@@ -10,7 +10,11 @@ import androidx.fragment.app.Fragment
 import cat.devsofthecoast.teammanagementdemo.BuildConfig
 import cat.devsofthecoast.teammanagementdemo.R
 import cat.devsofthecoast.teammanagementdemo.TMDApp
+import cat.devsofthecoast.teammanagementdemo.commons.controllers.dialog.TMDDialog
 import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.ui.PresenterActivity
+import cat.devsofthecoast.teammanagementdemo.commons.models.Team
+import cat.devsofthecoast.teammanagementdemo.commons.models.users.Trainer
+import cat.devsofthecoast.teammanagementdemo.commons.utilities.toast
 import cat.devsofthecoast.teammanagementdemo.feature.activities.headactivity.HeadContract
 import cat.devsofthecoast.teammanagementdemo.feature.activities.headactivity.controllers.TMDActionBarDrawerToggle
 import cat.devsofthecoast.teammanagementdemo.feature.activities.login.view.LoginActivity
@@ -26,18 +30,23 @@ import kotlinx.android.synthetic.main.toolbar.*
 class HeadActivity : PresenterActivity<HeadContract.Presenter, HeadContract.View>(), HeadContract.View {
 
     override val presenter: HeadContract.Presenter by lazy {
-        (application as TMDApp).presenterModule.headContract
+        (application as TMDApp).presenterModule.headPresenter
     }
+
+    var loggedTrainer: Trainer? = null
 
     private var toggle: TMDActionBarDrawerToggle? = null
 
     companion object {
-        fun newIntent(context: Context): Intent {
-            return Intent(context, HeadActivity::class.java)
+        val LOGGED_TRAINER = "loggedTrainer"
+
+        fun newIntent(context: Context, trainer: Trainer): Intent {
+            val intent = Intent(context, HeadActivity::class.java)
+            intent.putExtra(LOGGED_TRAINER, trainer)
+            return intent
         }
     }
 
-    override fun onBackPressed() {}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,9 +57,16 @@ class HeadActivity : PresenterActivity<HeadContract.Presenter, HeadContract.View
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_menu)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        if (intent.hasExtra(LOGGED_TRAINER)) {
+            loggedTrainer = intent.getParcelableExtra(LOGGED_TRAINER)
+            tvProfileDesc.text = loggedTrainer?.email
+        }
+
         configureInteractions()
 
         startFragment(WeekPreviewFragment())
+
+        presenter.getTeam(loggedTrainer?.team!!)
     }
 
     private fun configureInteractions() {
@@ -76,9 +92,35 @@ class HeadActivity : PresenterActivity<HeadContract.Presenter, HeadContract.View
     }
 
     private fun startFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction()
+        supportFragmentManager
+                .beginTransaction()
                 .replace(R.id.flContent, fragment)
+                .addToBackStack(null)
                 .commit()
+    }
+
+    override fun onBackPressed() {
+        if (supportFragmentManager.backStackEntryCount == 1) {
+            val tmdDialog: TMDDialog = TMDDialog(this, llHeaderParent)
+            tmdDialog.title = "You are leaving app"
+            tmdDialog.description = "Are you sure want to exit? \n "
+            tmdDialog.btnAceptText = "Exit"
+            tmdDialog.btnCancelText = "Stay Here"
+
+            tmdDialog.setTMDDialogListener(object : TMDDialog.TMDDialogListener {
+                override fun onAcept() {
+                    finishAffinity()
+                    finish()
+                }
+
+                override fun onCancel() {}
+                override fun onDismiss() {}
+            })
+
+            tmdDialog.show()
+        } else {
+            supportFragmentManager.popBackStackImmediate()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -111,5 +153,13 @@ class HeadActivity : PresenterActivity<HeadContract.Presenter, HeadContract.View
 
     override fun onDrawerClosed() {
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_menu)
+    }
+
+    override fun onGetTeamSuccess(team: Team) {
+        btnTeamInfo.text = team.name
+    }
+
+    override fun onGetTeamError(throwable: Throwable) {
+        toast("error getting team from firebase ${throwable.message}")
     }
 }

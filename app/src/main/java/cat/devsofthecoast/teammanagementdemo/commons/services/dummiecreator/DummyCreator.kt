@@ -132,7 +132,7 @@ object DummyCreator {
             }
 
             val trainer = trainers[i]
-            team.trainer = trainer.key!!
+            team.trainers.add(trainer.key!!)
             trainer.team = team.key!!
 
             for (question in questions.subList(i * DEFAULT_SURVEY_SIZE, i * DEFAULT_SURVEY_SIZE + DEFAULT_SURVEY_SIZE)){

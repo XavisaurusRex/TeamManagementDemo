@@ -35,9 +35,10 @@ class PresenterModule(
                 useCaseModule.getAllQuestionsUseCase)
     }
 
-    val headContract: HeadContract.Presenter by lazy {
+    val headPresenter: HeadContract.Presenter by lazy {
         HeadPresenter(
-                appConfig
+                appConfig,
+                useCaseModule.getTeamUseCase
         )
     }
 
@@ -64,7 +65,8 @@ class PresenterModule(
     val selectTeamPresenter: SelectTeamPresenter by lazy {
         SelectTeamPresenter(
                 appConfig,
-                useCaseModule.getTeamsUseCase
+                useCaseModule.getTeamsUseCase,
+                useCaseModule.linkTeamTrainerUseCase
         )
     }
 }

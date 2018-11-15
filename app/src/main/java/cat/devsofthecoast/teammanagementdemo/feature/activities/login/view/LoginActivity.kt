@@ -13,9 +13,9 @@ import cat.devsofthecoast.teammanagementdemo.R
 import cat.devsofthecoast.teammanagementdemo.TMDApp
 import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.ui.PresenterActivity
 import cat.devsofthecoast.teammanagementdemo.commons.models.users.Trainer
-import cat.devsofthecoast.teammanagementdemo.commons.utilities.toast
 import cat.devsofthecoast.teammanagementdemo.feature.activities.headactivity.view.HeadActivity
 import cat.devsofthecoast.teammanagementdemo.feature.activities.login.LoginContract
+import cat.devsofthecoast.teammanagementdemo.feature.activities.selectteam.view.SelectTeamActivity
 import cat.devsofthecoast.teammanagementdemo.feature.activities.signuptrainer.view.SignupTrainerActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -112,15 +112,20 @@ class LoginActivity : PresenterActivity<LoginContract.Presenter, LoginContract.V
     override fun loggedTrainerOnSuccess(trainer: Trainer) {
         val validName = trainer.name != null && trainer.surname != null
         val validTeam = trainer.team != null
-        if(validName && validTeam){
+        if (validName && validTeam) {
             nextActivity(
-                    HeadActivity.newIntent(this)
+                    HeadActivity.newIntent(this, trainer)
             )
-        }
-        else {
-            nextActivity(
-                    SignupTrainerActivity.newIntent(this, trainer)
-            )
+        } else {
+            if (!validName) {
+                nextActivity(
+                        SignupTrainerActivity.newIntent(this, trainer)
+                )
+            } else if (!validTeam) {
+                nextActivity(
+                        SelectTeamActivity.newIntent(this, trainer)
+                )
+            }
         }
     }
 
