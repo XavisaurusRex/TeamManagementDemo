@@ -1,9 +1,9 @@
-package cat.devsofthecoast.teammanagementdemo.feature.fragments.surveyfragment.presenter
+package cat.devsofthecoast.teammanagementdemo.feature.fragments.survey.presenter
 
 import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.config.BaseConfig
 import cat.devsofthecoast.teammanagementdemo.commons.useCase.questions.GetAllQuestionsUseCase
 import cat.devsofthecoast.teammanagementdemo.commons.useCase.questions.GetQuestionUseCase
-import cat.devsofthecoast.teammanagementdemo.feature.fragments.surveyfragment.SurveyContract
+import cat.devsofthecoast.teammanagementdemo.feature.fragments.survey.SurveyContract
 
 class SurveyPresenter(
         private val appConfig: BaseConfig,

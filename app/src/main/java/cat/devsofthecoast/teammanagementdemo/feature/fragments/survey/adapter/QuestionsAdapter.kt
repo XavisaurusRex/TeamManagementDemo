@@ -1,4 +1,4 @@
-package cat.devsofthecoast.teammanagementdemo.feature.fragments.surveyfragment.adapter
+package cat.devsofthecoast.teammanagementdemo.feature.fragments.survey.adapter
 
 import cat.devsofthecoast.teammanagementdemo.commons.models.questions.Question
 

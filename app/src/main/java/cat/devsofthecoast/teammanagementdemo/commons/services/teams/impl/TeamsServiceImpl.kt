@@ -8,11 +8,6 @@ import cat.devsofthecoast.teammanagementdemo.commons.services.ServiceCallback
 import cat.devsofthecoast.teammanagementdemo.commons.services.teams.TeamsService
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.database.DatabaseReference
-import android.content.ClipData.Item
-import cat.devsofthecoast.teammanagementdemo.commons.models.questions.Question
-import cat.devsofthecoast.teammanagementdemo.commons.models.users.Trainer
-import com.google.firebase.database.GenericTypeIndicator
-
 
 
 class TeamsServiceImpl : BaseService(), TeamsService {
@@ -23,7 +18,7 @@ class TeamsServiceImpl : BaseService(), TeamsService {
     override fun setTeams(teams: List<Team>, listener: ServiceCallback<Boolean>?) {
         val keysTeams = mutableMapOf<String, Team>()
         for (team: Team in teams) {
-            if(team.key == null) assignNewKey(team)
+            if (team.key == null) assignNewKey(team)
             keysTeams[team.key!!] = team
         }
         if (keysTeams.isNotEmpty()) {
@@ -41,14 +36,37 @@ class TeamsServiceImpl : BaseService(), TeamsService {
         }
     }
 
+    override fun setTeam(input: Team, serviceCallback: ServiceCallback<Void?>) {
+        addNewData(input, OnCompleteListener {
+            when {
+                it.isSuccessful -> {
+                    serviceCallback.onSuccess(null)
+                }
+                it.isCanceled -> serviceCallback.onError(PostingFirebaseException())
+                else -> serviceCallback.onError(PostingFirebaseException())
+            }
+        })
+    }
+
     override fun getTeams(serviceCallback: ServiceCallback<ArrayList<Team>>) {
         getSingleSnapShot(refTable) {
-            if(it != null) {
+            if (it != null) {
                 val teams: ArrayList<Team> = arrayListOf()
                 it.children.forEach {
                     teams.add(it.getValue(Team::class.java)!!)
                 }
                 serviceCallback.onSuccess(teams)
+            } else {
+                serviceCallback.onError(NullResponseFirebase())
+            }
+        }
+    }
+
+    override fun getTeam(key: String, serviceCallback: ServiceCallback<Team>) {
+        getSingleSnapShot(refTable.child(key)){
+            if (it != null) {
+                val team = it.getValue(Team::class.java)!!
+                serviceCallback.onSuccess(team)
             } else {
                 serviceCallback.onError(NullResponseFirebase())
             }

@@ -1,4 +1,4 @@
-package cat.devsofthecoast.teammanagementdemo.feature.fragments.surveyfragment.adapter.impl
+package cat.devsofthecoast.teammanagementdemo.feature.fragments.survey.adapter.impl
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,7 +8,6 @@ import cat.devsofthecoast.teammanagementdemo.R
 import cat.devsofthecoast.teammanagementdemo.commons.controllers.questioncontroller.*
 import cat.devsofthecoast.teammanagementdemo.commons.controllers.recycler.AdapterList
 import cat.devsofthecoast.teammanagementdemo.commons.models.questions.*
-import cat.devsofthecoast.teammanagementdemo.feature.fragments.surveyfragment.adapter.QuestionsAdapter
 import java.util.*
 
 class QuestionsAdapter(

@@ -1,4 +1,4 @@
-package cat.devsofthecoast.teammanagementdemo.feature.fragments.surveyfragment
+package cat.devsofthecoast.teammanagementdemo.feature.fragments.survey
 
 import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.presenter.BasePresenter
 import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.presenter.BaseView

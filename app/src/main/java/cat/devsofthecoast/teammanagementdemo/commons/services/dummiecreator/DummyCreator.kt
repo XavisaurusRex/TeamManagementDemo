@@ -13,10 +13,10 @@ object DummyCreator {
 
     private val NUM_TEAMS = 10
     private val PLAYERS_IN_TEAM = 12
-    private val NUM_PLAYERS = NUM_TEAMS * PLAYERS_IN_TEAM
+    private val NUM_PLAYERS = NUM_TEAMS*PLAYERS_IN_TEAM
     private val NUM_TRAINERS = NUM_TEAMS
     private val DEFAULT_SURVEY_SIZE = 10
-    private val NUM_QUESTIONS = NUM_TEAMS * DEFAULT_SURVEY_SIZE
+    private val NUM_QUESTIONS = NUM_TEAMS*DEFAULT_SURVEY_SIZE
 
     fun createQuestions(statements: JSONArray, responseOptions: JSONArray): List<Question> {
         val r = Random()
@@ -187,7 +187,7 @@ object DummyCreator {
             }
 
             val trainer = trainers[i]
-            team.trainer.add(trainer.key!!)
+            team.trainers.add(trainer.key!!)
             trainer.team = team.key!!
 
             for (question in questions.subList(i * DEFAULT_SURVEY_SIZE, i * DEFAULT_SURVEY_SIZE + DEFAULT_SURVEY_SIZE)) {

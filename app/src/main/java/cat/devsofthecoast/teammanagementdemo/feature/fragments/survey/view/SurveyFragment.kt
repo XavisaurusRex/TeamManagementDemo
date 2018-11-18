@@ -1,4 +1,4 @@
-package cat.devsofthecoast.teammanagementdemo.feature.fragments.surveyfragment.view
+package cat.devsofthecoast.teammanagementdemo.feature.fragments.survey.view
 
 import android.content.Context
 import android.content.Intent
@@ -12,8 +12,8 @@ import cat.devsofthecoast.teammanagementdemo.TMDApp
 import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.ui.PresenterFragment
 import cat.devsofthecoast.teammanagementdemo.commons.models.questions.Question
 import cat.devsofthecoast.teammanagementdemo.commons.utilities.toast
-import cat.devsofthecoast.teammanagementdemo.feature.fragments.surveyfragment.SurveyContract
-import cat.devsofthecoast.teammanagementdemo.feature.fragments.surveyfragment.adapter.impl.QuestionsAdapter
+import cat.devsofthecoast.teammanagementdemo.feature.fragments.survey.SurveyContract
+import cat.devsofthecoast.teammanagementdemo.feature.fragments.survey.adapter.impl.QuestionsAdapter
 import kotlinx.android.synthetic.main.fragment_survey.*
 
 

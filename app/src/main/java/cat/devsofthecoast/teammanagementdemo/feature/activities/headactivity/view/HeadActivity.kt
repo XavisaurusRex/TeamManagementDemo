@@ -10,14 +10,18 @@ import androidx.fragment.app.Fragment
 import cat.devsofthecoast.teammanagementdemo.BuildConfig
 import cat.devsofthecoast.teammanagementdemo.R
 import cat.devsofthecoast.teammanagementdemo.TMDApp
+import cat.devsofthecoast.teammanagementdemo.commons.controllers.dialog.TMDDialog
 import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.ui.PresenterActivity
 import cat.devsofthecoast.teammanagementdemo.commons.utilities.toast
+import cat.devsofthecoast.teammanagementdemo.commons.models.Team
+import cat.devsofthecoast.teammanagementdemo.commons.models.users.Trainer
 import cat.devsofthecoast.teammanagementdemo.feature.activities.headactivity.HeadContract
 import cat.devsofthecoast.teammanagementdemo.feature.activities.headactivity.controllers.TMDActionBarDrawerToggle
 import cat.devsofthecoast.teammanagementdemo.feature.activities.login.view.LoginActivity
 import cat.devsofthecoast.teammanagementdemo.feature.fragments.dailyentries.view.DailyEntriesFragment
 import cat.devsofthecoast.teammanagementdemo.feature.fragments.devoptions.view.DevOptionsFragment
-import cat.devsofthecoast.teammanagementdemo.feature.fragments.surveyfragment.view.SurveyFragment
+import cat.devsofthecoast.teammanagementdemo.feature.fragments.survey.view.SurveyFragment
+import cat.devsofthecoast.teammanagementdemo.feature.fragments.trainerprofile.view.TrainerProfileFragment
 import cat.devsofthecoast.teammanagementdemo.feature.fragments.weekpreview.view.WeekPreviewFragment
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_header.*
@@ -31,19 +35,21 @@ class HeadActivity : PresenterActivity<HeadContract.Presenter, HeadContract.View
     private val NAVIGATOR_OPEN:Int = R.drawable.ic_left_arrow
 
     override val presenter: HeadContract.Presenter by lazy {
-        (application as TMDApp).presenterModule.headContract
+        (application as TMDApp).presenterModule.headPresenter
     }
+
+    var loggedTrainer: Trainer? = null
 
     private var toggle: TMDActionBarDrawerToggle? = null
 
     companion object {
-        fun newIntent(context: Context): Intent {
-            return Intent(context, HeadActivity::class.java)
+        val LOGGED_TRAINER = "loggedTrainer"
+
+        fun newIntent(context: Context, trainer: Trainer): Intent {
+            val intent = Intent(context, HeadActivity::class.java)
+            intent.putExtra(LOGGED_TRAINER, trainer)
+            return intent
         }
-    }
-
-    override fun onBackPressed() {
-
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,12 +61,27 @@ class HeadActivity : PresenterActivity<HeadContract.Presenter, HeadContract.View
         supportActionBar?.setHomeAsUpIndicator(NAVIGATOR_CLOSED)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        getIntentExtras()
         configureInteractions()
 
         startFragment(WeekPreviewFragment())
+
+        presenter.getTeam(loggedTrainer?.team!!)
+    }
+
+    private fun getIntentExtras() {
+        if (intent.hasExtra(LOGGED_TRAINER)) {
+            loggedTrainer = intent.getParcelableExtra(LOGGED_TRAINER)
+            //todo també posar la fotografia
+            tvProfileDesc.text = loggedTrainer?.email
+        }
     }
 
     private fun configureInteractions() {
+        ivProfile.setOnClickListener {
+            startFragment(TrainerProfileFragment.newInstance(loggedTrainer!!))
+        }
+
         btnSurveyActivity.setOnClickListener {
             startFragment(SurveyFragment())
         }
@@ -91,9 +112,35 @@ class HeadActivity : PresenterActivity<HeadContract.Presenter, HeadContract.View
     }
 
     private fun startFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction()
+        supportFragmentManager
+                .beginTransaction()
                 .replace(R.id.flContent, fragment)
+                .addToBackStack(null)
                 .commit()
+    }
+
+    override fun onBackPressed() {
+        if (supportFragmentManager.backStackEntryCount == 1) {
+            val tmdDialog: TMDDialog = TMDDialog(this, llHeaderParent)
+            tmdDialog.title = "You are leaving app"
+            tmdDialog.description = "Are you sure want to exit? \n "
+            tmdDialog.btnAceptText = "Exit"
+            tmdDialog.btnCancelText = "Stay Here"
+
+            tmdDialog.setTMDDialogListener(object : TMDDialog.TMDDialogListener {
+                override fun onAcept() {
+                    finishAffinity()
+                    finish()
+                }
+
+                override fun onCancel() {}
+                override fun onDismiss() {}
+            })
+
+            tmdDialog.show()
+        } else {
+            supportFragmentManager.popBackStackImmediate()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -126,5 +173,13 @@ class HeadActivity : PresenterActivity<HeadContract.Presenter, HeadContract.View
 
     override fun onDrawerClosed() {
         supportActionBar?.setHomeAsUpIndicator(NAVIGATOR_CLOSED)
+    }
+
+    override fun onGetTeamSuccess(team: Team) {
+        btnTeamInfo.text = team.name
+    }
+
+    override fun onGetTeamError(throwable: Throwable) {
+        toast("error getting team from firebase ${throwable.message}")
     }
 }

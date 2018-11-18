@@ -48,7 +48,8 @@ class SignupTrainerActivity : PresenterActivity<SignupContract.Presenter, Signup
             trainer = intent.getParcelableExtra(TRAINER_LOGGED)
         } else {
             trainer = Trainer()
-            trainer?.key = FirebaseAuth.getInstance().uid
+            trainer?.key = FirebaseAuth.getInstance().currentUser?.uid
+            trainer?.email = FirebaseAuth.getInstance().currentUser?.email
         }
 
         configureInteractions()
@@ -116,11 +117,11 @@ class SignupTrainerActivity : PresenterActivity<SignupContract.Presenter, Signup
 
     override fun onUpdateCreatePlayerSuccess() {
         startActivity(
-                SelectTeamActivity.newIntent(this)
+                SelectTeamActivity.newIntent(this, trainer!!)
         )
     }
 
     override fun onUpdateCreatePlayerError(throwable: Throwable) {
-        toast("an error has ocurred")
+        toast("an error has ocurred ${throwable.message}")
     }
 }

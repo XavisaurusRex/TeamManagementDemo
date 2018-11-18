@@ -11,8 +11,9 @@ import cat.devsofthecoast.teammanagementdemo.feature.activities.signuptrainer.pr
 import cat.devsofthecoast.teammanagementdemo.feature.fragments.dailyentries.presenter.DailyEntriesPresenter
 import cat.devsofthecoast.teammanagementdemo.feature.fragments.devoptions.DevOptionsContract
 import cat.devsofthecoast.teammanagementdemo.feature.fragments.devoptions.presenter.DevOptionsPresenter
-import cat.devsofthecoast.teammanagementdemo.feature.fragments.surveyfragment.SurveyContract
-import cat.devsofthecoast.teammanagementdemo.feature.fragments.surveyfragment.presenter.SurveyPresenter
+import cat.devsofthecoast.teammanagementdemo.feature.fragments.survey.SurveyContract
+import cat.devsofthecoast.teammanagementdemo.feature.fragments.survey.presenter.SurveyPresenter
+import cat.devsofthecoast.teammanagementdemo.feature.fragments.trainerprofile.presenter.TrainerProfilePresenter
 import cat.devsofthecoast.teammanagementdemo.feature.fragments.weekpreview.WeekPreviewContract
 import cat.devsofthecoast.teammanagementdemo.feature.fragments.weekpreview.presenter.WeekPreviewPresenter
 
@@ -36,9 +37,10 @@ class PresenterModule(
                 useCaseModule.getAllQuestionsUseCase)
     }
 
-    val headContract: HeadContract.Presenter by lazy {
+    val headPresenter: HeadContract.Presenter by lazy {
         HeadPresenter(
-                appConfig
+                appConfig,
+                useCaseModule.getTeamUseCase
         )
     }
 
@@ -65,13 +67,20 @@ class PresenterModule(
     val selectTeamPresenter: SelectTeamPresenter by lazy {
         SelectTeamPresenter(
                 appConfig,
-                useCaseModule.getTeamsUseCase
+                useCaseModule.getTeamsUseCase,
+                useCaseModule.linkTeamTrainerUseCase
         )
     }
 
 
     val dailyEntriesPresenter: DailyEntriesPresenter by lazy {
         DailyEntriesPresenter(
+                appConfig
+        )
+    }
+
+    val trainerProfilePresenter: TrainerProfilePresenter by lazy {
+        TrainerProfilePresenter(
                 appConfig
         )
     }

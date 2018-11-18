@@ -9,6 +9,7 @@ abstract class PresenterFragment<P : BasePresenter<V>, V : BaseView> :
         Fragment(), BaseView {
     protected abstract val presenter: P
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         @Suppress("UNCHECKED_CAST")
