@@ -49,17 +49,32 @@ class TrainerProfileFragment : PresenterFragment<TrainerProfilePresenter, Traine
     }
 
     private fun configureInteractions() {
-        tvName.addTextChangedListener(
-                TMDTextWatcher(
-                        TimeUnit.SECONDS.toMillis(3),
-                        object : TMDTextWatcher.TextWatcherListener {
-                            override fun onTextChange(text: String) {
-                                if (text != loggedTrainer?.name) {
-                                    tvSurname.setText(text)
-                                }
-                            }
-                        })
-        )
+        TMDTextWatcher.setWatcher(
+                tvName,
+                TimeUnit.SECONDS.toMillis(3)) {
+            if (it != loggedTrainer?.name) {
+                loggedTrainer?.name = it
+                activity?.toast("tvName Value changed")
+            }
+        }
+
+        TMDTextWatcher.setWatcher(
+                tvSurname,
+                TimeUnit.SECONDS.toMillis(3)) {
+            if (it != loggedTrainer?.surname) {
+                loggedTrainer?.surname = it
+                activity?.toast("tvSurname Value changed")
+            }
+        }
+
+        TMDTextWatcher.setWatcher(
+                tvPhoneNumber,
+                TimeUnit.SECONDS.toMillis(3)) {
+            if (it != loggedTrainer?.phoneNumber.toString()) {
+                loggedTrainer?.phoneNumber = it.toInt()
+                activity?.toast("tvPhoneNumber Value changed")
+            }
+        }
     }
 
     companion object {

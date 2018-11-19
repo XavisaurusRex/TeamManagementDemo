@@ -3,7 +3,9 @@ package cat.devsofthecoast.teammanagementdemo.commons.controllers.othercontrolle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.widget.TextView
 import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.useCase.Callback
+import cat.devsofthecoast.teammanagementdemo.commons.models.users.Trainer
 import java.util.*
 import kotlin.concurrent.schedule
 
@@ -31,5 +33,22 @@ class TMDTextWatcher(
 
     interface TextWatcherListener{
         fun onTextChange(text: String)
+    }
+
+    companion object {
+        fun setWatcher(textView: TextView, millis: Long, action: ((String) -> Unit)){
+            textView.post {  }
+            textView.addTextChangedListener(
+                    TMDTextWatcher(
+                            millis,
+                            object : TMDTextWatcher.TextWatcherListener {
+                                override fun onTextChange(text: String) {
+                                    textView.post {
+                                        action.invoke(text)
+                                    }
+                                }
+                            })
+            )
+        }
     }
 }
