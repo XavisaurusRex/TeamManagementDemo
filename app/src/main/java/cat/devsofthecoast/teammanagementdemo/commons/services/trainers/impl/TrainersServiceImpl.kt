@@ -1,5 +1,6 @@
 package cat.devsofthecoast.teammanagementdemo.commons.services.trainers.impl
 
+import cat.devsofthecoast.teammanagementdemo.commons.cache.TMDCache
 import cat.devsofthecoast.teammanagementdemo.commons.exceptions.NullResponseFirebase
 import cat.devsofthecoast.teammanagementdemo.commons.exceptions.PostingFirebaseException
 import cat.devsofthecoast.teammanagementdemo.commons.models.users.Trainer
@@ -48,11 +49,12 @@ class TrainersServiceImpl : BaseService(), TrainersService {
         })
     }
 
-    override fun getTrainer(trainerKey: String, serviceCallback: ServiceCallback<Trainer?>) {
+    override fun getTrainer(trainerKey: String, serviceCallback: ServiceCallback<Trainer?>, cache: TMDCache<String, Trainer>) {
         getSingleSnapShot(refTable.child(trainerKey)) { dataSnapshot: DataSnapshot? ->
             if (dataSnapshot != null) {
                 val trainer: Trainer? = dataSnapshot.getValue(Trainer::class.java)
                 if (trainer != null) {
+                    cache[trainerKey] = trainer
                     serviceCallback.onSuccess(trainer)
                 } else {
                     serviceCallback.onError(NullResponseFirebase())

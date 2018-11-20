@@ -40,7 +40,8 @@ class PresenterModule(
     val headPresenter: HeadContract.Presenter by lazy {
         HeadPresenter(
                 appConfig,
-                useCaseModule.getTeamUseCase
+                useCaseModule.getTeamUseCase,
+                useCaseModule.getTrainerUseCase
         )
     }
 

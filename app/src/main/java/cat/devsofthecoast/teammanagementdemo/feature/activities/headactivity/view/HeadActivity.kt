@@ -66,15 +66,11 @@ class HeadActivity : PresenterActivity<HeadContract.Presenter, HeadContract.View
 
         startFragment(WeekPreviewFragment())
 
-        presenter.getTeam(loggedTrainer?.team!!)
+        presenter.getLoggedTrainer()
     }
 
     private fun getIntentExtras() {
-        if (intent.hasExtra(LOGGED_TRAINER)) {
-            loggedTrainer = intent.getParcelableExtra(LOGGED_TRAINER)
-            //todo també posar la fotografia
-            tvProfileDesc.text = loggedTrainer?.email
-        }
+
     }
 
     private fun configureInteractions() {
@@ -181,5 +177,15 @@ class HeadActivity : PresenterActivity<HeadContract.Presenter, HeadContract.View
 
     override fun onGetTeamError(throwable: Throwable) {
         toast("error getting team from firebase ${throwable.message}")
+    }
+
+    override fun onGetLoggedTrainerSuccess(trainer: Trainer) {
+        loggedTrainer = trainer
+        tvProfileDesc.text = loggedTrainer?.email
+        presenter.getTeam(trainer.team!!)
+    }
+
+    override fun onGetLoggedTrainerError(throwable: Throwable) {
+        toast("error getting trainer from firebase ${throwable.message}")
     }
 }

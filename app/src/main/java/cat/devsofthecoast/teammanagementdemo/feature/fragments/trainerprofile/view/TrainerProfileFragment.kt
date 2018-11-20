@@ -6,14 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import cat.devsofthecoast.teammanagementdemo.R
 import cat.devsofthecoast.teammanagementdemo.TMDApp
-import cat.devsofthecoast.teammanagementdemo.commons.controllers.othercontroller.TMDTextWatcher
 import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.ui.PresenterFragment
+import cat.devsofthecoast.teammanagementdemo.commons.models.Team
 import cat.devsofthecoast.teammanagementdemo.commons.models.users.Trainer
 import cat.devsofthecoast.teammanagementdemo.commons.utilities.toast
 import cat.devsofthecoast.teammanagementdemo.feature.fragments.trainerprofile.TrainerProfileContract
 import cat.devsofthecoast.teammanagementdemo.feature.fragments.trainerprofile.presenter.TrainerProfilePresenter
 import kotlinx.android.synthetic.main.fragment_trainer_profile.*
-import java.util.concurrent.TimeUnit
 
 class TrainerProfileFragment : PresenterFragment<TrainerProfilePresenter, TrainerProfileContract.View>(), TrainerProfileContract.View {
     override val presenter: TrainerProfilePresenter by lazy {
@@ -49,30 +48,44 @@ class TrainerProfileFragment : PresenterFragment<TrainerProfilePresenter, Traine
     }
 
     private fun configureInteractions() {
-        TMDTextWatcher.setWatcher(
-                tvName,
-                TimeUnit.SECONDS.toMillis(3)) {
+        tvName.onChangeValue {
             if (it != loggedTrainer?.name) {
                 loggedTrainer?.name = it
                 activity?.toast("tvName Value changed")
             }
         }
 
-        TMDTextWatcher.setWatcher(
-                tvSurname,
-                TimeUnit.SECONDS.toMillis(3)) {
+        tvSurname.onChangeValue {
             if (it != loggedTrainer?.surname) {
                 loggedTrainer?.surname = it
                 activity?.toast("tvSurname Value changed")
             }
         }
-
-        TMDTextWatcher.setWatcher(
-                tvPhoneNumber,
-                TimeUnit.SECONDS.toMillis(3)) {
+        tvPhoneNumber.onChangeValue {
             if (it != loggedTrainer?.phoneNumber.toString()) {
                 loggedTrainer?.phoneNumber = it.toInt()
                 activity?.toast("tvPhoneNumber Value changed")
+            }
+        }
+
+        val team1 = Team()
+        team1.name = "hola 01"
+
+        val team2 = Team()
+        team2.name = "hola 02"
+
+        val team3 = Team()
+        team3.name = "hola 03"
+
+        val team4 = Team()
+        team4.name = "hola 04"
+
+        spnTeam.setSource(listOf(team1, team2, team3, team4))
+
+        spnTeam.onChangeValue {
+            if (loggedTrainer?.team != it.key) {
+                loggedTrainer?.team = it.key
+                activity?.toast("Trainer Team changed")
             }
         }
     }

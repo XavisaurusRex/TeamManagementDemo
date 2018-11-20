@@ -1,5 +1,7 @@
 package cat.devsofthecoast.teammanagementdemo.commons.repository.questions.impl
 
+import androidx.constraintlayout.solver.Cache
+import cat.devsofthecoast.teammanagementdemo.commons.cache.TMDCache
 import cat.devsofthecoast.teammanagementdemo.commons.models.DatabaseModel
 import cat.devsofthecoast.teammanagementdemo.commons.models.questions.Question
 import cat.devsofthecoast.teammanagementdemo.commons.repository.questions.QuestionsRepository
@@ -8,6 +10,7 @@ import cat.devsofthecoast.teammanagementdemo.commons.services.questions.impl.Que
 
 class QuestionsRepositoryImpl : QuestionsRepository {
 
+    private val cache: TMDCache<String, Question> = TMDCache()
     private val service = QuestionsServiceImpl()
 
     override fun getQuestion(key: String, listener: ServiceCallback<Question?>?) {

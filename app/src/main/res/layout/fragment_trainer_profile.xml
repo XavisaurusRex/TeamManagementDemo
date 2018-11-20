@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:layout_rowWeight="100"
     android:layout_columnWeight="100"
     android:padding="10dp">
@@ -12,48 +12,48 @@
         android:id="@+id/ivPicture"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:scaleType="fitCenter"
-        android:adjustViewBounds="true"
-        android:src="@drawable/ic_menu_profiledata"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:maxHeight="150dp"
         android:layout_marginTop="10dp"
-        />
-    <EditText
+        android:adjustViewBounds="true"
+        android:maxHeight="150dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_menu_profiledata"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <cat.devsofthecoast.teammanagementdemo.commons.controllers.autoupdatefields.TMDTextView
         android:id="@+id/tvName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Name"
-        android:maxLength="25"
-        android:inputType="text"
         android:layout_margin="@dimen/buttons_margin"
-        app:layout_constraintTop_toBottomOf="@id/ivPicture"/>
+        android:hint="Name"
+        android:inputType="text"
+        android:maxLength="25"
+        app:layout_constraintTop_toBottomOf="@id/ivPicture" />
 
-    <EditText
+    <cat.devsofthecoast.teammanagementdemo.commons.controllers.autoupdatefields.TMDTextView
         android:id="@+id/tvSurname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/buttons_margin"
         android:hint="Surname"
         android:inputType="text"
         android:maxLength="25"
-        app:layout_constraintTop_toBottomOf="@id/tvName"
-        android:layout_margin="@dimen/buttons_margin" />
+        app:layout_constraintTop_toBottomOf="@id/tvName" />
 
-    <EditText
+    <cat.devsofthecoast.teammanagementdemo.commons.controllers.autoupdatefields.TMDTextView
         android:id="@+id/tvPhoneNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/buttons_margin"
         android:hint="Phone Number"
         android:inputType="phone"
         android:maxLength="25"
-        app:layout_constraintTop_toBottomOf="@id/tvSurname"
-        android:layout_margin="@dimen/buttons_margin"/>
+        app:layout_constraintTop_toBottomOf="@id/tvSurname" />
 
-    <Spinner
+    <cat.devsofthecoast.teammanagementdemo.commons.controllers.autoupdatefields.TMDSpinner
         android:id="@+id/spnTeam"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/item_team_view"
+        app:spn_value_change_notification_delay="2000"
         app:layout_constraintTop_toBottomOf="@id/tvPhoneNumber" />
 </androidx.constraintlayout.widget.ConstraintLayout>

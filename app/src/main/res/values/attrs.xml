@@ -3,4 +3,12 @@
     <declare-styleable name="TMDRadioGroup">
         <attr name="multiple_response" format="boolean" />
     </declare-styleable>
+
+
+    <declare-styleable name="TMDTextView" parent="TMDValueNotifierControllers">
+        <attr name="tv_value_change_notification_delay" format="integer"/>
+    </declare-styleable>
+    <declare-styleable name="TMDSpinner" parent="TMDValueNotifierControllers">
+        <attr name="spn_value_change_notification_delay" format="integer"/>
+    </declare-styleable>
 </resources>
