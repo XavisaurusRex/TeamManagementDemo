@@ -56,4 +56,6 @@ dependencies {
     testImplementation 'junit:junit:4.12'
 }
 
+apply plugin: "org.sonarqube"
+
 apply plugin: 'com.google.gms.google-services'
