@@ -69,6 +69,16 @@ class TMDSpinner : Spinner {
         tmdAdapter?.addAll(teamsList)
     }
 
+    fun selectTeamByKey(teamKey: String?) {
+        var i = 0
+        while (i < tmdAdapter?.count!! && tmdAdapter?.getItem(i)?.key != teamKey) i++
+        if (i < tmdAdapter?.count!!) setSelection(i)
+    }
+
+    override fun getSelectedItem(): Team? {
+        return tmdAdapter?.getItem(selectedItemPosition)
+    }
+
     inner class TMDSpinnerWatcher(
             private val listener: ((Int) -> Unit))
         : OnItemSelectedListener {

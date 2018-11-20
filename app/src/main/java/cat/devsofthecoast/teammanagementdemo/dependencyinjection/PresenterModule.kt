@@ -82,7 +82,10 @@ class PresenterModule(
 
     val trainerProfilePresenter: TrainerProfilePresenter by lazy {
         TrainerProfilePresenter(
-                appConfig
+                appConfig,
+                useCaseModule.getTrainerUseCase,
+                useCaseModule.updateTrainerUseCase,
+                useCaseModule.getTeamsUseCase
         )
     }
 }

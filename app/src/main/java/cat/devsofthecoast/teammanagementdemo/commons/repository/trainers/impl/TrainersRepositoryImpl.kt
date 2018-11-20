@@ -11,7 +11,7 @@ import cat.devsofthecoast.teammanagementdemo.commons.services.trainers.impl.Trai
 class TrainersRepositoryImpl : TrainersRepository {
     private val LOG_TAG = "TrainersRepositoryImpl"
 
-    private val cache: TMDCache<String, Trainer> = TMDCache()
+    private val trainerCache: TMDCache<String, Trainer> = TMDCache()
     private val service = TrainersServiceImpl()
 
     override fun setTrainers(trainers: List<Trainer>, listener: ServiceCallback<Boolean>?) {
@@ -19,16 +19,21 @@ class TrainersRepositoryImpl : TrainersRepository {
     }
 
     override fun getTrainer(trainerKey: String, serviceCallback: ServiceCallback<Trainer?>) {
-        if (cache.contains(trainerKey)) {
-            Log.d(LOG_TAG, "Trainer Recived FromCache")
-            serviceCallback.onSuccess(cache[trainerKey])
+        if (trainerCache.contains(trainerKey)) {
+            Log.d(LOG_TAG, "getTrainer from Cache")
+            serviceCallback.onSuccess(trainerCache[trainerKey])
         } else {
-            service.getTrainer(trainerKey, serviceCallback, cache)
+            Log.d(LOG_TAG, "getTrainer from Firebase")
+            service.getTrainer(trainerKey, serviceCallback, trainerCache)
         }
     }
 
     override fun setTrainer(trainer: Trainer, listener: ServiceCallback<Void?>?) {
         service.setTrainer(trainer, listener)
+    }
+
+    override fun updateTrainer(trainer: Trainer, listener: ServiceCallback<Void?>?) {
+        service.updateTrainer(trainer, listener)
     }
 
     override fun assignKey(databaseModel: DatabaseModel) {

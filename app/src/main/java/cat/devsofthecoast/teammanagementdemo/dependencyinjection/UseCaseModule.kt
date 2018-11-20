@@ -12,6 +12,7 @@ import cat.devsofthecoast.teammanagementdemo.commons.useCase.teams.GetTeamsUseCa
 import cat.devsofthecoast.teammanagementdemo.commons.useCase.teams.SetTeamUseCase
 import cat.devsofthecoast.teammanagementdemo.commons.useCase.trainers.GetTrainerUseCase
 import cat.devsofthecoast.teammanagementdemo.commons.useCase.trainers.SetTrainerUseCase
+import cat.devsofthecoast.teammanagementdemo.commons.useCase.trainers.UpdateTrainerUseCase
 
 class UseCaseModule(
         private val appConfig: BaseConfig,
@@ -68,6 +69,13 @@ class UseCaseModule(
         LinkTeamTrainerUseCase(
                 appConfig,
                 repositoryModule.teamsRepository,
+                repositoryModule.trainersRepository
+        )
+    }
+
+    val updateTrainerUseCase: UpdateTrainerUseCase by lazy {
+        UpdateTrainerUseCase(
+                appConfig,
                 repositoryModule.trainersRepository
         )
     }

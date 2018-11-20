@@ -28,78 +28,64 @@ class TrainerProfileFragment : PresenterFragment<TrainerProfilePresenter, Traine
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        getArguents()
-        if (savedInstanceState != null) {
-            if (savedInstanceState.containsKey(LOGGED_TRAINER)) {
-                loggedTrainer = savedInstanceState.getParcelable(LOGGED_TRAINER)
-            }
-        }
-
         configureInteractions()
-    }
-
-    private fun getArguents() {
-        if (arguments != null) {
-            val bundle: Bundle = arguments as Bundle
-            if (bundle.containsKey(LOGGED_TRAINER)) {
-                loggedTrainer = bundle.getParcelable(LOGGED_TRAINER)
-            }
-        }
+        presenter.getAllTeams()
     }
 
     private fun configureInteractions() {
         tvName.onChangeValue {
             if (it != loggedTrainer?.name) {
                 loggedTrainer?.name = it
-                activity?.toast("tvName Value changed")
+                presenter.updateTrainer(loggedTrainer!!)
             }
         }
 
         tvSurname.onChangeValue {
             if (it != loggedTrainer?.surname) {
                 loggedTrainer?.surname = it
-                activity?.toast("tvSurname Value changed")
+                presenter.updateTrainer(loggedTrainer!!)
             }
         }
         tvPhoneNumber.onChangeValue {
             if (it != loggedTrainer?.phoneNumber.toString()) {
                 loggedTrainer?.phoneNumber = it.toInt()
-                activity?.toast("tvPhoneNumber Value changed")
+                presenter.updateTrainer(loggedTrainer!!)
             }
         }
-
-        val team1 = Team()
-        team1.name = "hola 01"
-
-        val team2 = Team()
-        team2.name = "hola 02"
-
-        val team3 = Team()
-        team3.name = "hola 03"
-
-        val team4 = Team()
-        team4.name = "hola 04"
-
-        spnTeam.setSource(listOf(team1, team2, team3, team4))
 
         spnTeam.onChangeValue {
             if (loggedTrainer?.team != it.key) {
                 loggedTrainer?.team = it.key
-                activity?.toast("Trainer Team changed")
+                presenter.updateTrainer(loggedTrainer!!)
             }
         }
     }
 
-    companion object {
-        private val LOGGED_TRAINER = "loggedTrainer"
-
-        fun newInstance(trainer: Trainer): TrainerProfileFragment {
-            val trainerProfileFragment = TrainerProfileFragment()
-            val bundle = Bundle()
-            bundle.putParcelable(LOGGED_TRAINER, trainer)
-            trainerProfileFragment.arguments = bundle
-            return trainerProfileFragment
+    override fun onGetLoggedTrainerSuccess(loggedTrainer: Trainer) {
+        this.loggedTrainer = loggedTrainer
+        if (spnTeam.selectedItem?.key != loggedTrainer.key) {
+            spnTeam.selectTeamByKey(loggedTrainer.team)
         }
     }
 
+    override fun onGetLoggedTrainerError(throwable: Throwable) {
+        activity?.toast("onGetLoggedTrainerError -> ${throwable.message}")
+    }
+
+    override fun onGetTeamsSuccess(teams: ArrayList<Team>) {
+        spnTeam.setSource(teams)
+        presenter.getLoggedTrainer()
+    }
+
+    override fun onGetTeamsError(throwable: Throwable) {
+        activity?.toast("onGetTeamsError -> ${throwable.message}")
+    }
+
+    override fun onUpdateTrainerSuccess() {
+        activity?.toast("trainer updated")
+    }
+
+    override fun onUpdateTrainerError(throwable: Throwable) {
+        activity?.toast("Updating trainer error -> ${throwable.message}")
+    }
 }

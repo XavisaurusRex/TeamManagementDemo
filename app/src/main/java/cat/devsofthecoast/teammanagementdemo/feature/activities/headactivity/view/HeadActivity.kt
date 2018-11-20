@@ -75,7 +75,7 @@ class HeadActivity : PresenterActivity<HeadContract.Presenter, HeadContract.View
 
     private fun configureInteractions() {
         ivProfile.setOnClickListener {
-            startFragment(TrainerProfileFragment.newInstance(loggedTrainer!!))
+            startFragment(TrainerProfileFragment())
         }
 
         btnSurveyActivity.setOnClickListener {

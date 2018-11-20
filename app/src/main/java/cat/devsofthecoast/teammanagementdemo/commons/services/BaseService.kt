@@ -5,11 +5,11 @@ import cat.devsofthecoast.teammanagementdemo.commons.models.DatabaseModel
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.database.*
 
+
 abstract class BaseService {
     protected val firebaseDatabase = FirebaseDatabase.getInstance().reference.child(BuildConfig.TEAMMANAGEMENT_BASE_LOCATION)
 
     abstract val refTable: DatabaseReference
-
 
     private fun DatabaseReference.getNewKey(): String {
         return this.push().key!!
@@ -37,6 +37,12 @@ abstract class BaseService {
 
     protected fun addNewData(databaseModel: DatabaseModel, onCompleteListener: OnCompleteListener<Void>) {
         refTable.child(databaseModel.key!!).setValue(databaseModel).addOnCompleteListener(onCompleteListener)
+    }
+
+    protected fun updateData(databaseModel: DatabaseModel, onCompleteListener: OnCompleteListener<Void>) {
+        val map = hashMapOf<String, DatabaseModel>()
+        map[databaseModel.key!!] = databaseModel
+        refTable.updateChildren(map.toMap()).addOnCompleteListener(onCompleteListener)
     }
 
     protected fun removeAll(onCompleteListener: OnCompleteListener<Void>) {

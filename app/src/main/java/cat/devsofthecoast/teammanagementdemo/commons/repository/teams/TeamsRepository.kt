@@ -5,6 +5,8 @@ import cat.devsofthecoast.teammanagementdemo.commons.repository.base.BaseReposit
 import cat.devsofthecoast.teammanagementdemo.commons.services.ServiceCallback
 
 interface TeamsRepository : BaseRepository {
+
+
     fun setTeams(teams: List<Team>, listener: ServiceCallback<Boolean>?)
     fun getTeams(serviceCallback: ServiceCallback<ArrayList<Team>>)
     fun setTeam(input: Team, serviceCallback: ServiceCallback<Void?>)

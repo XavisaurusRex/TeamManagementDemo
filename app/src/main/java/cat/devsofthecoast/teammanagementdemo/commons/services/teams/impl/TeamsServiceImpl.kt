@@ -1,5 +1,6 @@
 package cat.devsofthecoast.teammanagementdemo.commons.services.teams.impl
 
+import cat.devsofthecoast.teammanagementdemo.commons.cache.TMDCache
 import cat.devsofthecoast.teammanagementdemo.commons.exceptions.NullResponseFirebase
 import cat.devsofthecoast.teammanagementdemo.commons.exceptions.PostingFirebaseException
 import cat.devsofthecoast.teammanagementdemo.commons.models.Team
@@ -48,13 +49,14 @@ class TeamsServiceImpl : BaseService(), TeamsService {
         })
     }
 
-    override fun getTeams(serviceCallback: ServiceCallback<ArrayList<Team>>) {
+    override fun getTeams(serviceCallback: ServiceCallback<ArrayList<Team>>, teamsCache: TMDCache<String, ArrayList<Team>>) {
         getSingleSnapShot(refTable) {
             if (it != null) {
                 val teams: ArrayList<Team> = arrayListOf()
                 it.children.forEach {
                     teams.add(it.getValue(Team::class.java)!!)
                 }
+                teamsCache["ALL"] = teams
                 serviceCallback.onSuccess(teams)
             } else {
                 serviceCallback.onError(NullResponseFirebase())

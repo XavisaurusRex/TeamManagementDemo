@@ -8,4 +8,5 @@ interface TrainersService {
     fun setTrainers(trainers: List<Trainer>, listener: ServiceCallback<Boolean>?)
     fun getTrainer(trainerKey: String, serviceCallback: ServiceCallback<Trainer?>, cache: TMDCache<String, Trainer>)
     fun setTrainer(trainer: Trainer, listener: ServiceCallback<Void?>?)
+    fun updateTrainer(trainer: Trainer, listener: ServiceCallback<Void?>?)
 }
