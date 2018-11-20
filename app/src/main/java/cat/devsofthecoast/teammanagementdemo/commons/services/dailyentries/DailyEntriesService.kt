@@ -5,4 +5,5 @@ import cat.devsofthecoast.teammanagementdemo.commons.services.ServiceCallback
 
 interface DailyEntriesService {
     fun setDailyEntries(dailyEntries: List<DailyEntry>, listener: ServiceCallback<Void?>?)
+    fun getDailyEntries(teamKey: String, listener: ServiceCallback<ArrayList<DailyEntry>>)
 }

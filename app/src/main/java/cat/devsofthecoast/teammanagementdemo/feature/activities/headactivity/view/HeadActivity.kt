@@ -61,16 +61,11 @@ class HeadActivity : PresenterActivity<HeadContract.Presenter, HeadContract.View
         supportActionBar?.setHomeAsUpIndicator(NAVIGATOR_CLOSED)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        getIntentExtras()
         configureInteractions()
 
         startFragment(WeekPreviewFragment())
 
         presenter.getLoggedTrainer()
-    }
-
-    private fun getIntentExtras() {
-
     }
 
     private fun configureInteractions() {

@@ -31,4 +31,15 @@ class DailyEntriesServiceImpl: BaseService(), DailyEntriesService {
             listener?.onError(PostingFirebaseException())
         }
     }
+
+    override fun getDailyEntries(teamKey: String, listener: ServiceCallback<ArrayList<DailyEntry>>) {
+        TODO()
+        getSingleSnapShot(refTable){ it ->
+            val listDailies: ArrayList<DailyEntry> = arrayListOf()
+            it?.children?.forEach {dailySnapshot ->
+                listDailies.add(dailySnapshot.getValue(DailyEntry::class.java)!!)
+            }
+            listener.onSuccess(listDailies)
+        }
+    }
 }

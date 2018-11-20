@@ -82,7 +82,7 @@ class TrainerProfileFragment : PresenterFragment<TrainerProfilePresenter, Traine
     }
 
     override fun onUpdateTrainerSuccess() {
-        activity?.toast("trainer updated")
+        activity?.toast("trainer update success")
     }
 
     override fun onUpdateTrainerError(throwable: Throwable) {
