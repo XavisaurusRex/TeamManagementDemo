@@ -10,6 +10,7 @@ import cat.devsofthecoast.teammanagementdemo.TMDApp
 import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.ui.PresenterFragment
 import cat.devsofthecoast.teammanagementdemo.commons.models.DailyEntry
 import cat.devsofthecoast.teammanagementdemo.commons.models.Team
+import cat.devsofthecoast.teammanagementdemo.commons.models.users.Trainer
 import cat.devsofthecoast.teammanagementdemo.commons.utilities.toast
 import cat.devsofthecoast.teammanagementdemo.feature.fragments.dailyentries.DailyEntriesContract
 import cat.devsofthecoast.teammanagementdemo.feature.fragments.dailyentries.adapter.DailyEntriesAdapter
@@ -32,12 +33,20 @@ class DailyEntriesFragment : PresenterFragment<DailyEntriesContract.Presenter, D
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         configureInteractions()
-        presenter.getDailyEntries(Team())
+        presenter.getLoggedTrainer()
     }
 
     private fun configureInteractions() {
         rcyDailyEntries.layoutManager = LinearLayoutManager(activity)
         rcyDailyEntries.adapter = dailyEntriesAdapter
+    }
+
+    override fun onGetLoggedTrainerSuccess(trainer: Trainer) {
+        presenter.getDailyEntries(trainer.team)
+    }
+
+    override fun onGetLoggedTrainerError(throwable: Throwable) {
+        activity?.toast("Error -> ${throwable.message}")
     }
 
     override fun onGetDailyEntriesSuccess(dailyEntries: List<DailyEntry>) {

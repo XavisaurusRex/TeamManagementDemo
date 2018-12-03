@@ -3,6 +3,7 @@ package cat.devsofthecoast.teammanagementdemo.dependencyinjection
 import android.content.Context
 import cat.devsofthecoast.teammanagementdemo.commons.core.mvp.config.BaseConfig
 import cat.devsofthecoast.teammanagementdemo.commons.useCase.associate.LinkTeamTrainerUseCase
+import cat.devsofthecoast.teammanagementdemo.commons.useCase.dailyEntries.GetDailyEntriesUseCase
 import cat.devsofthecoast.teammanagementdemo.commons.useCase.demo.ClearDatabseChildUseCase
 import cat.devsofthecoast.teammanagementdemo.commons.useCase.demo.FillDatabaseUseCase
 import cat.devsofthecoast.teammanagementdemo.commons.useCase.questions.GetAllQuestionsUseCase
@@ -77,6 +78,13 @@ class UseCaseModule(
         UpdateTrainerUseCase(
                 appConfig,
                 repositoryModule.trainersRepository
+        )
+    }
+
+    val getDailyEntriesUseCase: GetDailyEntriesUseCase by lazy {
+        GetDailyEntriesUseCase(
+                appConfig,
+                repositoryModule.dailyEntriesRepository
         )
     }
 

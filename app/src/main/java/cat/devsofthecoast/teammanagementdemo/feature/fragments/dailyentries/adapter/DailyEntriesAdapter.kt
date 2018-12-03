@@ -25,7 +25,9 @@ class DailyEntriesAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.itemView.tvTimeStamp.text = dailyEntries[position].key
+        val nose = dailyEntries[position].teamResponses[dailyEntries[position].teamResponses.keys.elementAt(0)]
+        val showt = nose!!.playersResponses[nose.playersResponses.keys.elementAt(0)]?.entries?.elementAt(0)?.value.toString()
+        holder.itemView.tvTimeStamp.text = showt
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {}

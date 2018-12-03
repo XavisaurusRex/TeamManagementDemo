@@ -76,7 +76,9 @@ class PresenterModule(
 
     val dailyEntriesPresenter: DailyEntriesPresenter by lazy {
         DailyEntriesPresenter(
-                appConfig
+                appConfig,
+                useCaseModule.getTrainerUseCase,
+                useCaseModule.getDailyEntriesUseCase
         )
     }
 
